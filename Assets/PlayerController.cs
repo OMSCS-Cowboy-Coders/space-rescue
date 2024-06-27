@@ -23,13 +23,11 @@ public class PlayerController : MonoBehaviour
 
     void OnMove(InputValue inputValue) {
         Debug.Log("Entered On Move");
-        Vector3 astronautMovement = inputValue.Get<Vector3>();
+        Vector2 astronautMovement = inputValue.Get<Vector2>();
 
         astronautX = astronautMovement.x;
         astronautY = astronautMovement.y;
-        astronautZ = astronautMovement.z;
-
-        Debug.Log(astronautX + " " + astronautY + " " + astronautZ);
+        Debug.Log("astronautX: " + astronautX + "astronautY: " + astronautY + "astronautZ: " + astronautZ);
     }
 
     void FixedUpdate() {
