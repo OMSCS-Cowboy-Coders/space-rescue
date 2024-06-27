@@ -8,3 +8,5 @@ Resources:
 3. Package Manager -> Terrain Tools -> Install 
 
 4. Package Manager -> Cinemachine -> Install
+
+5. Sci-Fi Styled Modular Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-styled-modular-pack-82913
