@@ -35,11 +35,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void OnAnimatorMove()
-    {
-        astronautRigidBody.MovePosition(anim.rootPosition);
+    // void OnAnimatorMove()
+    // {
+    //     Debug.Log("Entering OnAnimatorMove");
+    //     Debug.Log(this.transform.position);
+    //     float speed = 1f;
+    //     Vector3 newPosition = anim.rootPosition;
+    //     newPosition = Vector3.LerpUnclamped(this.transform.position, newPosition, speed);
+    //     astronautRigidBody.MovePosition(newPosition);
+    //     Debug.Log(newPosition);
+    //     Debug.Log("Leaving OnAnimatorMove");
 
-    }
+    // }
 
 
 }
