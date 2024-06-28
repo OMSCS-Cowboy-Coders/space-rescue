@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private float astronautY;
 
     private float astronautZ;
+
+    private Vector3 newLocation;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,20 +35,15 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate() {
          anim.SetFloat("Y_movement", astronautY);
 
+        newLocation.Set(astronautX, 0f, astronautY);
+        newLocation.Normalize ();
+
     }
 
-    // void OnAnimatorMove()
-    // {
-    //     Debug.Log("Entering OnAnimatorMove");
-    //     Debug.Log(this.transform.position);
-    //     float speed = 1f;
-    //     Vector3 newPosition = anim.rootPosition;
-    //     newPosition = Vector3.LerpUnclamped(this.transform.position, newPosition, speed);
-    //     astronautRigidBody.MovePosition(newPosition);
-    //     Debug.Log(newPosition);
-    //     Debug.Log("Leaving OnAnimatorMove");
-
-    // }
+    void OnAnimatorMove()
+    {
+        astronautRigidBody.MovePosition(astronautRigidBody.position + newLocation * anim.deltaPosition.magnitude*2);
+    }
 
 
 }
