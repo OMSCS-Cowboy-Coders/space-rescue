@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     private float astronautZ;
 
     private Vector3 newLocation;
+
+    private Quaternion newRotation;
+
+    private float characterSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,16 +37,21 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-         anim.SetFloat("Y_movement", astronautY);
+        anim.SetFloat("Y_movement", astronautY);
 
         newLocation.Set(astronautX, 0f, astronautY);
-        newLocation.Normalize ();
+        newLocation.Normalize();
+
+        Vector3 updatedRotationDirection = Vector3.RotateTowards(this.transform.forward, newLocation, characterSpeed * Time.deltaTime, 0f);
+        newRotation = Quaternion.LookRotation(updatedRotationDirection);
 
     }
 
     void OnAnimatorMove()
     {
-        astronautRigidBody.MovePosition(astronautRigidBody.position + newLocation * anim.deltaPosition.magnitude*2);
+        astronautRigidBody.MovePosition(astronautRigidBody.position + newLocation * anim.deltaPosition.magnitude);
+        astronautRigidBody.MoveRotation(newRotation);
+
     }
 
 
