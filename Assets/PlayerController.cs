@@ -37,13 +37,6 @@ public class PlayerController : MonoBehaviour
 
         astronautX = astronautMovement.x;
         astronautY = astronautMovement.y;
-      
-         Debug.Log("-!!!!!!!!");
-        Debug.Log(astronautX);
-        Debug.Log(astronautY);
-
-        Debug.Log("---!!!!!!");
-
     }
 
     void FixedUpdate() {
@@ -52,18 +45,13 @@ public class PlayerController : MonoBehaviour
 
         newLocation.Set(astronautX, 0f, astronautY);
         newLocation.Normalize();
-
-        // Vector3 updatedRotationDirection = Vector3.RotateTowards(astronautRigidBody.transform.forward, newLocation, characterTurnSpeed * Time.deltaTime, 0f);
-        // newRotation = Quaternion.LookRotation(updatedRotationDirection);
     }
 
     public float turnRate = 100f;
     void OnAnimatorMove()
     {
-        Vector3 newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, 20f);
+        Vector3 newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, 10f);
         astronautRigidBody.MovePosition(newRootPosition);
-        // astronautRigidBody.MovePosition(astronautRigidBody.position + 5 * newLocation * anim.deltaPosition.magnitude);
-        // astronautRigidBody.MoveRotation(newRotation);
 
         var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
         astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
