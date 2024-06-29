@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
 
     private float astronautZ;
 
+    // TODO: implement this so that the player can pick stuff up. (only one at a time)
+    private bool isHoldingObject;
+
     private Vector3 newLocation;
     // Start is called before the first frame update
     void Start()
