@@ -8,7 +8,9 @@ public class PressurePlateControl : MonoBehaviour
 
      private Animator animPartCovering;
 
-     private GameObject partCovering;
+     public GameObject partCovering;
+
+     public GameObject batteryPack;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +30,10 @@ public class PressurePlateControl : MonoBehaviour
             if (retrievePart != null) {
                 anim =  this.transform.gameObject.GetComponent<Animator>();
                 anim.SetBool("activated", true);
-                
                 animPartCovering = partCovering.GetComponent<Animator>();
                 animPartCovering.SetBool("reveal", true);
+
+                batteryPack.GetComponent<MeshRenderer>().enabled = true;
             }
         }
 
