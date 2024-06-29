@@ -28,6 +28,7 @@ This class is a general class that can be used for any type of collectible recei
                 break;
         }
 
+        Destroy(this.gameObject);
 
         // Split logic based on collectible type
 
@@ -39,6 +40,5 @@ This class is a general class that can be used for any type of collectible recei
 
         // pm.ReceiveBall();
         // EventManager.TriggerEvent<BombBounceEvent, Vector3>(c.transform.position);
-        // Destroy(this.gameObject);
     }
 }
