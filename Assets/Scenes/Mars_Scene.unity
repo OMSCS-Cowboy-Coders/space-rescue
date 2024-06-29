@@ -4311,7 +4311,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406912821}
-  m_LocalRotation: {x: 0.14389804, y: -0.068521105, z: 0.0099882325, w: 0.9871669}
+  m_LocalRotation: {x: 0.14389804, y: -0.06852112, z: 0.009988234, w: 0.9871669}
   m_LocalPosition: {x: 958.1266, y: 102.99, z: 1168.1306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6785,7 +6785,7 @@ Transform:
   m_Children:
   - {fileID: 1326854411}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &716755735
 GameObject:
@@ -9549,7 +9549,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.14389804, y: -0.068521105, z: 0.0099882325, w: 0.9871669}
+  m_LocalRotation: {x: 0.14389804, y: -0.06852112, z: 0.009988234, w: 0.9871669}
   m_LocalPosition: {x: 958.1266, y: 102.99, z: 1168.1306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13817,6 +13817,10 @@ PrefabInstance:
     - target: {fileID: 1000011713842796, guid: ffd3e66d4df2a554fb995d41f7ffe4c2, type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011713842796, guid: ffd3e66d4df2a554fb995d41f7ffe4c2, type: 3}
+      propertyPath: m_TagString
+      value: HealthCollectible
       objectReference: {fileID: 0}
     - target: {fileID: 4000010070424524, guid: ffd3e66d4df2a554fb995d41f7ffe4c2, type: 3}
       propertyPath: m_RootOrder
@@ -18407,6 +18411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62afac9970e04faaae6d04291775582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnRate: 100
 --- !u!114 &1809700999
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,22 +9,35 @@ This class is a general class that can be used for any type of collectible recei
 */
 {
     void OnTriggerEnter(Collider c) {
-        print("Entered ONTRIGGERENTER");
+        
         if (c.GetComponent<Rigidbody>() == null) return;
 
-        PlayerMetrics pm = c.GetComponent<RigidBody>().gameObject.GetComponent<PlayerMetrics>();
+        PlayerMetrics pm = c.GetComponent<Rigidbody>().gameObject.GetComponent<PlayerMetrics>();
         if (pm == null) return;
 
+        switch(tag) {
+            case "HealthCollectible":
+                print("Got the HealthCollectible Tag!");
+                pm.incrementHealth();
+                break;
+            case "SprintPowerup":
+                print("Got the SprintPowerup Tag!");
+                pm.collectSprintPowerup();
+                break;
+            default:
+                break;
+        }
+
+
         // Split logic based on collectible type
+
+        // if health collectible
 
         // Health Collectible
         // Stamina Collectible
         // Recharge rate for sprint
 
-        pm.ReceiveBall();
-        
-
-        // BallCollector bc = c.GetComponent<Rigidbody>().gameObject.GetComponent<BallCollector>();
+        // pm.ReceiveBall();
         // EventManager.TriggerEvent<BombBounceEvent, Vector3>(c.transform.position);
         // Destroy(this.gameObject);
     }
