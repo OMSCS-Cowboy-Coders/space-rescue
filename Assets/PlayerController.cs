@@ -44,27 +44,26 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        anim.SetFloat("X_movement", astronautX);
+        // anim.SetFloat("X_movement", astronautX);
         anim.SetFloat("Y_movement", astronautY);
 
         newLocation.Set(astronautX, 0f, astronautY);
         newLocation.Normalize();
 
-        Debug.Log("------");
-        Debug.Log(astronautRigidBody.transform.forward);
-        Debug.Log(newLocation);
-        Debug.Log("------");
-
-        Vector3 updatedRotationDirection = Vector3.RotateTowards(astronautRigidBody.transform.forward, newLocation, characterTurnSpeed * Time.deltaTime, 0f);
-        newRotation = Quaternion.LookRotation(updatedRotationDirection);
+        // Vector3 updatedRotationDirection = Vector3.RotateTowards(astronautRigidBody.transform.forward, newLocation, characterTurnSpeed * Time.deltaTime, 0f);
+        // newRotation = Quaternion.LookRotation(updatedRotationDirection);
     }
 
+    public float turnRate = 100f;
     void OnAnimatorMove()
     {
-        astronautRigidBody.MovePosition(astronautRigidBody.position + 5 * newLocation * anim.deltaPosition.magnitude);
-        astronautRigidBody.MoveRotation(newRotation);
+        Vector3 newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, 20f);
+        astronautRigidBody.MovePosition(newRootPosition);
+        // astronautRigidBody.MovePosition(astronautRigidBody.position + 5 * newLocation * anim.deltaPosition.magnitude);
+        // astronautRigidBody.MoveRotation(newRotation);
 
-         
+        var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
+        astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
     }
 
 
