@@ -8,6 +8,14 @@ public class CollectibleManager : MonoBehaviour
 This class is a general class that can be used for any type of collectible received.
 */
 {
+
+    private HealthCollectibleUIManager healthCollectibleUIManager;
+
+    void Start()
+    {
+        healthCollectibleUIManager = FindObjectOfType<HealthCollectibleUIManager>();
+    }
+
     void OnTriggerEnter(Collider c) {
         
         if (c.GetComponent<Rigidbody>() == null) return;
