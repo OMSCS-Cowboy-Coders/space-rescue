@@ -71,9 +71,12 @@ public class PlayerMetrics : MonoBehaviour
 
     public void decrementHealth() {
         health--;
+        print("This is health: " + health);
         if (health <= 0) {
-            // endGame
-            return;
+            print("GAME SHOULD QUIT");
+            // end the game
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
         }
     }
 
