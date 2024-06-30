@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerMetrics playerMetrics;
 
+    private FootstepsController footstepsController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,8 @@ public class PlayerController : MonoBehaviour
         // set initial values
         moveSpeed       = playerMetrics.getMoveSpeed();
         moveAnimSpeed   = playerMetrics.getMoveAnimSpeed();
+        footstepsController = GetComponent<FootstepsController>();
+
     }
 
     void OnMove(InputValue inputValue) {
@@ -55,6 +59,11 @@ public class PlayerController : MonoBehaviour
 
         newLocation.Set(astronautX, 0f, astronautY);
         newLocation.Normalize();
+
+        if (Mathf.Abs(astronautX) > 0.1f || Mathf.Abs(astronautY) > 0.1f)
+        {
+            footstepsController.PlayFootstepSound();
+        }
     }
 
     public float turnRate = 100f;
