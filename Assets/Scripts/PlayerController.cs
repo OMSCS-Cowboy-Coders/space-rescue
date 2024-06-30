@@ -25,11 +25,14 @@ public class PlayerController : MonoBehaviour
      Vector3 m_EulerAngleVelocity;
 
     private float characterTurnSpeed = 5f;
+
+    private FootstepsController footstepsController;
     // Start is called before the first frame update
     void Start()
     {
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        footstepsController = GetComponent<FootstepsController>();
     }
 
     void OnMove(InputValue inputValue) {
@@ -44,6 +47,11 @@ public class PlayerController : MonoBehaviour
 
         newLocation.Set(astronautX, 0f, astronautY);
         newLocation.Normalize();
+
+        if (Mathf.Abs(astronautX) > 0.1f || Mathf.Abs(astronautY) > 0.1f)
+        {
+            footstepsController.PlayFootstepSound();
+        }
     }
 
     public float turnRate = 100f;

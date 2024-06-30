@@ -12,3 +12,7 @@ Resources:
 5. Sci-Fi Styled Modular Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-styled-modular-pack-82913
    
 6. Food props (Health Collectibles): https://assetstore.unity.com/packages/3d/food-props-163295
+
+7. Background Music: https://assetstore.unity.com/packages/audio/music/the-invasion-atmospheric-title-screen-sci-fi-95819
+
+8. Footstep Noise: https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-189879
