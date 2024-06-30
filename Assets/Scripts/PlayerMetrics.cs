@@ -28,8 +28,9 @@ public class PlayerMetrics : MonoBehaviour
 
     private float sprintEnergy = 100.0f;
     private float maxSprintEnergy = 100.0f;
-    private float REGULAR_SPRINT_ENERGY = 100.0f;
-    private float POWERUP_SPRINT_ENERGY = 200.0f;
+    private float SPRINT_RECHARGE_RATE = 5.0f;
+    
+    private float SPRINT_DISCHARGE_RATE = -10.0f;
 
     private PlayerController playerController;
 
@@ -86,7 +87,17 @@ public class PlayerMetrics : MonoBehaviour
     }
 
     private IEnumerator enhanceSprintAbility() {
+        /*
+        When the button "R" is pressed, the powerup fires to 
+            1. Restore sprint energy to full
+            2. Double sprint speed (2x) for 3 seconds.
+        
+        Afterwards, sprint speed is set back to 1.15x
+        */
         isUsingSprintPowerup = true;
+
+        // Instant boost of sprint energy
+        sprintEnergy = maxSprintEnergy;
 
         // temporarily bump up settings
         sprintSpeed = powerupSprintSpeed;
@@ -146,21 +157,22 @@ public class PlayerMetrics : MonoBehaviour
     {
         if (alterEnergyCoroutine != null)
         {
-            print("Stopping the old coroutine");
+            print("Stopping the old sprint energy coroutine");
             StopCoroutine(alterEnergyCoroutine);
         }
-        print("Starting a new coroutine");
+        print("Starting sprint energy coroutine");
         alterEnergyCoroutine = StartCoroutine(AlterEnergyOverTime(energyDelta));
     }
     public void startSprint() {
         if (canSprint()) {
+            // sprintSpeed and sprintAnimSpeed values can change depending on whether or not there is a powerup.
             updatePlayerControllerSpeeds(sprintSpeed, sprintAnimSpeed);
-            changeSprintEnergy(-10.0f); // discharge sprint energy
+            changeSprintEnergy(SPRINT_DISCHARGE_RATE); // discharge sprint energy
         }
     }
     public void stopSprint() {
         updatePlayerControllerSpeeds(regularMovingSpeed, regularAnimSpeed);
-        changeSprintEnergy(5.0f); // recharge sprint energy
+        changeSprintEnergy(SPRINT_RECHARGE_RATE); // recharge sprint energy
     }
 
     private void updatePlayerControllerSpeeds(float moveSpeed, float moveAnimSpeed) {

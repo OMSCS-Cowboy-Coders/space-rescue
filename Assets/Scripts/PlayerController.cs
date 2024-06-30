@@ -22,9 +22,7 @@ public class PlayerController : MonoBehaviour
 
     private Quaternion newRotation = Quaternion.identity;
 
-     Vector3 m_EulerAngleVelocity;
-
-    private float characterTurnSpeed = 5f;
+    Vector3 m_EulerAngleVelocity;
 
     public float moveSpeed;
     public float moveAnimSpeed;
@@ -88,21 +86,4 @@ public class PlayerController : MonoBehaviour
             playerMetrics.useSprintPowerup();
         }
     }
-    // void toggleSprint(bool shouldSprint) {
-    //     // canSprint?
-        
-    //     // speeds should be dictated by PlayerMetrics
-
-    //     float moveSpeed = playerMetrics.getMoveSpeed();
-    //     float sprintAnimSpeed = playerMetrics.getSprintAnimSpeed();
-
-    //     this.moveSpeed = playerMetrics.getMoveSpeed();
-    //     this.sprintAnimSpeed = playerMetrics.getSprintAnimSpeed();
-
-    //     sprintAnimSpeed = shouldSprint ? 1.3f ; 1.0f;
-    //     anim.SetFloat("SprintAnimSpeed", sprintAnimSpeed);
-
-
-    // }
-
 }
