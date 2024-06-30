@@ -22,20 +22,24 @@ public class PlayerController : MonoBehaviour
 
     private Quaternion newRotation = Quaternion.identity;
 
-     Vector3 m_EulerAngleVelocity;
-
-    private float characterTurnSpeed = 5f;
+    Vector3 m_EulerAngleVelocity;
 
     public float moveSpeed;
-    public float sprintAnimSpeed;
+    public float moveAnimSpeed;
+
+    private PlayerMetrics playerMetrics;
 
     // Start is called before the first frame update
     void Start()
     {
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        moveSpeed = 1.0f;
-        sprintAnimSpeed = 1.0f;
+
+        playerMetrics = gameObject.GetComponent<PlayerMetrics>();
+
+        // set initial values
+        moveSpeed       = playerMetrics.getMoveSpeed();
+        moveAnimSpeed   = playerMetrics.getMoveAnimSpeed();
     }
 
     void OnMove(InputValue inputValue) {
@@ -51,7 +55,6 @@ public class PlayerController : MonoBehaviour
 
         newLocation.Set(astronautX, 0f, astronautY);
         newLocation.Normalize();
-
     }
 
     public float turnRate = 100f;
@@ -62,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
         var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
         astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
+
+        anim.SetFloat("SprintAnimSpeed", moveAnimSpeed);
     }
 
     void Update() {
@@ -71,24 +76,14 @@ public class PlayerController : MonoBehaviour
     void InputDetector() {
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
-            Sprint();
-            print("Begin Sprinting");
-            moveSpeed = 1.3f;
-            sprintAnimSpeed = 1.3f;
-            anim.SetFloat("SprintAnimSpeed", sprintAnimSpeed);
+            playerMetrics.startSprint();
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift)) {
-            print("Stop Sprinting");
-            moveSpeed = 1.0f;
-            sprintAnimSpeed = 1.0f;
-            anim.SetFloat("SprintAnimSpeed", sprintAnimSpeed);
+            playerMetrics.stopSprint();
         }
         else if (Input.GetKeyDown(KeyCode.R)) {
             print("Using Powerup!");
+            playerMetrics.useSprintPowerup();
         }
     }
-    void Sprint() {
-        print("Sprinting");
-    }
-
 }
