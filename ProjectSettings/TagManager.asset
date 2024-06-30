@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HealthCollectible
   - SprintPowerup
+  - SpaceshipPart
   layers:
   - Default
   - TransparentFX

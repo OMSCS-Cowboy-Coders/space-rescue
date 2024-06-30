@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
      Vector3 m_EulerAngleVelocity;
 
     private float characterTurnSpeed = 5f;
+
+    private bool playerIsTryingToPickUpObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
         astronautY = astronautMovement.y;
     }
 
+   
     void FixedUpdate() {
         anim.SetFloat("Y_movement", astronautY);
 
@@ -49,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public float turnRate = 100f;
     void OnAnimatorMove()
     {
-        Vector3 newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, 1f);
+        Vector3 newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, 8f);
         astronautRigidBody.MovePosition(newRootPosition);
 
         var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
