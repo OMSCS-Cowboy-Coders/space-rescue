@@ -72,8 +72,8 @@ public class PlayerMetrics : MonoBehaviour
     public void decrementHealth() {
         health--;
         if (health <= 0) {
-            // endGame
-            return;
+            // end the game
+            Application.Quit();
         }
     }
 

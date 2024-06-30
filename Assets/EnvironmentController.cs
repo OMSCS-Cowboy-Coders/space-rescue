@@ -20,6 +20,7 @@ public class EnvironmentController : MonoBehaviour
     void OnTriggerEnter(Collider c) {
         // check if the collider is an alien
         print("TRIGGERED");
-
+        
+        playerMetrics.decrementHealth();
     }
 }
