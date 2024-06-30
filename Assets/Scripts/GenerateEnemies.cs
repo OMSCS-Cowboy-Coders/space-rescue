@@ -10,7 +10,7 @@ public class GenerateEnemies : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Enemy;
-    public GameObject EnemyParent;
+    private GameObject EnemyParent;
     public GameObject Player;
 
     private float distance = 200;
@@ -21,6 +21,7 @@ public class GenerateEnemies : MonoBehaviour
         //Get closest terrain to player 
         // Go through children (which should be terrain)
         // and get ranges for X and Z
+        EnemyParent = new GameObject("EnemyParent");
         StartCoroutine(SpawnEnemies());
     }
 
