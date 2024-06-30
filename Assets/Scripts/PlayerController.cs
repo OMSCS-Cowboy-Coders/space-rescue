@@ -22,16 +22,26 @@ public class PlayerController : MonoBehaviour
 
     private Quaternion newRotation = Quaternion.identity;
 
-     Vector3 m_EulerAngleVelocity;
+    Vector3 m_EulerAngleVelocity;
 
-    private float characterTurnSpeed = 5f;
+    public float moveSpeed;
+    public float moveAnimSpeed;
+
+    private PlayerMetrics playerMetrics;
 
     private bool playerIsTryingToPickUpObject;
+
     // Start is called before the first frame update
     void Start()
     {
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+
+        playerMetrics = gameObject.GetComponent<PlayerMetrics>();
+
+        // set initial values
+        moveSpeed       = playerMetrics.getMoveSpeed();
+        moveAnimSpeed   = playerMetrics.getMoveAnimSpeed();
     }
 
     void OnMove(InputValue inputValue) {
@@ -39,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
         astronautX = astronautMovement.x;
         astronautY = astronautMovement.y;
+
     }
 
    
@@ -52,12 +63,30 @@ public class PlayerController : MonoBehaviour
     public float turnRate = 100f;
     void OnAnimatorMove()
     {
-        Vector3 newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, 8f);
+        Vector3 newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, moveSpeed);
         astronautRigidBody.MovePosition(newRootPosition);
 
         var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
         astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
+
+        anim.SetFloat("SprintAnimSpeed", moveAnimSpeed);
     }
 
+    void Update() {
+        InputDetector();
+    }
 
+    void InputDetector() {
+
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            playerMetrics.startSprint();
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift)) {
+            playerMetrics.stopSprint();
+        }
+        else if (Input.GetKeyDown(KeyCode.R)) {
+            print("Using Powerup!");
+            playerMetrics.useSprintPowerup();
+        }
+    }
 }
