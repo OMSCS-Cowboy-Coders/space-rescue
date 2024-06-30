@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class HealthCollectibleUIManager : MonoBehaviour
 {
-    public TextMeshProUGUI healthCollectibleText;
-    private int healthCollectibleCount = 0;
+    // public TextMeshProUGUI healthCollectibleText;
+    public Text healthCollectibleText;
+    private int healthCollectibleCount = 3;
 
     void Start()
     {
@@ -19,8 +21,9 @@ public class HealthCollectibleUIManager : MonoBehaviour
         UpdateHealthCollectibleText();
     }
 
-    private void UpdateHealthCollectibleText()
+    public void UpdateHealthCollectibleText()
     {
         healthCollectibleText.text = "Health Collectibles: " + healthCollectibleCount.ToString();
+        
     }
 }
