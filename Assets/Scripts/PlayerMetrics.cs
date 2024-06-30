@@ -73,10 +73,14 @@ public class PlayerMetrics : MonoBehaviour
         health--;
         print("This is health: " + health);
         if (health <= 0) {
-            print("GAME SHOULD QUIT");
+            print("GAME RESTART");
+
+            // restart the game
+            RestartGame.Restart();
+
             // end the game
-            UnityEditor.EditorApplication.isPlaying = false;
-            Application.Quit();
+            // UnityEditor.EditorApplication.isPlaying = false;
+            // Application.Quit();
         }
     }
 
