@@ -36,6 +36,5 @@ public class PressurePlateControl : MonoBehaviour
                 batteryPack.GetComponent<MeshRenderer>().enabled = true;
             }
         }
-
     }
 }

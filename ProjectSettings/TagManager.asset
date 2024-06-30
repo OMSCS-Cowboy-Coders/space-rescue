@@ -7,6 +7,8 @@ TagManager:
   - HealthCollectible
   - SprintPowerup
   - SpaceshipPart
+  - BatteryStorage
+  - MarsFloor
   layers:
   - Default
   - TransparentFX

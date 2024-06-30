@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class PickUpObjects : MonoBehaviour
 {
 
+    public PlayerController playerController;
     private Rigidbody itemRB;
 
     private Collider itemCollider;
@@ -22,6 +23,8 @@ public class PickUpObjects : MonoBehaviour
     public float farthestDistanceFromItem = 2f;
 
     private bool pickUpItem = false; 
+
+  
 
 
 
@@ -58,40 +61,53 @@ public class PickUpObjects : MonoBehaviour
          Input.GetKeyDown(KeyCode.E) &&
           !playerIsHoldingItemGlobal &&
           distanceFromItem <= farthestDistanceFromItem) {
+            Debug.Log("In this call to pickup the object");
             playerIsTryingToPickUpObject = true;
-            PickUpItem();
+            playerController.anim.SetBool("PickingUpObject", true);
+            playerController.anim.SetBool("PuttingDownObject", false);
+            playerController.objectToCarry = gameObject;
+            
         } else if(itemIsBeingHeldByPlayer && Input.GetKeyDown(KeyCode.Q)) {
             playerIsTryingToPickUpObject = false;
-            DropItem();
+            playerController.anim.SetBool("PuttingDownObject", true);
+            playerController.anim.SetBool("CarryingObject", false);
+            PutDownObject();
         }
     }
 
-    void PickUpItem() {
+    public void setVarsForPickUp() {
+        Debug.Log("In pick up item");
+       
         itemIsBeingHeldByPlayer = true;
         playerIsHoldingItemGlobal = true;
 
         this.transform.SetParent(itemContainerForPlayer.transform);
-        itemContainerForPlayer.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
-        this.transform.localPosition = Vector3.zero;
-        this.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        this.transform.localScale = Vector3.one;
+        // itemContainerForPlayer.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        // this.transform.localPosition = Vector3.zero;
+        // this.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        // this.transform.localScale = Vector3.one;
 
-        itemRB.isKinematic = true;
-        itemCollider.isTrigger = true;
+        // itemRB.isKinematic = true;
+        // itemCollider.isTrigger = true;
     }
 
-    void DropItem() {
+    public void PutDownObject() {
         itemIsBeingHeldByPlayer = false;
         playerIsHoldingItemGlobal = false;
 
         this.transform.SetParent(null);
-        this.transform.SetParent(GameObject.FindWithTag("BatteryStorage").transform);
-        this.transform.localScale = Vector3.one;
-
+        
         itemRB.velocity = player.GetComponent<Rigidbody>().velocity;
 
         itemRB.isKinematic = false;
         itemCollider.isTrigger = false;
+        
+        GameObject batteryStorage = GameObject.FindWithTag("BatteryStorage");
+        float closeToBatteryStorage = Vector3.Distance(this.transform.position, batteryStorage.transform.position);
+        if (closeToBatteryStorage < 2f) {
+            this.transform.SetParent(GameObject.FindWithTag("BatteryStorage").transform);
+            playerController.updateNumBatteriesRetrieved();
+        }
     }
 
 }
