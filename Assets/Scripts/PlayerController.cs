@@ -27,13 +27,15 @@ public class PlayerController : MonoBehaviour
     private float characterTurnSpeed = 5f;
 
     public float moveSpeed;
+    public float sprintAnimSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        moveSpeed = 1f;
+        moveSpeed = 1.0f;
+        sprintAnimSpeed = 1.0f;
     }
 
     void OnMove(InputValue inputValue) {
@@ -71,11 +73,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) {
             Sprint();
             print("Begin Sprinting");
-            moveSpeed = 2f;
+            moveSpeed = 1.3f;
+            sprintAnimSpeed = 1.3f;
+            anim.SetFloat("SprintAnimSpeed", sprintAnimSpeed);
         }
         else if (Input.GetKeyUp(KeyCode.E)) {
             print("Stop Sprinting");
             moveSpeed = 1.0f;
+            sprintAnimSpeed = 1.0f;
+            anim.SetFloat("SprintAnimSpeed", sprintAnimSpeed);
         }
         else if (Input.GetKeyDown(KeyCode.R)) {
             print("Using Powerup!");
