@@ -12,3 +12,5 @@ Resources:
 5. Sci-Fi Styled Modular Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-styled-modular-pack-82913
    
 6. Food props (Health Collectibles): https://assetstore.unity.com/packages/3d/food-props-163295
+
+7. Hud Assest Pack: https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048
