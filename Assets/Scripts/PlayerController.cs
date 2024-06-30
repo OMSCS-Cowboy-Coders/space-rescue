@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
         astronautX = astronautMovement.x;
         astronautY = astronautMovement.y;
+
     }
 
     void FixedUpdate() {
@@ -56,5 +57,14 @@ public class PlayerController : MonoBehaviour
         astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
     }
 
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            print("Sprinting now!");
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.R)) {
+            print("Using Powerup!");
+        }
+    }
 
 }
