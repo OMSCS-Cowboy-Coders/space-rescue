@@ -25,13 +25,15 @@ public class EnemyAI : MonoBehaviour
         Vector3 futureTarget = Player.transform.position + lookAheadTime * charController.velocity;
         blocked = NavMesh.Raycast(agent.transform.position, futureTarget, out hit, NavMesh.AllAreas);
         Debug.DrawLine(agent.transform.position, futureTarget, blocked ? Color.red : Color.green);
+        Vector3 dest = transform.TransformPoint(futureTarget);
         if (blocked){
             //View is blocked. Go to original waypoint position
             Debug.DrawRay(hit.position, Vector3.up, Color.red);
+            agent.SetDestination(futureTarget);
         }
         else{
             //Not blocked, so go towards it
-            agent.SetDestination(futureTarget);
+            agent.SetDestination(Player.transform.position);
  }
     }
 }
