@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private float characterTurnSpeed = 5f;
 
     public float moveSpeed;
-    public float sprintAnimSpeed;
+    public float moveAnimSpeed;
 
     private PlayerMetrics playerMetrics;
 
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
         // set initial values
         moveSpeed       = playerMetrics.getMoveSpeed();
-        sprintAnimSpeed   = playerMetrics.getSprintAnimSpeed();
+        moveAnimSpeed   = playerMetrics.getMoveAnimSpeed();
     }
 
     void OnMove(InputValue inputValue) {
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
         astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
 
-        anim.SetFloat("SprintAnimSpeed", sprintAnimSpeed);
+        anim.SetFloat("SprintAnimSpeed", moveAnimSpeed);
     }
 
     void Update() {
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.R)) {
             print("Using Powerup!");
+            playerMetrics.useSprintPowerup();
         }
     }
     // void toggleSprint(bool shouldSprint) {

@@ -2,35 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-/*
-1. Book keeping for sprints
-Keeping track of how much energy 
-Factors that inform energy: 
-1. How long the button has been pressed 
-2. Recharge speed   => 5% every second
-3. Discharge speed  => 10% every second
-4. Capacity         => 100%
-
-5. When sprint power up is used, for 30 seconds, it will double the sprint capacity and increase recharge speed by +10%.
-
-Also will need to factor the max amoutn of sprint in (reverse engineer this by determining a max sprint time of 10 seconds)
-
-*/
 public class PlayerMetrics : MonoBehaviour
 {
     // Start is called before the first frame update
     public static int MAX_HEALTH = 3;
-    public static float POWERUP_SPRINT_SPEED = 3f;
+    public static float POWERUP_SPRINT_DURATION = 3f;
 
-    private float moveSpeed = 1.0f;
-    private float sprintAnimSpeed = 1.0f;
+    private float regularMovingSpeed = 1.0f;
+    private float regularAnimSpeed = 1.0f;
+
+    private float sprintSpeed = 1.15f; // initially set as default
+    private float sprintAnimSpeed = 1.15f; // initially set as default
+
+    private float defaultSprintSpeed = 1.15f;
+    private float defaultSprintAnimSpeed = 1.15f;
+
+    private float powerupSprintSpeed = 2.0f;
+    private float powerupSprintAnimSpeed = 2.0f;
+
+
     private int health;
     private int sprintPowerupsLeft;
     private bool isUsingSprintPowerup;
 
+
     private float sprintEnergy = 100.0f;
+    private float maxSprintEnergy = 100.0f;
+    private float REGULAR_SPRINT_ENERGY = 100.0f;
+    private float POWERUP_SPRINT_ENERGY = 200.0f;
 
     private PlayerController playerController;
 
@@ -42,6 +41,9 @@ public class PlayerMetrics : MonoBehaviour
         isUsingSprintPowerup = false;
 
         playerController = gameObject.GetComponent<PlayerController>(); // update values here.
+
+        sprintSpeed = defaultSprintSpeed;
+        sprintAnimSpeed = defaultSprintAnimSpeed;
     }
 
     // Update is called once per frame
@@ -51,11 +53,11 @@ public class PlayerMetrics : MonoBehaviour
     }
 
     public float getMoveSpeed() {
-        return moveSpeed;
+        return regularMovingSpeed;
     }
     
-    public float getSprintAnimSpeed() {
-        return sprintAnimSpeed;
+    public float getMoveAnimSpeed() {
+        return regularAnimSpeed;
     }
 
     public void incrementHealth() {
@@ -76,8 +78,6 @@ public class PlayerMetrics : MonoBehaviour
 
     public void collectSprintPowerup() {
         sprintPowerupsLeft++;
-        print("INCREMENTING SPRINT POWERUPS: " + sprintPowerupsLeft);
-        useSprintPowerup(); // TODO: remove this, trigger this by a button.
     }
 
 
@@ -86,16 +86,21 @@ public class PlayerMetrics : MonoBehaviour
     }
 
     private IEnumerator enhanceSprintAbility() {
-        
-        // set the RigidBody's sprint to like 1.2x as fast
-        // Alternatively, set sprint capacity to like 1.4x longer
-        Debug.Log("Sprint set to 1.2x");
         isUsingSprintPowerup = true;
-        
-        yield return new WaitForSeconds(POWERUP_SPRINT_SPEED);
-        
+
+        // temporarily bump up settings
+        sprintSpeed = powerupSprintSpeed;
+        sprintAnimSpeed = powerupSprintAnimSpeed;
+
+        yield return new WaitForSeconds(POWERUP_SPRINT_DURATION);
+
+        // restore settings
+        sprintSpeed = defaultSprintSpeed;
+        sprintAnimSpeed = defaultSprintAnimSpeed;
+        updatePlayerControllerSpeeds(sprintSpeed, sprintAnimSpeed);
+        print("Settings restored");
+
         isUsingSprintPowerup = false;
-        Debug.Log("Sprint set back to 1");
     }
 
     public void useSprintPowerup() {
@@ -118,7 +123,8 @@ public class PlayerMetrics : MonoBehaviour
 
     private IEnumerator AlterEnergyOverTime(float energyDelta)
     {
-        while (0 <= sprintEnergy && sprintEnergy <= 100)
+        // this discharges or charges sprint energy over time. 
+        while (0 <= sprintEnergy && sprintEnergy <= maxSprintEnergy)
         {
             if (energyDelta < 0) {
                 print("Sprinting. Energy left: " + sprintEnergy);
@@ -129,7 +135,7 @@ public class PlayerMetrics : MonoBehaviour
             sprintEnergy += energyDelta;
             yield return new WaitForSeconds(1f);
         }
-        sprintEnergy = Mathf.Clamp(sprintEnergy, 0, 100); // Ensure sprintEnergy stays within 0 and 100
+        sprintEnergy = Mathf.Clamp(sprintEnergy, 0, maxSprintEnergy); // Ensure sprintEnergy stays within 0 and 100
         print("Coroutine is stopped. This is sprintEnergy " + sprintEnergy);
         if (!canSprint()) {
             stopSprint();
@@ -140,28 +146,26 @@ public class PlayerMetrics : MonoBehaviour
     {
         if (alterEnergyCoroutine != null)
         {
-            print("Switching!");
+            print("Stopping the old coroutine");
             StopCoroutine(alterEnergyCoroutine);
         }
+        print("Starting a new coroutine");
         alterEnergyCoroutine = StartCoroutine(AlterEnergyOverTime(energyDelta));
     }
     public void startSprint() {
-        // determine if we can sprint here
-        // canSprint 
-        // update values accordingly.
-
         if (canSprint()) {
-            playerController.moveSpeed = 1.3f;
-            playerController.sprintAnimSpeed = 1.3f;
-            // discharge sprint energy
-            changeSprintEnergy(-10.0f);
+            updatePlayerControllerSpeeds(sprintSpeed, sprintAnimSpeed);
+            changeSprintEnergy(-10.0f); // discharge sprint energy
         }
     }
     public void stopSprint() {
-        playerController.moveSpeed = 1.0f;
-        playerController.sprintAnimSpeed = 1.0f;
-        // recharge sprint energy
-        changeSprintEnergy(5.0f);
+        updatePlayerControllerSpeeds(regularMovingSpeed, regularAnimSpeed);
+        changeSprintEnergy(5.0f); // recharge sprint energy
     }
 
+    private void updatePlayerControllerSpeeds(float moveSpeed, float moveAnimSpeed) {
+        playerController.moveSpeed = moveSpeed;
+        playerController.moveAnimSpeed = moveAnimSpeed;
+
+    }
 }
