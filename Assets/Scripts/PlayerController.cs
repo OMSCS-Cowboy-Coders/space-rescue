@@ -70,14 +70,14 @@ public class PlayerController : MonoBehaviour
 
     void InputDetector() {
 
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
             Sprint();
             print("Begin Sprinting");
             moveSpeed = 1.3f;
             sprintAnimSpeed = 1.3f;
             anim.SetFloat("SprintAnimSpeed", sprintAnimSpeed);
         }
-        else if (Input.GetKeyUp(KeyCode.E)) {
+        else if (Input.GetKeyUp(KeyCode.LeftShift)) {
             print("Stop Sprinting");
             moveSpeed = 1.0f;
             sprintAnimSpeed = 1.0f;
