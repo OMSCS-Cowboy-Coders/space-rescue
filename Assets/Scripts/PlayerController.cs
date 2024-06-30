@@ -25,11 +25,15 @@ public class PlayerController : MonoBehaviour
      Vector3 m_EulerAngleVelocity;
 
     private float characterTurnSpeed = 5f;
+
+    public float moveSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        moveSpeed = 1f;
     }
 
     void OnMove(InputValue inputValue) {
@@ -45,12 +49,13 @@ public class PlayerController : MonoBehaviour
 
         newLocation.Set(astronautX, 0f, astronautY);
         newLocation.Normalize();
+
     }
 
     public float turnRate = 100f;
     void OnAnimatorMove()
     {
-        Vector3 newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, 1f);
+        Vector3 newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, moveSpeed);
         astronautRigidBody.MovePosition(newRootPosition);
 
         var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
@@ -58,13 +63,26 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() {
+        InputDetector();
+    }
+
+    void InputDetector() {
+
         if (Input.GetKeyDown(KeyCode.E)) {
-            print("Sprinting now!");
-            
+            Sprint();
+            print("Begin Sprinting");
+            moveSpeed = 2f;
+        }
+        else if (Input.GetKeyUp(KeyCode.E)) {
+            print("Stop Sprinting");
+            moveSpeed = 1.0f;
         }
         else if (Input.GetKeyDown(KeyCode.R)) {
             print("Using Powerup!");
         }
+    }
+    void Sprint() {
+        print("Sprinting");
     }
 
 }
