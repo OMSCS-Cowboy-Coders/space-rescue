@@ -20,11 +20,9 @@ public class PlayerMetrics : MonoBehaviour
     private float powerupSprintSpeed = 2.0f;
     private float powerupSprintAnimSpeed = 2.0f;
 
-
     private int health;
     private int sprintPowerupsLeft;
     private bool isUsingSprintPowerup;
-
 
     private float sprintEnergy = 100.0f;
     private float maxSprintEnergy = 100.0f;
@@ -35,6 +33,11 @@ public class PlayerMetrics : MonoBehaviour
     private PlayerController playerController;
 
     private Coroutine alterEnergyCoroutine;
+
+    public HealthCollectibleUIManager healthCollectibleUIManager;
+
+    public RestartGame restartGame;
+
     void Start()
     {
         health = MAX_HEALTH;
@@ -45,12 +48,15 @@ public class PlayerMetrics : MonoBehaviour
 
         sprintSpeed = defaultSprintSpeed;
         sprintAnimSpeed = defaultSprintAnimSpeed;
+
+        healthCollectibleUIManager = FindObjectOfType<HealthCollectibleUIManager>();
+        // healthCollectibleUIManager.UpdateHealthCollectibleText(health);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    
     }
 
     public float getMoveSpeed() {
@@ -67,6 +73,8 @@ public class PlayerMetrics : MonoBehaviour
         */ 
         health = health >= MAX_HEALTH ? health : health++;
         print("INCREMENTING HEALTH: HEALTH IS " + health);
+
+        // healthCollectibleUIManager.UpdateHealthCollectibleText(health);
     }
 
     public void decrementHealth() {
@@ -82,12 +90,13 @@ public class PlayerMetrics : MonoBehaviour
             // UnityEditor.EditorApplication.isPlaying = false;
             // Application.Quit();
         }
+
+        healthCollectibleUIManager.UpdateHealthCollectibleText();
     }
 
     public void collectSprintPowerup() {
         sprintPowerupsLeft++;
     }
-
 
     private void toggleSprintPowerup() {
         isUsingSprintPowerup = !isUsingSprintPowerup;
@@ -126,7 +135,6 @@ public class PlayerMetrics : MonoBehaviour
         // or if the character is currently using a sprint powerup
         // then do not activate the sprint powerup.
         if (sprintPowerupsLeft <= 0 || isUsingSprintPowerup) return;
-
 
         sprintPowerupsLeft--;
         toggleSprintPowerup();
@@ -170,6 +178,7 @@ public class PlayerMetrics : MonoBehaviour
         print("Starting sprint energy coroutine");
         alterEnergyCoroutine = StartCoroutine(AlterEnergyOverTime(energyDelta));
     }
+
     public void startSprint() {
         if (canSprint()) {
             // sprintSpeed and sprintAnimSpeed values can change depending on whether or not there is a powerup.
@@ -177,6 +186,7 @@ public class PlayerMetrics : MonoBehaviour
             changeSprintEnergy(SPRINT_DISCHARGE_RATE); // discharge sprint energy
         }
     }
+
     public void stopSprint() {
         updatePlayerControllerSpeeds(regularMovingSpeed, regularAnimSpeed);
         changeSprintEnergy(SPRINT_RECHARGE_RATE); // recharge sprint energy
@@ -185,6 +195,10 @@ public class PlayerMetrics : MonoBehaviour
     private void updatePlayerControllerSpeeds(float moveSpeed, float moveAnimSpeed) {
         playerController.moveSpeed = moveSpeed;
         playerController.moveAnimSpeed = moveAnimSpeed;
+    }
 
+    public void UpdateHealthCollectibleText()
+    {
+        healthCollectibleUIManager.healthCollectibleText.text = "Health Collectibles: " + health.ToString();
     }
 }
