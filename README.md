@@ -108,3 +108,5 @@ Resources:
 14. Stylized cute alien character: https://assetstore.unity.com/packages/3d/characters/creatures/stylized-cute-alien-character-247126
 
 15. Sci Fi Battery Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-battery-pack-free-19738
+
+Animations are from https://www.mixamo.com/#/
