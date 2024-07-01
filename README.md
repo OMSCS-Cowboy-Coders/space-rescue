@@ -26,7 +26,10 @@ Mimi Pomephimkham
 - Added footstep sounds to the player 
 
 Mariana Mendez 
-- Added a start menu, pause menu, and quit menu to the scene 
+- Added a start menu (escape button)
+- Quit menu to the scene (escape button)
+- Added Pause menu
+- Added HUD assets and functionality along with Jan
 
 For each team member, list each asset implemented: 
 Indulekha Ghandikota
@@ -58,7 +61,7 @@ Mariana Mendez
 	i. Assets: 
 	-Hud Assest Pack: https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048
 	ii.C# script files: 
-	PanelMenu.cs, PauseGame.cs, QuitGame.cs, RestartGame.cs 
+	PanelMenu.cs, PauseGame.cs, QuitGame.cs, RestartGame.cs, HealthCollectibleUIManage.cs
 
 ----------------------------
 Resources:
