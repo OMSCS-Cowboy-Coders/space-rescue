@@ -73,6 +73,10 @@ public class PickUpObjects : MonoBehaviour
             playerController.anim.SetBool("CarryingObject", false);
             PutDownObject();
         }
+
+        if(itemIsBeingHeldByPlayer) {
+         itemRB.velocity = player.GetComponent<Rigidbody>().velocity;
+        }
     }
 
     public void setVarsForPickUp() {
@@ -83,12 +87,12 @@ public class PickUpObjects : MonoBehaviour
 
         this.transform.SetParent(itemContainerForPlayer.transform);
         // itemContainerForPlayer.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
-        // this.transform.localPosition = Vector3.zero;
-        // this.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        this.transform.localPosition = Vector3.zero;
+        this.transform.localRotation = Quaternion.Euler(Vector3.zero);
         // this.transform.localScale = Vector3.one;
 
-        // itemRB.isKinematic = true;
-        // itemCollider.isTrigger = true;
+        itemRB.isKinematic = true;
+        itemCollider.isTrigger = true;
     }
 
     public void PutDownObject() {
@@ -101,10 +105,13 @@ public class PickUpObjects : MonoBehaviour
 
         itemRB.isKinematic = false;
         itemCollider.isTrigger = false;
+
+        itemContainerForPlayer.transform.localScale = Vector3.one;
+        this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         
         GameObject batteryStorage = GameObject.FindWithTag("BatteryStorage");
         float closeToBatteryStorage = Vector3.Distance(this.transform.position, batteryStorage.transform.position);
-        if (closeToBatteryStorage < 2f) {
+        if (closeToBatteryStorage < 3f) {
             this.transform.SetParent(GameObject.FindWithTag("BatteryStorage").transform);
             playerController.updateNumBatteriesRetrieved();
         }

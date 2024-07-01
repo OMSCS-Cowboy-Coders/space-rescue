@@ -44,9 +44,12 @@ public class PlayerController : MonoBehaviour
 
     private FootstepsController footstepsController;
 
+     public GameObject WinTextPanel;
+
     // Start is called before the first frame update
     void Start()
     {
+        WinTextPanel.SetActive(false);
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
 
@@ -75,10 +78,8 @@ public class PlayerController : MonoBehaviour
         newLocation.Normalize();
 
         if(numPartsRecieved == 5) {
-            // pause the game
-            // Show Win text
-            Debug.Log("You've won!");
-
+            Debug.Log("You won!");
+            WinTextPanel.SetActive(true);
         }
 
         if (Mathf.Abs(astronautX) > 0.1f || Mathf.Abs(astronautY) > 0.1f)
@@ -150,17 +151,17 @@ public class PlayerController : MonoBehaviour
 
         PickUpObjects pickUpObjects = objectToCarry.GetComponent<PickUpObjects>();
 
-        Collider c = objectToCarry.GetComponent<Collider>();
-        Rigidbody rb = objectToCarry.GetComponent<Rigidbody>();
+        // Collider c = objectToCarry.GetComponent<Collider>();
+        // Rigidbody rb = objectToCarry.GetComponent<Rigidbody>();
        
         pickUpObjects.setVarsForPickUp();
     
-        objectToCarry.transform.localPosition = Vector3.zero;
-        objectToCarry.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        this.transform.localScale = Vector3.one;
+        // objectToCarry.transform.localPosition = Vector3.zero;
+        // objectToCarry.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        // this.transform.localScale = Vector3.one;
 
-        rb.isKinematic = true;
-        c.isTrigger = true;
+        // rb.isKinematic = true;
+        // c.isTrigger = true;
     }
 
     public void PutDownItem() {
