@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4576,8 +4576,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406912821}
-  m_LocalRotation: {x: 0.14389804, y: -0.068521105, z: 0.0099882325, w: 0.9871669}
-  m_LocalPosition: {x: 958.114, y: 103.200005, z: 1168.1306}
+  m_LocalRotation: {x: 0.14389804, y: -0.06852112, z: 0.009988234, w: 0.9871669}
+  m_LocalPosition: {x: 958.114, y: 102.922005, z: 1168.1306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10325,8 +10325,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.14389804, y: -0.068521105, z: 0.0099882325, w: 0.9871669}
-  m_LocalPosition: {x: 958.114, y: 103.200005, z: 1168.1306}
+  m_LocalRotation: {x: 0.14389804, y: -0.06852112, z: 0.009988234, w: 0.9871669}
+  m_LocalPosition: {x: 958.114, y: 102.922005, z: 1168.1306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12542,7 +12542,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 81bb9eea30387e442899949a80011e55,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100.3
+      value: 100.022
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 81bb9eea30387e442899949a80011e55,
         type: 3}
@@ -15171,7 +15171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -116.00012, y: 17}
+  m_AnchoredPosition: {x: -116.000244, y: 17}
   m_SizeDelta: {x: -1201.7412, y: -1289.749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1358742384
@@ -19219,7 +19219,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 2
 --- !u!114 &1809700998
 MonoBehaviour:
@@ -19288,7 +19288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4737158796e3b4afa94884e9fbbe294f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthCollectibleUIManager: {fileID: 0}
+  healthCollectibleUIManager: {fileID: 1965117025}
   powerupsUIManager: {fileID: 0}
   restartGame: {fileID: 0}
 --- !u!143 &1809701003
@@ -21848,7 +21848,7 @@ MonoBehaviour:
   Collectibles:
   - {fileID: 8864293745473383026, guid: 6d6f535e533410b4ea8b02df0eb0814a, type: 3}
   - {fileID: 3130912010003817034, guid: 170bb0c634539784e87dacc962a1dfc4, type: 3}
-  collectibleDuplicateCount: 5
+  collectibleDuplicateCount: 100
   collectibleYOffset: 0
 --- !u!1 &2049637765
 GameObject:
