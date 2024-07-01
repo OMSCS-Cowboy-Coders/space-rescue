@@ -91,7 +91,7 @@ public class PlayerMetrics : MonoBehaviour
             // Application.Quit();
         }
 
-        healthCollectibleUIManager.UpdateHealthCollectibleText();
+        // healthCollectibleUIManager.UpdateHealthCollectibleText();
     }
 
     public void collectSprintPowerup() {

@@ -150,17 +150,17 @@ public class PlayerController : MonoBehaviour
 
         PickUpObjects pickUpObjects = objectToCarry.GetComponent<PickUpObjects>();
 
-        Collider c = objectToCarry.GetComponent<Collider>();
-        Rigidbody rb = objectToCarry.GetComponent<Rigidbody>();
+        // Collider c = objectToCarry.GetComponent<Collider>();
+        // Rigidbody rb = objectToCarry.GetComponent<Rigidbody>();
        
         pickUpObjects.setVarsForPickUp();
     
-        objectToCarry.transform.localPosition = Vector3.zero;
-        objectToCarry.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        this.transform.localScale = Vector3.one;
+        // objectToCarry.transform.localPosition = Vector3.zero;
+        // objectToCarry.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        // this.transform.localScale = Vector3.one;
 
-        rb.isKinematic = true;
-        c.isTrigger = true;
+        // rb.isKinematic = true;
+        // c.isTrigger = true;
     }
 
     public void PutDownItem() {

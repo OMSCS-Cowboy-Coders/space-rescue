@@ -23,6 +23,7 @@ public class EnvironmentController : MonoBehaviour
 
         switch (c.tag) {
             case "Alien":
+                Debug.Log("DECREMENT HEALTH");
                 playerMetrics.decrementHealth();
                 break;
             default:
