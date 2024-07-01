@@ -36,6 +36,8 @@ public class PlayerMetrics : MonoBehaviour
 
     public HealthCollectibleUIManager healthCollectibleUIManager;
 
+    public RestartGame restartGame;
+
     void Start()
     {
         health = MAX_HEALTH;
@@ -82,7 +84,7 @@ public class PlayerMetrics : MonoBehaviour
             print("GAME RESTART");
 
             // restart the game
-            RestartGame.Restart();
+            restartGame.StartGame();
 
             // end the game
             // UnityEditor.EditorApplication.isPlaying = false;

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - HealthCollectible
   - SprintPowerup
+  - SpaceshipPart
+  - BatteryStorage
+  - MarsFloor
+  - Alien
   layers:
   - Default
   - TransparentFX
