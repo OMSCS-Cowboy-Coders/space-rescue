@@ -30,10 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject objectToCarry;
 
-    public int groundContactCount;
 
-    public float jumpableGroundNormalMaxAngle = 45f;
-    public bool closeToJumpableGround;
 
     public GameObject itemContainerForPlayer;
 
@@ -187,22 +184,11 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision c) {
         Debug.Log("Tag: " + c.transform.gameObject.tag);
-        if (c.transform.gameObject.tag == "MarsFloor")
-        { 
-            ++groundContactCount;
-        } else if (c.transform.gameObject.tag == "SpaceshipPart") {
-
-        }
         astronautRigidBody.velocity = Vector3.zero;
     }
 
      private void OnCollisionExit(Collision collision)
     {
-
-        if (collision.transform.gameObject.tag == "MarsFloor")
-        {
-            --groundContactCount;
-        }
 
     }
 
