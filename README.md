@@ -13,8 +13,10 @@ Resources:
    
 6. Food props (Health Collectibles): https://assetstore.unity.com/packages/3d/food-props-163295
 
-7. Hud Assest Pack: https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048
+7. Hud Assest: https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048
 
-8. Background Music: https://assetstore.unity.com/packages/audio/music/the-invasion-atmospheric-title-screen-sci-fi-95819
+8. Sci-Fi Asset: https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048
 
-9. Footstep Noise: https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-189879
+9. Background Music: https://assetstore.unity.com/packages/audio/music/the-invasion-atmospheric-title-screen-sci-fi-95819
+
+10. Footstep Noise: https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-189879
