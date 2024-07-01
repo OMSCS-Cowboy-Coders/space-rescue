@@ -35,6 +35,7 @@ public class PlayerMetrics : MonoBehaviour
     private Coroutine alterEnergyCoroutine;
 
     public HealthCollectibleUIManager healthCollectibleUIManager;
+    public PowerupsUIManager powerupsUIManager;
 
     public RestartGame restartGame;
 
@@ -50,7 +51,7 @@ public class PlayerMetrics : MonoBehaviour
         sprintAnimSpeed = defaultSprintAnimSpeed;
 
         healthCollectibleUIManager = FindObjectOfType<HealthCollectibleUIManager>();
-        // healthCollectibleUIManager.UpdateHealthCollectibleText(health);
+        powerupsUIManager = FindObjectOfType<PowerupsUIManager>();
     }
 
     // Update is called once per frame
@@ -74,7 +75,7 @@ public class PlayerMetrics : MonoBehaviour
         health = health >= MAX_HEALTH ? health : health++;
         print("INCREMENTING HEALTH: HEALTH IS " + health);
 
-        // healthCollectibleUIManager.UpdateHealthCollectibleText(health);
+        healthCollectibleUIManager.UpdateHealthCollectibleText(health);
     }
 
     public void decrementHealth() {
@@ -91,11 +92,12 @@ public class PlayerMetrics : MonoBehaviour
             // Application.Quit();
         }
 
-        // healthCollectibleUIManager.UpdateHealthCollectibleText();
+        healthCollectibleUIManager.UpdateHealthCollectibleText(health);
     }
 
     public void collectSprintPowerup() {
         sprintPowerupsLeft++;
+        powerupsUIManager.updateSprintPowerupsText(sprintPowerupsLeft);
     }
 
     private void toggleSprintPowerup() {
@@ -137,6 +139,7 @@ public class PlayerMetrics : MonoBehaviour
         if (sprintPowerupsLeft <= 0 || isUsingSprintPowerup) return;
 
         sprintPowerupsLeft--;
+        powerupsUIManager.updateSprintPowerupsText(sprintPowerupsLeft);
         toggleSprintPowerup();
 
         StartCoroutine(enhanceSprintAbility());
@@ -197,8 +200,4 @@ public class PlayerMetrics : MonoBehaviour
         playerController.moveAnimSpeed = moveAnimSpeed;
     }
 
-    public void UpdateHealthCollectibleText()
-    {
-        healthCollectibleUIManager.healthCollectibleText.text = "Health Collectibles: " + health.ToString();
-    }
 }
