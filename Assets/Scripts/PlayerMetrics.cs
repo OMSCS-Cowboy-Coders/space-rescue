@@ -35,6 +35,7 @@ public class PlayerMetrics : MonoBehaviour
     private Coroutine alterEnergyCoroutine;
 
     public HealthCollectibleUIManager healthCollectibleUIManager;
+    public PowerupsUIManager powerupsUIManager;
 
     public RestartGame restartGame;
 
@@ -50,6 +51,7 @@ public class PlayerMetrics : MonoBehaviour
         sprintAnimSpeed = defaultSprintAnimSpeed;
 
         healthCollectibleUIManager = FindObjectOfType<HealthCollectibleUIManager>();
+        powerupsUIManager = FindObjectOfType<PowerupsUIManager>();
         // healthCollectibleUIManager.UpdateHealthCollectibleText(health);
     }
 
@@ -74,7 +76,7 @@ public class PlayerMetrics : MonoBehaviour
         health = health >= MAX_HEALTH ? health : health++;
         print("INCREMENTING HEALTH: HEALTH IS " + health);
 
-        // healthCollectibleUIManager.UpdateHealthCollectibleText(health);
+        healthCollectibleUIManager.updateHealth(health);
     }
 
     public void decrementHealth() {
@@ -86,16 +88,17 @@ public class PlayerMetrics : MonoBehaviour
             // restart the game
             RestartGame.Restart();
 
-            // end the game
+            // end the game 
             // UnityEditor.EditorApplication.isPlaying = false;
             // Application.Quit();
         }
 
-        healthCollectibleUIManager.UpdateHealthCollectibleText();
+        healthCollectibleUIManager.updateHealth(health);
     }
 
     public void collectSprintPowerup() {
         sprintPowerupsLeft++;
+        powerupsUIManager.updateSprintPowerups(sprintPowerupsLeft);
     }
 
     private void toggleSprintPowerup() {
@@ -137,6 +140,7 @@ public class PlayerMetrics : MonoBehaviour
         if (sprintPowerupsLeft <= 0 || isUsingSprintPowerup) return;
 
         sprintPowerupsLeft--;
+        powerupsUIManager.updateSprintPowerups(sprintPowerupsLeft);
         toggleSprintPowerup();
 
         StartCoroutine(enhanceSprintAbility());
@@ -197,8 +201,4 @@ public class PlayerMetrics : MonoBehaviour
         playerController.moveAnimSpeed = moveAnimSpeed;
     }
 
-    public void UpdateHealthCollectibleText()
-    {
-        healthCollectibleUIManager.healthCollectibleText.text = "Health Collectibles: " + health.ToString();
-    }
 }

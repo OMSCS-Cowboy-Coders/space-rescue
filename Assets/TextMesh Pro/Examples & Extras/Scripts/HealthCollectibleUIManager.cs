@@ -6,24 +6,16 @@ using TMPro;
 
 public class HealthCollectibleUIManager : MonoBehaviour
 {
-    // public TextMeshProUGUI healthCollectibleText;
-    public Text healthCollectibleText;
-    private int healthCollectibleCount = 3;
+    public TextMeshProUGUI healthText;
 
     void Start()
     {
-        UpdateHealthCollectibleText();
+        int initialHealth = 3;
+        updateHealth(initialHealth);
     }
 
-    public void IncrementHealthCollectibleCount()
+    public void updateHealth(int health)
     {
-        healthCollectibleCount++;
-        UpdateHealthCollectibleText();
-    }
-
-    public void UpdateHealthCollectibleText()
-    {
-        healthCollectibleText.text = "Health Collectibles: " + healthCollectibleCount.ToString();
-        
+        healthText.text = "Health" + health.ToString();
     }
 }
