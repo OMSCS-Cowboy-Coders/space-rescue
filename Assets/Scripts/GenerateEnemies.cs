@@ -32,7 +32,7 @@ public class GenerateEnemies : MonoBehaviour
     }
 
     IEnumerator SpawnEnemies(){
-        while (this.count < 20){
+        while (this.count < 50){
             //Get closest terrain to player
             Terrain closestTerrain = getClosestTerrain();
             float yPos = closestTerrain.SampleHeight(new Vector3(0,0,0));
@@ -40,7 +40,7 @@ public class GenerateEnemies : MonoBehaviour
             GameObject obj = Instantiate(Enemy, new Vector3(randomPos.x, yPos + yOffSet, randomPos.z), Quaternion.identity, EnemyParent.transform);
             EnemyAI script = obj.GetComponent<EnemyAI>();
             script.Player = this.Player;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             this.count++;
         }
 
