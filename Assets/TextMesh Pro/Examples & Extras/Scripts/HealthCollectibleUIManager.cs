@@ -16,6 +16,6 @@ public class HealthCollectibleUIManager : MonoBehaviour
 
     public void updateHealth(int health)
     {
-        healthText.text = "Health" + health.ToString();
+        healthText.text = "Health: " + health.ToString();
     }
 }

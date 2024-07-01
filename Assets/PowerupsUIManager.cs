@@ -10,7 +10,7 @@ public class PowerupsUIManager : MonoBehaviour
 
     void Start()
     {
-        int initialNumSprintPowerups = 3;
+        int initialNumSprintPowerups = 0;
         updateSprintPowerups(initialNumSprintPowerups);
     }
 
