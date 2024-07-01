@@ -8,14 +8,14 @@ public class PlayerMetrics : MonoBehaviour
     public static int MAX_HEALTH = 3;
     public static float POWERUP_SPRINT_DURATION = 3f;
 
-    private float regularMovingSpeed = 1.0f;
-    private float regularAnimSpeed = 1.0f;
+    private float regularMovingSpeed = 1.5f;
+    private float regularAnimSpeed = 1.5f;
 
-    private float sprintSpeed = 1.15f; // initially set as default
-    private float sprintAnimSpeed = 1.15f; // initially set as default
+    private float sprintSpeed = 1.75f; // initially set as default
+    private float sprintAnimSpeed = 1.75f; // initially set as default
 
-    private float defaultSprintSpeed = 1.15f;
-    private float defaultSprintAnimSpeed = 1.15f;
+    private float defaultSprintSpeed = 1.75f;
+    private float defaultSprintAnimSpeed = 1.75f;
 
     private float powerupSprintSpeed = 2.0f;
     private float powerupSprintAnimSpeed = 2.0f;
