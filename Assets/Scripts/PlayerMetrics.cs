@@ -84,7 +84,7 @@ public class PlayerMetrics : MonoBehaviour
             print("GAME RESTART");
 
             // restart the game
-            restartGame.StartGame();
+            RestartGame.Restart();
 
             // end the game
             // UnityEditor.EditorApplication.isPlaying = false;
