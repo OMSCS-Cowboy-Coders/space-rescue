@@ -32,19 +32,20 @@ public class CollectiblesGenerator : MonoBehaviour
         }
 
         Terrain[] terrains = Terrain.activeTerrains;
-        for(int i = 0; i < terrains.Length; i++){
-            Terrain curTerrain = terrains[i];
+        for(int i = 0; i < numUniqueCollectibles; i++){
+            GameObject collectible = Collectibles[i];
+            GameObject collectibleRoot = collectiblesRoots[i];
+            for(int j = 0; j < terrains.Length; j++){
+            Terrain curTerrain = terrains[j];
+            Vector3 curTerrainPos = curTerrain.transform.position;
             Vector3 curTerrainMin = curTerrain.terrainData.bounds.min;
             Vector3 curTerrainMax = curTerrain.terrainData.bounds.max;
-            float yPos = curTerrain.SampleHeight(new Vector3(0,0,0));
 
-            for(int j = 0; j < numUniqueCollectibles; j++){
-                GameObject collectible = Collectibles[j];
-                GameObject collectibleRoot = collectiblesRoots[j];
                 for(int k = 0; k < collectibleDuplicateCount; k++){
-                    float randomX = UnityEngine.Random.Range(curTerrainMin.x, curTerrainMax.x);
-                    float randomZ = UnityEngine.Random.Range(curTerrainMin.z, curTerrainMax.z);
-                    Instantiate(collectible, new Vector3(randomX, yPos, randomZ), Quaternion.identity, collectibleRoot.transform);
+                    float randomX = UnityEngine.Random.Range(curTerrainPos.x + curTerrainMin.x, curTerrainPos.x + curTerrainMax.x);
+                    float randomZ = UnityEngine.Random.Range(curTerrainPos.z + curTerrainMin.z, curTerrainPos.z + curTerrainMax.z);
+                    float yPos = curTerrain.SampleHeight(new Vector3(randomX,0,randomZ)) + curTerrain.transform.position.y;
+                    Instantiate(collectible, new Vector3(randomX, yPos + collectibleYOffset, randomZ), Quaternion.identity, collectibleRoot.transform);
                 }
             }
         }
