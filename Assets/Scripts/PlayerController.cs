@@ -44,9 +44,12 @@ public class PlayerController : MonoBehaviour
 
     private FootstepsController footstepsController;
 
+     public GameObject WinTextPanel;
+
     // Start is called before the first frame update
     void Start()
     {
+        WinTextPanel.SetActive(false);
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
 
@@ -75,10 +78,8 @@ public class PlayerController : MonoBehaviour
         newLocation.Normalize();
 
         if(numPartsRecieved == 5) {
-            // pause the game
-            // Show Win text
-            Debug.Log("You've won!");
-
+            Debug.Log("You won!");
+            WinTextPanel.SetActive(true);
         }
 
         if (Mathf.Abs(astronautX) > 0.1f || Mathf.Abs(astronautY) > 0.1f)
