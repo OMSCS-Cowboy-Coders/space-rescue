@@ -9,6 +9,7 @@ TagManager:
   - SpaceshipPart
   - BatteryStorage
   - MarsFloor
+  - Alien
   layers:
   - Default
   - TransparentFX

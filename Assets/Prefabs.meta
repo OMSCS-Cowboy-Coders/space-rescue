@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs.meta
 guid: 777e50bf33db94e3497911553857ca46
+=======
+guid: bf65febff7d1c47e28de7fb0f8779584
+>>>>>>> 13a0665a97164b7f4b3b8e265ecd7a0326dc1388:Assets/ExternalAssets/Sci-Fi UI Collection.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

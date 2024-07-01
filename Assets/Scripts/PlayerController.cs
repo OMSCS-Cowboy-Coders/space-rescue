@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
       public int numPartsRecieved = 0;
 
 
+    private FootstepsController footstepsController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +55,8 @@ public class PlayerController : MonoBehaviour
         // set initial values
         moveSpeed       = playerMetrics.getMoveSpeed();
         moveAnimSpeed   = playerMetrics.getMoveAnimSpeed();
+        footstepsController = GetComponent<FootstepsController>();
+
     }
 
     void OnMove(InputValue inputValue) {
@@ -75,6 +79,11 @@ public class PlayerController : MonoBehaviour
             // Show Win text
             Debug.Log("You've won!");
 
+        }
+
+        if (Mathf.Abs(astronautX) > 0.1f || Mathf.Abs(astronautY) > 0.1f)
+        {
+            footstepsController.PlayFootstepSound();
         }
     }
 
