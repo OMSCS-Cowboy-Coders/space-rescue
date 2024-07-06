@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,12 +44,17 @@ public class PlayerController : MonoBehaviour
 
      public GameObject WinTextPanel;
 
+     private Vector2 currentInputVectorForMovement;
+     private Vector2 smoothingVelocity;
+     private float smoothingInputSpeed = 0.5f;
+
     // Start is called before the first frame update
     void Start()
-    {
-        WinTextPanel.SetActive(false);
+    {        
+        // WinTextPanel.SetActive(false);
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+
 
         playerMetrics = gameObject.GetComponent<PlayerMetrics>();
 
@@ -56,15 +62,12 @@ public class PlayerController : MonoBehaviour
         moveSpeed       = playerMetrics.getMoveSpeed();
         moveAnimSpeed   = playerMetrics.getMoveAnimSpeed();
         footstepsController = GetComponent<FootstepsController>();
-
     }
 
     void OnMove(InputValue inputValue) {
         Vector2 astronautMovement = inputValue.Get<Vector2>();
-
         astronautX = astronautMovement.x;
         astronautY = astronautMovement.y;
-
     }
 
    
@@ -88,13 +91,25 @@ public class PlayerController : MonoBehaviour
     public float turnRate = 100f;
     void OnAnimatorMove()
     {
-        Vector3 newRootPosition;
-    
-        newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, anim.rootPosition, moveSpeed);
-        astronautRigidBody.MovePosition(newRootPosition);
 
+        AnimatorClipInfo[] animatorClipInfo = anim.GetCurrentAnimatorClipInfo(0);
+        String currentAnimationPlaying = animatorClipInfo[0].clip.name;
+    
+        float movementSpeed; 
+ 
+       
+        Vector3 newRootPosition;
+        Vector3 testPostion; 
+
+        movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
+        
         var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
         astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
+        
+        testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
+        newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, 5);
+        astronautRigidBody.MovePosition(newRootPosition);
+        
 
         anim.SetFloat("SprintAnimSpeed", moveAnimSpeed);
     }
@@ -120,7 +135,6 @@ public class PlayerController : MonoBehaviour
      void OnAnimatorIK(int layerIndex) {
         float itemWeight = 1.0f;
         if(anim) {
-            
             AnimatorStateInfo astate = anim.GetCurrentAnimatorStateInfo(0);
          
             if(astate.IsName("picking_up")) {
