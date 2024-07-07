@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         // WinTextPanel.SetActive(false);
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        Debug.Log(anim);
 
 
         playerMetrics = gameObject.GetComponent<PlayerMetrics>();
