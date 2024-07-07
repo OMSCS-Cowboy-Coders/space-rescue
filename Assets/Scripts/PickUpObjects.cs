@@ -63,14 +63,14 @@ public class PickUpObjects : MonoBehaviour
           distanceFromItem <= farthestDistanceFromItem) {
             Debug.Log("In this call to pickup the object");
             playerIsTryingToPickUpObject = true;
-            playerController.anim.SetBool("PickingUpObject", true);
-            playerController.anim.SetBool("PuttingDownObject", false);
+            // playerController.anim.SetBool("PickingUpObject", true);
+            // playerController.anim.SetBool("PuttingDownObject", false);
             playerController.objectToCarry = gameObject;
             
         } else if(itemIsBeingHeldByPlayer && Input.GetKeyDown(KeyCode.Q)) {
             playerIsTryingToPickUpObject = false;
-            playerController.anim.SetBool("PuttingDownObject", true);
-            playerController.anim.SetBool("CarryingObject", false);
+            // playerController.anim.SetBool("PuttingDownObject", true);
+            // playerController.anim.SetBool("CarryingObject", false);
             PutDownObject();
         }
 
