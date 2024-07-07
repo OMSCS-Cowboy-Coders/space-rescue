@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
         astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
         
         testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
-        newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, 5);
+        newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, 10);
         astronautRigidBody.MovePosition(newRootPosition);
         
 
@@ -138,21 +138,21 @@ public class PlayerController : MonoBehaviour
         if(anim) {
             AnimatorStateInfo astate = anim.GetCurrentAnimatorStateInfo(0);
          
-            if(astate.IsName("picking_up")) {
-                Debug.Log("trying to pick up");
-                itemWeight = anim.GetFloat("ItemWeight");
-                // Set the target position, if one has been assigned
-                if(objectToCarry != null) {
-                    anim.SetLookAtWeight(itemWeight);
-                    anim.SetLookAtPosition(objectToCarry.transform.position);
-                    anim.SetIKPositionWeight(AvatarIKGoal.RightHand,itemWeight);
-                    anim.SetIKPosition(AvatarIKGoal.RightHand, objectToCarry.transform.position);
-                    Debug.Log("finished setting up things");
-                }
-            } else {
-                anim.SetIKPositionWeight(AvatarIKGoal.RightHand,0);
-                anim.SetLookAtWeight(0);
-            }
+            // if(astate.IsName("picking_up")) {
+            //     Debug.Log("trying to pick up");
+            //     itemWeight = anim.GetFloat("ItemWeight");
+            //     // Set the target position, if one has been assigned
+            //     if(objectToCarry != null) {
+            //         anim.SetLookAtWeight(itemWeight);
+            //         anim.SetLookAtPosition(objectToCarry.transform.position);
+            //         anim.SetIKPositionWeight(AvatarIKGoal.RightHand,itemWeight);
+            //         anim.SetIKPosition(AvatarIKGoal.RightHand, objectToCarry.transform.position);
+            //         Debug.Log("finished setting up things");
+            //     }
+            // } else {
+            //     anim.SetIKPositionWeight(AvatarIKGoal.RightHand,0);
+            //     anim.SetLookAtWeight(0);
+            // }
         }
     }
 
