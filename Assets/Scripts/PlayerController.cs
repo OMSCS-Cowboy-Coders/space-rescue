@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
 
     public void PickUpItem() {
         Debug.Log("In pick up item");
+        Debug.Log(objectToCarry);
         
         objectToCarry.transform.SetParent(itemContainerForPlayer.transform);
 
