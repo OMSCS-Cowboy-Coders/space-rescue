@@ -17,9 +17,10 @@ public class GenerateEnemies : MonoBehaviour
     private float yOffSet = 0;
     private int count;
 
-    private const int defaultAddAlienAmount = 25;    
+    private const int defaultAddAlienAmount = 25;
     private int INITIAL_ALIEN_COUNT = 50;
-    private int alienCount;
+    private int maxAlienCount;
+    private Coroutine spawnEnemyCoroutine;
 
     void Start()
     {
@@ -27,8 +28,8 @@ public class GenerateEnemies : MonoBehaviour
         // Go through children (which should be terrain)
         // and get ranges for X and Z
         EnemyParent = new GameObject("EnemyParent");
-        StartCoroutine(SpawnEnemies());
-        alienCount = INITIAL_ALIEN_COUNT;
+        spawnEnemyCoroutine = StartCoroutine(SpawnEnemies());
+        maxAlienCount = INITIAL_ALIEN_COUNT;
     }
 
     // Update is called once per frame
@@ -38,14 +39,19 @@ public class GenerateEnemies : MonoBehaviour
     }
 
     public void addMoreAliens(int? additionalAliens = defaultAddAlienAmount) {
-        print("Updating aliens from " + alienCount + " to " + (alienCount + additionalAliens));
-        alienCount += (int)additionalAliens;
+        print("Updating aliens from " + maxAlienCount + " to " + (maxAlienCount + additionalAliens));
+        maxAlienCount += (int)additionalAliens;
+        if (spawnEnemyCoroutine != null) {
+            print("Restarting ongoing coroutine");
+            StopCoroutine(spawnEnemyCoroutine);
+        }
+        spawnEnemyCoroutine = StartCoroutine(SpawnEnemies());
     }
 
     IEnumerator SpawnEnemies(){
-        // while (this.count < alienCount) {
-        while (this.count < alienCount) {
-            print("Spawning " + this.count + "/" + alienCount);
+        // while (this.count < maxAlienCount) {
+        while (this.count < maxAlienCount) {
+            print("Spawning " + this.count + "/" + maxAlienCount);
             //Get closest terrain to player
             Terrain closestTerrain = getClosestTerrain();
             float yPos = closestTerrain.SampleHeight(new Vector3(0,0,0));
@@ -56,7 +62,7 @@ public class GenerateEnemies : MonoBehaviour
             yield return new WaitForSeconds(1f);
             this.count++;
         }
-
+        print("Done with SpawnEnemy coroutine");
 
     }
 
