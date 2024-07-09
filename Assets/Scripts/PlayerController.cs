@@ -108,7 +108,8 @@ public class PlayerController : MonoBehaviour
         astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
         
         testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
-        newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, 10);
+        Debug.Log("Move speed: " + moveSpeed);
+        newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, moveSpeed);
         astronautRigidBody.MovePosition(newRootPosition);
         
 
