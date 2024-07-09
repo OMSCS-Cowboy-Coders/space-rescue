@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4622,7 +4622,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406912821}
-  m_LocalRotation: {x: 0.26129594, y: -0.06628526, z: 0.017989045, w: 0.96281207}
+  m_LocalRotation: {x: 0.26129597, y: -0.06628526, z: 0.017989047, w: 0.96281207}
   m_LocalPosition: {x: 1321.5, y: 102.716, z: 1004.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10292,7 +10292,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
-  m_LocalRotation: {x: 0.26129594, y: -0.06628526, z: 0.017989045, w: 0.96281207}
+  m_LocalRotation: {x: 0.26129597, y: -0.06628526, z: 0.017989047, w: 0.96281207}
   m_LocalPosition: {x: 1321.5, y: 102.716, z: 1004.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11472,6 +11472,7 @@ MonoBehaviour:
   retrievedAllParts: 0
   numPartsRecieved: 0
   WinTextPanel: {fileID: 0}
+  generateEnemies: {fileID: 0}
   turnRate: 100
 --- !u!136 &1047161062
 CapsuleCollider:
@@ -15782,7 +15783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -115.999756, y: 17}
+  m_AnchoredPosition: {x: -115.99951, y: 17}
   m_SizeDelta: {x: -1201.7412, y: -1289.749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1358742384
@@ -17535,7 +17536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.1796875, y: -10.999634}
+  m_AnchoredPosition: {x: -0.1796875, y: -10.999512}
   m_SizeDelta: {x: 1102.807, y: -1802.802}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1566145650
@@ -19838,6 +19839,7 @@ MonoBehaviour:
   retrievedAllParts: 0
   numPartsRecieved: 0
   WinTextPanel: {fileID: 1686086216}
+  generateEnemies: {fileID: 2034153052}
   turnRate: 100
 --- !u!114 &1809700999
 MonoBehaviour:
@@ -22566,7 +22568,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034153049}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d7d9d222969ab344aa9dd35e3c31795, type: 3}
   m_Name: 

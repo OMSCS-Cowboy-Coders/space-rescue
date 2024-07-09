@@ -16,6 +16,11 @@ public class GenerateEnemies : MonoBehaviour
     private float distance = 200;
     private float yOffSet = 0;
     private int count;
+
+    private const int defaultAddAlienAmount = 25;    
+    private int INITIAL_ALIEN_COUNT = 50;
+    private int alienCount;
+
     void Start()
     {
         //Get closest terrain to player 
@@ -23,6 +28,7 @@ public class GenerateEnemies : MonoBehaviour
         // and get ranges for X and Z
         EnemyParent = new GameObject("EnemyParent");
         StartCoroutine(SpawnEnemies());
+        alienCount = INITIAL_ALIEN_COUNT;
     }
 
     // Update is called once per frame
@@ -31,8 +37,15 @@ public class GenerateEnemies : MonoBehaviour
         //Despawn if too far from player
     }
 
+    public void addMoreAliens(int? additionalAliens = defaultAddAlienAmount) {
+        print("Updating aliens from " + alienCount + " to " + (alienCount + additionalAliens));
+        alienCount += (int)additionalAliens;
+    }
+
     IEnumerator SpawnEnemies(){
-        while (this.count < 50){
+        // while (this.count < alienCount) {
+        while (this.count < alienCount) {
+            print("Spawning " + this.count + "/" + alienCount);
             //Get closest terrain to player
             Terrain closestTerrain = getClosestTerrain();
             float yPos = closestTerrain.SampleHeight(new Vector3(0,0,0));
