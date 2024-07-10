@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
     public GameObject itemContainerForPlayer;
 
 
-      public bool retrievedAllParts = false;
-      public int numPartsRecieved = 0;
+    public bool retrievedAllParts = false;
+    public int numPartsRecieved = 0;
 
 
     private FootstepsController footstepsController;
@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour
         astronautRigidBody.velocity = Vector3.zero;
     }
 
-     private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
 
     }
