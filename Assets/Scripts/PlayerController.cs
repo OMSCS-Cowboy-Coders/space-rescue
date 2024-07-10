@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody astronautRigidBody;
 
+    private Collider astronautCollider;
+
     public Animator anim;
 
     private float astronautX;
@@ -48,6 +50,13 @@ public class PlayerController : MonoBehaviour
      private Vector2 smoothingVelocity;
      private float smoothingInputSpeed = 0.5f;
 
+     private float forceAppliedForJump = 100f;
+
+     private float astronautDistanceFromGround;
+
+    private bool onGround;
+             float jumpHeight = 5f;
+             RaycastHit boxHit;
     public GenerateEnemies generateEnemies;
 
     private void findGenerateEnemies() {
@@ -65,9 +74,10 @@ public class PlayerController : MonoBehaviour
         print("Starting playerController");
         // WinTextPanel.SetActive(false);
         astronautRigidBody = GetComponent<Rigidbody>();
+        astronautCollider = GetComponent<Collider>();
         anim = GetComponent<Animator>();
-        Debug.Log(anim);
 
+        Debug.Log("collider: " + astronautCollider);
 
         playerMetrics = gameObject.GetComponent<PlayerMetrics>();
 
@@ -123,7 +133,6 @@ public class PlayerController : MonoBehaviour
         astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
         
         testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
-        Debug.Log("Move speed: " + moveSpeed);
         newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, moveSpeed);
         astronautRigidBody.MovePosition(newRootPosition);
         
@@ -146,10 +155,54 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.R)) {
             print("Using Powerup!");
             playerMetrics.useSprintPowerup();
-        }
-        else if (Input.GetKeyDown(KeyCode.Y)) {
+        } else if (Input.GetKeyDown(KeyCode.Space) && isAstronautOnTheGround()) {
+            playerJumps();
+        }   else if (Input.GetKeyDown(KeyCode.Y)) {
             print("Bumping up the aliens");
             updateNumBatteriesRetrieved();
+        }
+    }
+
+    void playerJumps() {
+        Debug.Log("Trying to jump");
+        float jumpHeight = 5f;
+        float jumpForceBasedOnHeight = Mathf.Sqrt(jumpHeight * Physics.gravity.y * -2) * astronautRigidBody.mass;
+        astronautRigidBody.AddForce(Vector2.up * jumpForceBasedOnHeight, ForceMode.Impulse);
+    }
+
+    bool isAstronautOnTheGround() {
+        float maxDistanceOfBox = 1;
+        Debug.Log("Rigid body: " + astronautRigidBody);
+
+        // bool onGround = Physics.BoxCast(astronautRigidBody.transform.position, 
+        // , -astronautRigidBody.transform.up, 
+        // astronautRigidBody.transform.rotation, maxDistanceOfBox);
+        
+        onGround = Physics.BoxCast(astronautCollider.bounds.center, astronautRigidBody.transform.localScale*.5f
+        , -astronautRigidBody.transform.up, out boxHit,
+        astronautRigidBody.transform.rotation, maxDistanceOfBox);
+        Debug.Log("On the ground: " + onGround);
+        if (onGround) {
+            return true;
+        }
+        return false;
+    }
+
+    void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Debug.Log("drawing gizmos: " + onGround);
+        
+        if(onGround) {
+            //Draw a Ray forward from GameObject toward the hit
+            Gizmos.DrawRay(astronautRigidBody.transform.position, -astronautRigidBody.transform.up * boxHit.distance);
+            //Draw a cube that extends to where the hit exists
+            Gizmos.DrawWireCube(astronautRigidBody.transform.position + -astronautRigidBody.transform.up * boxHit.distance, astronautRigidBody.transform.localScale);
+        } else {
+            
+            //Draw a Ray forward from GameObject toward the maximum distance
+            Gizmos.DrawRay(astronautRigidBody.transform.position, -astronautRigidBody.transform.up * jumpHeight);
+            //Draw a cube at the maximum distance
+            Gizmos.DrawWireCube(transform.position + -astronautRigidBody.transform.up * jumpHeight, astronautRigidBody.transform.localScale);
         }
     }
 
