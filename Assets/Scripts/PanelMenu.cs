@@ -33,9 +33,4 @@ public class PanelMenu : MonoBehaviour
         canvasGroup.alpha = isActive ? 0f : 1f;
         Time.timeScale = isActive ? 1f : 0f;
     }
-    public void showCompletion(int numStars)
-    {
-        // TODO: show 1, 2, or 3 stars depending on what's passed in here from GameStatusManager.
-
-    }
 }

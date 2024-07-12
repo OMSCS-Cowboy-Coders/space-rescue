@@ -61,14 +61,11 @@ public class PickUpObjects : MonoBehaviour
          Input.GetKeyDown(KeyCode.E) &&
           !playerIsHoldingItemGlobal &&
           distanceFromItem <= farthestDistanceFromItem) {
-            Debug.Log("In this call to pickup the object: " + gameObject);
+            Debug.Log("In this call to pickup the object");
             playerIsTryingToPickUpObject = true;
             // playerController.anim.SetBool("PickingUpObject", true);
             // playerController.anim.SetBool("PuttingDownObject", false);
             playerController.objectToCarry = gameObject;
-            playerController.PickUpItem();
-            Debug.Log(playerController.objectToCarry);
-            Debug.Log("picked up object");
             
         } else if(itemIsBeingHeldByPlayer && Input.GetKeyDown(KeyCode.Q)) {
             playerIsTryingToPickUpObject = false;
@@ -89,12 +86,10 @@ public class PickUpObjects : MonoBehaviour
         playerIsHoldingItemGlobal = true;
 
         this.transform.SetParent(itemContainerForPlayer.transform);
-        itemContainerForPlayer.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
-        Vector3 rotObect = new Vector3(-90, 0, 0);
-        itemContainerForPlayer.transform.localRotation = Quaternion.Euler(rotObect);
+        // itemContainerForPlayer.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
         this.transform.localPosition = Vector3.zero;
         this.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        this.transform.localScale = Vector3.one;
+        // this.transform.localScale = Vector3.one;
 
         itemRB.isKinematic = true;
         itemCollider.isTrigger = true;
@@ -105,18 +100,14 @@ public class PickUpObjects : MonoBehaviour
         playerIsHoldingItemGlobal = false;
 
         this.transform.SetParent(null);
-
         
-        // itemRB.velocity = player.GetComponent<Rigidbody>().velocity;   
+        itemRB.velocity = player.GetComponent<Rigidbody>().velocity;
+
+        itemRB.isKinematic = false;
+        itemCollider.isTrigger = false;
 
         itemContainerForPlayer.transform.localScale = Vector3.one;
         this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        this.transform.position = player.transform.position;
-        Debug.Log("Player position: " + player.transform.position);
-        Debug.Log("Object postion: " + this.transform.position);
-
-         itemRB.isKinematic = false;
-        itemCollider.isTrigger = false;
         
         GameObject batteryStorage = GameObject.FindWithTag("BatteryStorage");
         float closeToBatteryStorage = Vector3.Distance(this.transform.position, batteryStorage.transform.position);
@@ -124,7 +115,6 @@ public class PickUpObjects : MonoBehaviour
             this.transform.SetParent(GameObject.FindWithTag("BatteryStorage").transform);
             playerController.updateNumBatteriesRetrieved();
         }
-        Debug.Log("Object postion 2: " + this.transform.position);
     }
 
 }
