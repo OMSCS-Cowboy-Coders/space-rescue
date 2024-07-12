@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
     public GameObject itemContainerForPlayer;
 
 
-      public bool retrievedAllParts = false;
-      public int numPartsRecieved = 0;
+    public bool retrievedAllParts = false;
+    public int numPartsRecieved = 0;
 
 
     private FootstepsController footstepsController;
@@ -48,9 +48,21 @@ public class PlayerController : MonoBehaviour
      private Vector2 smoothingVelocity;
      private float smoothingInputSpeed = 0.5f;
 
+    public GenerateEnemies generateEnemies;
+
+    private void findGenerateEnemies() {
+        // hardcode GameObject name so that it can handle delayed initialization of the Terrain.
+        // this method is called at Start and before usage in updateNumBatteriesRetrieved
+        GameObject terrainObject = GameObject.Find("Terrain");
+        if (terrainObject != null && generateEnemies == null)
+        {
+            generateEnemies = terrainObject.GetComponent<GenerateEnemies>();
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {        
+        print("Starting playerController");
         // WinTextPanel.SetActive(false);
         astronautRigidBody = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
@@ -63,6 +75,9 @@ public class PlayerController : MonoBehaviour
         moveSpeed       = playerMetrics.getMoveSpeed();
         moveAnimSpeed   = playerMetrics.getMoveAnimSpeed();
         footstepsController = GetComponent<FootstepsController>();
+        
+        generateEnemies = null;
+        findGenerateEnemies();
     }
 
     void OnMove(InputValue inputValue) {
@@ -131,6 +146,10 @@ public class PlayerController : MonoBehaviour
             print("Using Powerup!");
             playerMetrics.useSprintPowerup();
         }
+        else if (Input.GetKeyDown(KeyCode.Y)) {
+            print("Bumping up the aliens");
+            updateNumBatteriesRetrieved();
+        }
     }
 
      void OnAnimatorIK(int layerIndex) {
@@ -158,6 +177,7 @@ public class PlayerController : MonoBehaviour
 
     public void PickUpItem() {
         Debug.Log("In pick up item");
+        Debug.Log(objectToCarry);
         
         objectToCarry.transform.SetParent(itemContainerForPlayer.transform);
 
@@ -202,13 +222,17 @@ public class PlayerController : MonoBehaviour
         astronautRigidBody.velocity = Vector3.zero;
     }
 
-     private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
 
     }
 
     public void updateNumBatteriesRetrieved() {
         numPartsRecieved = numPartsRecieved + 1;
+
+        // the game progressively gets harder when this number is updated
+        findGenerateEnemies();
+        generateEnemies.addMoreAliens();
     }
 
 }
