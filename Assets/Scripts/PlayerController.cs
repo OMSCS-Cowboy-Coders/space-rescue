@@ -41,18 +41,13 @@ public class PlayerController : MonoBehaviour
     public bool retrievedAllParts = false;
     public int numPartsRecieved = 0;
 
+    public float fasterFallGravityForJump = 2f;
+
 
     private FootstepsController footstepsController;
 
      public GameObject WinTextPanel;
 
-     private Vector2 currentInputVectorForMovement;
-     private Vector2 smoothingVelocity;
-     private float smoothingInputSpeed = 0.5f;
-
-     private float forceAppliedForJump = 100f;
-
-     private float astronautDistanceFromGround;
 
     private bool onGround;
              float jumpHeight = 5f;
@@ -142,6 +137,10 @@ public class PlayerController : MonoBehaviour
 
     void Update() {
         InputDetector();
+        if(astronautRigidBody.velocity.y < 0) { // Astronaut is falling after jump
+            astronautRigidBody.velocity = astronautRigidBody.velocity + (Vector3.up * Physics.gravity.y* (fasterFallGravityForJump) *Time.deltaTime);
+
+        }
     }
 
     void InputDetector() {
