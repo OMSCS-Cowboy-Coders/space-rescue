@@ -12,6 +12,8 @@ TagManager:
   - Alien
   - Platform_Rock
   - Ice
+  - IceRock
+  - IceRockTop
   layers:
   - Default
   - TransparentFX
