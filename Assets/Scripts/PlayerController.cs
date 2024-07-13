@@ -153,13 +153,12 @@ public class PlayerController : MonoBehaviour
         float jumpHeight = 5f;
         float jumpForceBasedOnHeight = Mathf.Sqrt(jumpHeight * Physics.gravity.y * -2) * astronautRigidBody.mass;
         astronautRigidBody.AddForce(Vector2.up * jumpForceBasedOnHeight, ForceMode.Impulse);
-        if(astronautRigidBody.velocity.y > 0) {
-            Vector3 jumpDownDirection = new Vector3(0,-1,0);
-            astronautRigidBody.useGravity = false;
-            astronautRigidBody.AddForce(jumpDownDirection * astronautRigidBody.mass * fallGravity, ForceMode.Acceleration);
-        } else {
-            astronautRigidBody.useGravity = true;
-        }
+        // if(astronautRigidBody.velocity.y > 0) {
+        //     Vector3 jumpDownDirection = new Vector3(0,-1,0);
+        //     astronautRigidBody.AddForce(jumpDownDirection * astronautRigidBody.mass * fallGravity, ForceMode.Acceleration);
+        // } else {
+        //     astronautRigidBody.useGravity = true;
+        // }
     }
 
     bool isAstronautOnTheGround() {
