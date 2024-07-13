@@ -10,6 +10,8 @@ TagManager:
   - BatteryStorage
   - MarsFloor
   - Alien
+  - Platform_Rock
+  - Ice
   layers:
   - Default
   - TransparentFX

@@ -50,9 +50,12 @@ public class PlayerController : MonoBehaviour
      private Vector2 smoothingVelocity;
      private float smoothingInputSpeed = 0.5f;
 
-     private float forceAppliedForJump = 100f;
-
      private float astronautDistanceFromGround;
+
+    public float regularGravity = 9.8f;
+     public float fallGravity =  15; 
+
+     public bool onIce = false;
 
     private bool onGround;
              float jumpHeight = 5f;
@@ -131,16 +134,16 @@ public class PlayerController : MonoBehaviour
 
     void InputDetector() {
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !onIce) {
             playerMetrics.startSprint();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift)) {
+        else if (Input.GetKeyUp(KeyCode.LeftShift) && !onIce) {
             playerMetrics.stopSprint();
         }
         else if (Input.GetKeyDown(KeyCode.R)) {
             print("Using Powerup!");
             playerMetrics.useSprintPowerup();
-        } else if (Input.GetKeyDown(KeyCode.Space) && isAstronautOnTheGround()) {
+        } else if (Input.GetKeyDown(KeyCode.Space) && isAstronautOnTheGround() && !onIce) {
             playerJumps();
         }
     }
@@ -150,6 +153,13 @@ public class PlayerController : MonoBehaviour
         float jumpHeight = 5f;
         float jumpForceBasedOnHeight = Mathf.Sqrt(jumpHeight * Physics.gravity.y * -2) * astronautRigidBody.mass;
         astronautRigidBody.AddForce(Vector2.up * jumpForceBasedOnHeight, ForceMode.Impulse);
+        if(astronautRigidBody.velocity.y > 0) {
+            Vector3 jumpDownDirection = new Vector3(0,-1,0);
+            astronautRigidBody.useGravity = false;
+            astronautRigidBody.AddForce(jumpDownDirection * astronautRigidBody.mass * fallGravity, ForceMode.Acceleration);
+        } else {
+            astronautRigidBody.useGravity = true;
+        }
     }
 
     bool isAstronautOnTheGround() {
@@ -256,12 +266,27 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision c) {
         Debug.Log("Tag: " + c.transform.gameObject.tag);
-        astronautRigidBody.velocity = Vector3.zero;
+        if(c.transform.gameObject.tag == "Ice") {
+            Debug.Log("trying to slide");
+            astronautCollider.material.staticFriction = 0;
+            astronautCollider.material.dynamicFriction = 0;
+            astronautRigidBody.velocity = new Vector3(5, 0, 5);
+            moveSpeed = 6f;
+            onIce = true; 
+        } 
     }
 
-     private void OnCollisionExit(Collision collision)
+     private void OnCollisionExit(Collision c)
     {
-
+        if(c.transform.gameObject.tag == "Ice") {
+            Debug.Log("trying to slide");
+            astronautCollider.material.staticFriction = 0.6f;
+            astronautCollider.material.dynamicFriction = 0.6f;
+            // astronautRigidBody.velocity = new Vector3(2, 0, 2);
+            moveSpeed = 10.5f;
+            onIce = false;
+             
+        }
     }
 
     public void updateNumBatteriesRetrieved() {
