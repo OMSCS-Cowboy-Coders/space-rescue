@@ -272,6 +272,8 @@ public class PlayerController : MonoBehaviour
             astronautRigidBody.velocity = new Vector3(5, 0, 5);
             moveSpeed = 6f;
             onIce = true; 
+        } else if (c.transform.gameObject.tag == "Lift") {
+            astronautRigidBody.isKinematic = true;
         } 
     }
 
@@ -285,7 +287,9 @@ public class PlayerController : MonoBehaviour
             moveSpeed = 10.5f;
             onIce = false;
              
-        }
+        } else if (c.transform.gameObject.tag == "Lift") {
+            astronautRigidBody.isKinematic = false;
+        } 
     }
 
     public void updateNumBatteriesRetrieved() {
