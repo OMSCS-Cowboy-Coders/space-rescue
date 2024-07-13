@@ -28,8 +28,8 @@ public class GenerateEnemies : MonoBehaviour
         // Go through children (which should be terrain)
         // and get ranges for X and Z
         EnemyParent = new GameObject("EnemyParent");
-        spawnEnemyCoroutine = StartCoroutine(SpawnEnemies());
         maxAlienCount = INITIAL_ALIEN_COUNT;
+        spawnEnemyCoroutine = StartCoroutine(SpawnEnemies());
     }
 
     // Update is called once per frame
