@@ -16,13 +16,20 @@ public class GenerateEnemies : MonoBehaviour
     private float distance = 200;
     private float yOffSet = 0;
     private int count;
+
+    private const int defaultAddAlienAmount = 25;
+    private int INITIAL_ALIEN_COUNT = 50;
+    private int maxAlienCount;
+    private Coroutine spawnEnemyCoroutine;
+
     void Start()
     {
         //Get closest terrain to player 
         // Go through children (which should be terrain)
         // and get ranges for X and Z
         EnemyParent = new GameObject("EnemyParent");
-        StartCoroutine(SpawnEnemies());
+        spawnEnemyCoroutine = StartCoroutine(SpawnEnemies());
+        maxAlienCount = INITIAL_ALIEN_COUNT;
     }
 
     // Update is called once per frame
@@ -31,8 +38,20 @@ public class GenerateEnemies : MonoBehaviour
         //Despawn if too far from player
     }
 
+    public void addMoreAliens(int? additionalAliens = defaultAddAlienAmount) {
+        print("Updating aliens from " + maxAlienCount + " to " + (maxAlienCount + additionalAliens));
+        maxAlienCount += (int)additionalAliens;
+        if (spawnEnemyCoroutine != null) {
+            print("Restarting ongoing coroutine");
+            StopCoroutine(spawnEnemyCoroutine);
+        }
+        spawnEnemyCoroutine = StartCoroutine(SpawnEnemies());
+    }
+
     IEnumerator SpawnEnemies(){
-        while (this.count < 50){
+        // while (this.count < maxAlienCount) {
+        while (this.count < maxAlienCount) {
+            print("Spawning " + this.count + "/" + maxAlienCount);
             //Get closest terrain to player
             Terrain closestTerrain = getClosestTerrain();
             float yPos = closestTerrain.SampleHeight(new Vector3(0,0,0));
@@ -43,7 +62,7 @@ public class GenerateEnemies : MonoBehaviour
             yield return new WaitForSeconds(1f);
             this.count++;
         }
-
+        print("Done with SpawnEnemy coroutine");
 
     }
 
