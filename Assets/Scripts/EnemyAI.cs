@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public enum EnemyState {
     Idle = 300,
     Patrolling = 200,
-    Following = 100,
+    Following = 10,
 }
 
 public class EnemyAI : MonoBehaviour
@@ -56,8 +56,10 @@ public class EnemyAI : MonoBehaviour
                 dest = agent.transform.position; // keep the same
                 break;
             case EnemyState.Patrolling:
-                dest = agent.transform.position;
-                // TODO: Patrolling
+                int upperBound = -20;
+                int lowerBound = 20;
+                Vector3 randomDirection = new Vector3(Random.Range(lowerBound, upperBound), 0, Random.Range(lowerBound, upperBound));
+                dest = agent.transform.position + randomDirection;
                 break;
             case EnemyState.Following:
                 float remainingDistance = determineRemainingDistance();
