@@ -57,14 +57,7 @@ public class EnemyAI : MonoBehaviour
                 break;
             case EnemyState.Patrolling:
                 dest = agent.transform.position;
-                // Vector3 randomDirection = Random.insideUnitSphere * 2;
-                // randomDirection += agent.transform.position;
-                // NavMeshHit hit;
-                // if (NavMesh.SamplePosition(randomDirection, out hit, radius, NavMesh.AllAreas))
-                // {
-                //     return hit.position;
-                // }
-                // dest = origin;
+                // TODO: Patrolling
                 break;
             case EnemyState.Following:
                 float remainingDistance = determineRemainingDistance();
@@ -77,12 +70,10 @@ public class EnemyAI : MonoBehaviour
                     dest = transform.TransformPoint(futureTarget);
                     //View is blocked. Go to original waypoint position
                     // Debug.DrawRay(hit.position, Vector3.up, Color.red);
-                    // agent.SetDestination(futureTarget);
                 }
                 else{
                     //Not blocked, so go towards it
                     dest = Player.transform.position;
-                    // agent.SetDestination(Player.transform.position);
                 }
                 break;
             default:
