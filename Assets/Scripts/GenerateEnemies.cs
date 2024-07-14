@@ -10,13 +10,19 @@ public class GenerateEnemies : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Enemy;
+
+    public Material[] EnemyHairstyles;
+    public Material [] EnemyEyes;
+    public Material [] EnemyBodies;
+
     private GameObject EnemyParent;
     public GameObject Player;
 
     private float distance = 200;
     private float yOffSet = 0;
     private int count;
-
+    private float minScale = 0.2f;
+    private float maxScale = 1.0f;
     private const int defaultAddAlienAmount = 25;
     private int INITIAL_ALIEN_COUNT = 50;
     private int maxAlienCount;
@@ -56,9 +62,16 @@ public class GenerateEnemies : MonoBehaviour
             Terrain closestTerrain = getClosestTerrain();
             float yPos = closestTerrain.SampleHeight(new Vector3(0,0,0));
             Vector3 randomPos = this.Player.transform.position + (UnityEngine.Random.insideUnitSphere * distance);
-            GameObject obj = Instantiate(Enemy, new Vector3(randomPos.x, yPos + yOffSet, randomPos.z), Quaternion.identity, EnemyParent.transform);
-            EnemyAI script = obj.GetComponent<EnemyAI>();
+            // Random enemy materials
+            GameObject customEnemy = this.setRandomMeshColor(Enemy);
+            // Random enemy scale
+            float scale = UnityEngine.Random.Range(minScale,maxScale);
+            customEnemy.transform.localScale = new Vector3(scale,scale,scale);
+            // Attach script to enemy
+            EnemyAI script = customEnemy.GetComponent<EnemyAI>();
             script.Player = this.Player;
+            // Generate Enemy
+            GameObject obj = Instantiate(customEnemy, new Vector3(randomPos.x, yPos + yOffSet, randomPos.z), Quaternion.identity, EnemyParent.transform);
             yield return new WaitForSeconds(1f);
             this.count++;
         }
@@ -82,4 +95,30 @@ public class GenerateEnemies : MonoBehaviour
         }
         return terrain;
     }
+
+    GameObject setRandomMeshColor(GameObject Enemy){
+        //Generate random body, hair, and eyes.
+        Material randomBody = EnemyBodies[UnityEngine.Random.Range(0,EnemyBodies.Length)];
+        Material randomEyes = EnemyEyes[UnityEngine.Random.Range(0,EnemyEyes.Length)];
+        Material randomHair = EnemyHairstyles[UnityEngine.Random.Range(0,EnemyHairstyles.Length)];
+        
+        GameObject mesh = Enemy.transform.Find("Mesh").gameObject;
+        Transform[] meshChildren = mesh.GetComponentsInChildren<Transform>();
+        foreach (Transform children in meshChildren){
+            GameObject childObject = children.gameObject;
+            Renderer renderer = childObject.GetComponent<Renderer>();
+            if(children.name == "Head" || children.name == "Body" || children.name == "LeftEar" || children.name == "RightEar"){
+                renderer.material = randomBody;
+            }
+            else if(children.name == "Eyes"){
+                renderer.material = randomEyes;
+            }
+            else if(children.name == "Hair"){
+                renderer.material = randomHair;
+            }
+        }
+
+        return Enemy;
+    }
+
 }

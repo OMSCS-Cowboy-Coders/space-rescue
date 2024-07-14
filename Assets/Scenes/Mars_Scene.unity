@@ -31045,6 +31045,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 6064476555349323561, guid: 9ac148c69b5cff64c9db44b77dc50878, type: 3}
+  EnemyHairstyles:
+  - {fileID: 2100000, guid: acf13a759f2e5bd418c474cf364c83f8, type: 2}
+  - {fileID: 2100000, guid: 84b65fd7f676bb1479f1dac7289eefd4, type: 2}
+  - {fileID: 2100000, guid: 699eaf803819ec74a974118bdbd96cb4, type: 2}
+  EnemyEyes:
+  - {fileID: 2100000, guid: 37bcee19e3fe7f74e93df8b19a6d3f4e, type: 2}
+  - {fileID: 2100000, guid: 87b853e8bd2966346bf97ecbb3ceee90, type: 2}
+  - {fileID: 2100000, guid: 6abb977c86ae12040a468552c39cc25a, type: 2}
+  EnemyBodies:
+  - {fileID: 2100000, guid: ddae6a8d7d2382649a841b2ecb931a4f, type: 2}
+  - {fileID: 2100000, guid: 940f2585307c98e41a1b2788fbf979ff, type: 2}
+  - {fileID: 2100000, guid: 1f738798facc3f94a99deb3ec5666f89, type: 2}
   Player: {fileID: 1047161056}
 --- !u!114 &2034153053
 MonoBehaviour:

@@ -61,7 +61,7 @@ public class EnemyAI : MonoBehaviour
                     return agent.destination;
                 }
                 Vector3 randDirection = Random.insideUnitSphere * wanderDist;
-                NavMesh.SamplePosition(agent.transform.position; + randDirection, out navHit, wanderDist, -1);
+                NavMesh.SamplePosition(agent.transform.position + randDirection, out navHit, wanderDist, -1);
                 dest = navHit.position;
                 break;
             case EnemyState.Following:
