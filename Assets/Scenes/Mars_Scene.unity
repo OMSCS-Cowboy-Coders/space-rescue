@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -58275,7 +58275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7d9d222969ab344aa9dd35e3c31795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 6064476555349323561, guid: 9ac148c69b5cff64c9db44b77dc50878, type: 3}
+  Enemy: {fileID: 2633058762864679319, guid: e98ff68baa3e8914c9f5e5f10f459651, type: 3}
   EnemyHairstyles:
   - {fileID: 2100000, guid: acf13a759f2e5bd418c474cf364c83f8, type: 2}
   - {fileID: 2100000, guid: 84b65fd7f676bb1479f1dac7289eefd4, type: 2}

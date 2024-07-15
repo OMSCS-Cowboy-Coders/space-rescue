@@ -62,16 +62,17 @@ public class GenerateEnemies : MonoBehaviour
             Terrain closestTerrain = getClosestTerrain();
             float yPos = closestTerrain.SampleHeight(new Vector3(0,0,0));
             Vector3 randomPos = this.Player.transform.position + (UnityEngine.Random.insideUnitSphere * distance);
+            // Generate Enemy
+            GameObject customEnemy = Instantiate(Enemy, new Vector3(randomPos.x, yPos + yOffSet, randomPos.z), Quaternion.identity, EnemyParent.transform);
             // Random enemy materials
-            GameObject customEnemy = this.setRandomMeshColor(Enemy);
+            this.setRandomMeshColor(customEnemy);
             // Random enemy scale
             float scale = UnityEngine.Random.Range(minScale,maxScale);
             customEnemy.transform.localScale = new Vector3(scale,scale,scale);
-            // Attach script to enemy
-            EnemyAI script = customEnemy.GetComponent<EnemyAI>();
-            script.Player = this.Player;
-            // Generate Enemy
-            GameObject obj = Instantiate(customEnemy, new Vector3(randomPos.x, yPos + yOffSet, randomPos.z), Quaternion.identity, EnemyParent.transform);
+            // Attach scripts to enemy
+            EnemyAI AI_Script = customEnemy.AddComponent<EnemyAI>();
+            AI_Script.Player = this.Player;
+            AlienMotionController Motion_Script = customEnemy.AddComponent<AlienMotionController>();
             yield return new WaitForSeconds(1f);
             this.count++;
         }
@@ -96,29 +97,26 @@ public class GenerateEnemies : MonoBehaviour
         return terrain;
     }
 
-    GameObject setRandomMeshColor(GameObject Enemy){
+    void setRandomMeshColor(GameObject Enemy){
         //Generate random body, hair, and eyes.
         Material randomBody = EnemyBodies[UnityEngine.Random.Range(0,EnemyBodies.Length)];
         Material randomEyes = EnemyEyes[UnityEngine.Random.Range(0,EnemyEyes.Length)];
         Material randomHair = EnemyHairstyles[UnityEngine.Random.Range(0,EnemyHairstyles.Length)];
         
-        GameObject mesh = Enemy.transform.Find("Mesh").gameObject;
-        Transform[] meshChildren = mesh.GetComponentsInChildren<Transform>();
-        foreach (Transform children in meshChildren){
-            GameObject childObject = children.gameObject;
+        Transform[] children = Enemy.GetComponentsInChildren<Transform>();
+        foreach (Transform child in children){
+            GameObject childObject = child.gameObject;
             Renderer renderer = childObject.GetComponent<Renderer>();
-            if(children.name == "Head" || children.name == "Body" || children.name == "LeftEar" || children.name == "RightEar"){
+            if(child.name == "Head" || child.name == "Body" || child.name == "LeftEar" || child.name == "RightEar"){
                 renderer.material = randomBody;
             }
-            else if(children.name == "Eyes"){
+            else if(child.name == "Eyes"){
                 renderer.material = randomEyes;
             }
-            else if(children.name == "Hair"){
+            else if(child.name == "Hair"){
                 renderer.material = randomHair;
             }
         }
-
-        return Enemy;
     }
 
 }
