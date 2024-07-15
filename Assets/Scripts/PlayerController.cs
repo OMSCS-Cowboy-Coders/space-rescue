@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
              RaycastHit boxHit;
     public GenerateEnemies generateEnemies;
 
+    public bool onIce = false;
+
     private void findGenerateEnemies() {
         // hardcode GameObject name so that it can handle delayed initialization of the Terrain.
         // this method is called at Start and before usage in updateNumBatteriesRetrieved
@@ -271,12 +273,29 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision c) {
-        Debug.Log("Tag: " + c.transform.gameObject.tag);
-        astronautRigidBody.velocity = Vector3.zero;
+         if(c.transform.gameObject.tag == "Ice") {
+            Debug.Log("trying to slide");
+            astronautCollider.material.staticFriction = 0;
+            astronautCollider.material.dynamicFriction = 0;
+            astronautRigidBody.velocity = new Vector3(7, 0, 7);
+            moveSpeed = 20f;
+            onIce = true; 
+        } else if (c.transform.gameObject.tag == "Lift") {
+            astronautRigidBody.isKinematic = true;
+        } 
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit(Collision c)
     {
+         if(c.transform.gameObject.tag == "Ice") {
+            Debug.Log("trying to slide");
+            astronautCollider.material.staticFriction = 0.6f;
+            astronautCollider.material.dynamicFriction = 0.6f;
+            // astronautRigidBody.velocity = new Vector3(2, 0, 2);
+            moveSpeed = 10.5f;
+            onIce = false;
+             
+        } 
 
     }
 

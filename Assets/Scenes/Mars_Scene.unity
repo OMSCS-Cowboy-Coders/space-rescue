@@ -22705,6 +22705,7 @@ MonoBehaviour:
   fasterFallGravityForJump: 2
   WinTextPanel: {fileID: 0}
   generateEnemies: {fileID: 0}
+  onIce: 0
   turnRate: 100
 --- !u!136 &1047161062
 CapsuleCollider:
@@ -22713,7 +22714,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047161056}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e34d914045cac4702ba09fcf519d107e, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.79055786
@@ -39904,6 +39905,7 @@ MonoBehaviour:
   fasterFallGravityForJump: 2
   WinTextPanel: {fileID: 1686086216}
   generateEnemies: {fileID: 0}
+  onIce: 0
   turnRate: 100
 --- !u!114 &1809700999
 MonoBehaviour:
@@ -40387,7 +40389,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831983494}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b5e3bfc5796a54544bf2bbe6fb3e7e66, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -42028,6 +42030,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IceRink_main
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92582f47bee704cf09653a2d0fd1e53f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ice
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92582f47bee704cf09653a2d0fd1e53f, type: 3}
