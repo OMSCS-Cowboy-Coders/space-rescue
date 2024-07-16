@@ -16,11 +16,22 @@ public class SwitchButton : MonoBehaviour
     // Triggers the button press animation
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Button has been triggered");
         if (other.CompareTag("Player") && !isActivated)
         {
+            Debug.Log("Player has entered and activated switch");
             TogglePlatform();
-            isActivated = true;
+            switchAnimator = this.transform.gameObject.GetComponent<Animator>();
+            switchAnimator.SetBool("isActivated", true);
             switchAnimator.SetTrigger("SwitchButtonPress");
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && !isActivated)
+        {
+            isActivated = false;
         }
     }
 
@@ -35,4 +46,5 @@ public class SwitchButton : MonoBehaviour
             platform.FreezePlatform();
         }
     }
+
 }
