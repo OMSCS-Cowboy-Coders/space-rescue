@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public enum CanvasStates {
     Pause,
@@ -13,10 +15,17 @@ public class PanelMenu : MonoBehaviour
 {
     public Canvas canvas;
     private CanvasGroup canvasGroup;
-    public Transform pausePanel;
-    public Transform winScreenPanel;
+    private Transform pausePanel;
+    private Transform winScreenPanel;
 
     private CanvasGroup selectedScreen;
+
+    public Sprite oneStarImage;
+    public Sprite twoStarsImage;
+    public Sprite threeStarsImage;
+
+    public TextMeshProUGUI winScreenText;
+    
 
     void Awake()
     {
@@ -49,9 +58,23 @@ public class PanelMenu : MonoBehaviour
         Time.timeScale = isActive ? 1f : 0f;
     }
 
-    public void showCompletion(int numStars)
+    public void showCompletion(int numStars, float duration)
     {
         showScreen(CanvasStates.WinScreen);
+        Image winImage = winScreenPanel.GetComponentInChildren<Image>();
+        winImage.color = new Color(1f, 1f, 1f);
+        switch (numStars) {
+            case 1:
+                winImage.sprite = oneStarImage;
+                break;
+            case 2:
+                winImage.sprite = twoStarsImage;
+                break;
+            case 3:
+                winImage.sprite = threeStarsImage;
+                break;
+        }
+        winScreenText.text = "Congratulations! You got " + numStars + " stars and finished in " + duration + " seconds!";
         ToggleMenu();
         // Make winScreenPanel visible, and Panel invisible
         // TODO: show 1, 2, or 3 stars depending on what's passed in here from GameStatusManager.

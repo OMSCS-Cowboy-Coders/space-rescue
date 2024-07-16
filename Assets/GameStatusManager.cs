@@ -101,7 +101,7 @@ public class GameStatusManager : MonoBehaviour
                 break;
         }
 
-        panelMenu.showCompletion(stars);
+        panelMenu.showCompletion(stars, duration);
     }
 
     void Update()
