@@ -111,9 +111,10 @@ public class PickUpObjects : MonoBehaviour
 
         itemContainerForPlayer.transform.localScale = Vector3.one;
         this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        this.transform.position = player.transform.position;
-        Debug.Log("Player position: " + player.transform.position);
-        Debug.Log("Object postion: " + this.transform.position);
+        Debug.Log("Player forward: " + player.transform.forward);
+        Debug.Log("player postion: " + player.transform.position);
+        this.transform.position = player.transform.position + new Vector3(0,0,.5f);
+        
 
          itemRB.isKinematic = false;
         itemCollider.isTrigger = false;
@@ -125,6 +126,14 @@ public class PickUpObjects : MonoBehaviour
             playerController.updateNumBatteriesRetrieved();
         }
         Debug.Log("Object postion 2: " + this.transform.position);
+    }
+
+    void OnCollisionEnter(Collision c) {
+        itemRB.velocity = Vector3.zero;
+    }
+    void OnCollisionExit(Collision c) {
+        itemRB.velocity = Vector3.zero;
+        c.rigidbody.velocity = Vector3.zero;
     }
 
 }
