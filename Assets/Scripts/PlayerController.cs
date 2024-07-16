@@ -115,6 +115,9 @@ public class PlayerController : MonoBehaviour
     void OnAnimatorMove()
     {
 
+        if(onIce) {
+            moveSpeed = 4f;
+        }
         AnimatorClipInfo[] animatorClipInfo = anim.GetCurrentAnimatorClipInfo(0);
         String currentAnimationPlaying = animatorClipInfo[0].clip.name;
     
@@ -132,7 +135,6 @@ public class PlayerController : MonoBehaviour
         testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
         newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, moveSpeed);
         astronautRigidBody.MovePosition(newRootPosition);
-        
 
         anim.SetFloat("SprintAnimSpeed", moveAnimSpeed);
     }
@@ -147,16 +149,16 @@ public class PlayerController : MonoBehaviour
 
     void InputDetector() {
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !onIce) {
             playerMetrics.startSprint();
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift)) {
             playerMetrics.stopSprint();
         }
-        else if (Input.GetKeyDown(KeyCode.R)) {
+        else if (Input.GetKeyDown(KeyCode.R) && !onIce) {
             print("Using Powerup!");
             playerMetrics.useSprintPowerup();
-        } else if (Input.GetKeyDown(KeyCode.Space) && isAstronautOnTheGround()) {
+        } else if (Input.GetKeyDown(KeyCode.Space) && isAstronautOnTheGround() && !onIce) {
             playerJumps();
         }   else if (Input.GetKeyDown(KeyCode.Y)) {
             print("Bumping up the aliens");
@@ -277,8 +279,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log("trying to slide");
             astronautCollider.material.staticFriction = 0;
             astronautCollider.material.dynamicFriction = 0;
-            astronautRigidBody.velocity = new Vector3(7, 0, 7);
-            moveSpeed = 20f;
+            
+            astronautRigidBody.velocity = new Vector3(-1.5f * astronautRigidBody.transform.forward.x*12, 0, -1.5f * astronautRigidBody.transform.forward.z*12);
             onIce = true; 
         } else if (c.transform.gameObject.tag == "Lift") {
             astronautRigidBody.isKinematic = true;
@@ -288,10 +290,11 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit(Collision c)
     {
          if(c.transform.gameObject.tag == "Ice") {
-            Debug.Log("trying to slide");
+            Debug.Log("trying to not slide");
             astronautCollider.material.staticFriction = 0.6f;
             astronautCollider.material.dynamicFriction = 0.6f;
-            // astronautRigidBody.velocity = new Vector3(2, 0, 2);
+            astronautRigidBody.velocity = new Vector3(1, 0, 1);
+            astronautRigidBody.drag = 0f;
             moveSpeed = 10.5f;
             onIce = false;
              
