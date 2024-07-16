@@ -3232,7 +3232,7 @@ PrefabInstance:
     - target: {fileID: 8291867271563804087, guid: 2acc4b6365f6b01448c031472968479c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6058044
+      value: 3.531
       objectReference: {fileID: 0}
     - target: {fileID: 8291867271563804087, guid: 2acc4b6365f6b01448c031472968479c,
         type: 3}
@@ -3282,6 +3282,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 136880165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &136880167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1490639570413513427, guid: 2acc4b6365f6b01448c031472968479c,
+    type: 3}
+  m_PrefabInstance: {fileID: 136880165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &136880168
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136880167}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &137646646
 GameObject:
   m_ObjectHideFlags: 0
@@ -4589,7 +4616,7 @@ PrefabInstance:
     - target: {fileID: 8291867271563804087, guid: 2acc4b6365f6b01448c031472968479c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.70581055
+      value: 0.634
       objectReference: {fileID: 0}
     - target: {fileID: 8291867271563804087, guid: 2acc4b6365f6b01448c031472968479c,
         type: 3}
@@ -4639,6 +4666,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 209972772}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &209972774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1490639570413513427, guid: 2acc4b6365f6b01448c031472968479c,
+    type: 3}
+  m_PrefabInstance: {fileID: 209972772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &209972775
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209972774}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &210736358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44996,6 +45050,33 @@ Transform:
   m_Father: {fileID: 2054917114}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2019792524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1490639570413513427, guid: 2acc4b6365f6b01448c031472968479c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1490639571354975327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2019792529
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019792524}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e013a33266ec574598d13d30ad395df, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2021220491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48513,7 +48594,7 @@ PrefabInstance:
     - target: {fileID: 8291867271563804087, guid: 2acc4b6365f6b01448c031472968479c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.64580536
+      value: 0.623
       objectReference: {fileID: 0}
     - target: {fileID: 8291867271563804087, guid: 2acc4b6365f6b01448c031472968479c,
         type: 3}
