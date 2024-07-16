@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -113,7 +114,8 @@ public class PickUpObjects : MonoBehaviour
         this.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         Debug.Log("Player forward: " + player.transform.forward);
         Debug.Log("player postion: " + player.transform.position);
-        this.transform.position = player.transform.position + new Vector3(0,0,.5f);
+        float multiplier = player.transform.forward.z > 0 ? 1 : -1;
+        this.transform.position = player.transform.position + new Vector3(0,0, .5f * multiplier);
         
 
          itemRB.isKinematic = false;
