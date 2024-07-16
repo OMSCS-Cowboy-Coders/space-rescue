@@ -74,10 +74,8 @@ public class PanelMenu : MonoBehaviour
                 winImage.sprite = threeStarsImage;
                 break;
         }
-        winScreenText.text = "Congratulations! You got " + numStars + " stars and finished in " + duration + " seconds!";
+        winScreenText.text = "Congratulations! You got " + numStars + " stars and finished in " + (int)duration + " seconds!";
         ToggleMenu();
-        // Make winScreenPanel visible, and Panel invisible
-        // TODO: show 1, 2, or 3 stars depending on what's passed in here from GameStatusManager.
     }
 
     private void showScreen(CanvasStates state) {
