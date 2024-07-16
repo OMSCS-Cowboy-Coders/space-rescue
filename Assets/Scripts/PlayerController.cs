@@ -284,9 +284,7 @@ public class PlayerController : MonoBehaviour
             onIce = true; 
         } else if (c.transform.gameObject.tag == "Lift") {
             astronautRigidBody.isKinematic = true;
-        }  else if (c.transform.gameObject.tag == "SpaceshipPart") {
-            astronautRigidBody.velocity = new Vector3(0,0,0);
-        }
+        } 
     }
 
     private void OnCollisionExit(Collision c)
