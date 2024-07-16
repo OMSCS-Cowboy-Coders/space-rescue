@@ -37695,12 +37695,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034153049}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d7d9d222969ab344aa9dd35e3c31795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 6064476555349323561, guid: 9ac148c69b5cff64c9db44b77dc50878, type: 3}
+  Enemy: {fileID: 6080038879597348110, guid: e98ff68baa3e8914c9f5e5f10f459651, type: 3}
   EnemyHairstyles:
   - {fileID: 2100000, guid: acf13a759f2e5bd418c474cf364c83f8, type: 2}
   - {fileID: 2100000, guid: 84b65fd7f676bb1479f1dac7289eefd4, type: 2}
