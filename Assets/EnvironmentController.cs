@@ -30,6 +30,12 @@ public class EnvironmentController : MonoBehaviour
             case "Crater_Floor":
                 playerMetrics.decrementHealth(true);
                 break;
+            case "Volcano":
+                playerMetrics.decrementHealth(true);
+                break;
+            case "LavaRocks":
+                playerMetrics.decrementHealth(false);
+                break;
             default:
                 break;
         }

@@ -13,6 +13,8 @@ TagManager:
   - Ice
   - Platform_Rock
   - Crater_Floor
+  - Volcano
+  - LavaRocks
   layers:
   - Default
   - TransparentFX
