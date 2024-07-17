@@ -86,22 +86,28 @@ public class PlayerMetrics : MonoBehaviour
         healthCollectibleUIManager.updateHealth(health);
     }
 
-    public void decrementHealth() {
-        health--;
+    public void decrementHealth(bool dieImmediately) {
+        if(dieImmediately) {
+            health = 0;
+            healthCollectibleUIManager.updateHealth(health);
+        } else {
+            health--;
+        }
         print("This is health: " + health);
         if (health <= 0) {
             print("GAME RESTART");
-
             // restart the game
             RestartGame.Restart();
 
             // end the game 
             // UnityEditor.EditorApplication.isPlaying = false;
             // Application.Quit();
+        
         }
 
         healthCollectibleUIManager.updateHealth(health);
     }
+
 
     public void collectSprintPowerup() {
         sprintPowerupsLeft++;

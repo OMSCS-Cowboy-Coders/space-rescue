@@ -25,7 +25,16 @@ public class EnvironmentController : MonoBehaviour
         switch (tag) {
             case "Alien":
                 Debug.Log("DECREMENT HEALTH");
-                playerMetrics.decrementHealth();
+                playerMetrics.decrementHealth(false);
+                break;
+            case "Crater_Floor":
+                playerMetrics.decrementHealth(true);
+                break;
+            case "Volcano":
+                playerMetrics.decrementHealth(true);
+                break;
+            case "LavaRocks":
+                playerMetrics.decrementHealth(false);
                 break;
             default:
                 break;

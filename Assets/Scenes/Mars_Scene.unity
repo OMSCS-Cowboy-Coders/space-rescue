@@ -7688,7 +7688,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406912821}
   m_LocalRotation: {x: 0.26129594, y: -0.06628526, z: 0.017989045, w: 0.96281207}
-  m_LocalPosition: {x: 1414.5, y: 102.71, z: 311.8}
+  m_LocalPosition: {x: 1470.5, y: 102, z: 311.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15684,7 +15684,7 @@ GameObject:
   - component: {fileID: 763435440}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Crater_Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19790,7 +19790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   m_LocalRotation: {x: 0.26129594, y: -0.06628526, z: 0.017989045, w: 0.96281207}
-  m_LocalPosition: {x: 1414.5, y: 102.71, z: 311.8}
+  m_LocalPosition: {x: 1470.5, y: 102, z: 311.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22936,12 +22936,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e488e6a2cf839458ebf4d80b7ccb4d89,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1414
+      value: 1470
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e488e6a2cf839458ebf4d80b7ccb4d89,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.81
+      value: 99.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e488e6a2cf839458ebf4d80b7ccb4d89,
         type: 3}
@@ -23405,6 +23405,38 @@ Transform:
   m_Father: {fileID: 976072519}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+--- !u!1 &1108638990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1108638991}
+  m_Layer: 0
+  m_Name: SafeFloor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1108638991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108638990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1898469637}
+  m_Father: {fileID: 3328438966510269633}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1115117539
 GameObject:
   m_ObjectHideFlags: 0
@@ -44156,17 +44188,17 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3328438966510269633}
+    m_TransformParent: {fileID: 1108638991}
     m_Modifications:
     - target: {fileID: 4832847803250996082, guid: 080f86cfde6514a3780cd1241fcc59bb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4832847803250996082, guid: 080f86cfde6514a3780cd1241fcc59bb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.72
+      value: -6.7199707
       objectReference: {fileID: 0}
     - target: {fileID: 4832847803250996082, guid: 080f86cfde6514a3780cd1241fcc59bb,
         type: 3}
@@ -44176,7 +44208,7 @@ PrefabInstance:
     - target: {fileID: 4832847803250996082, guid: 080f86cfde6514a3780cd1241fcc59bb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 42.73
+      value: 42.72998
       objectReference: {fileID: 0}
     - target: {fileID: 4832847803250996082, guid: 080f86cfde6514a3780cd1241fcc59bb,
         type: 3}
@@ -44186,7 +44218,7 @@ PrefabInstance:
     - target: {fileID: 4832847803250996082, guid: 080f86cfde6514a3780cd1241fcc59bb,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4832847803250996082, guid: 080f86cfde6514a3780cd1241fcc59bb,
         type: 3}
@@ -44196,7 +44228,7 @@ PrefabInstance:
     - target: {fileID: 4832847803250996082, guid: 080f86cfde6514a3780cd1241fcc59bb,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4832847803250996082, guid: 080f86cfde6514a3780cd1241fcc59bb,
         type: 3}
@@ -45419,7 +45451,7 @@ GameObject:
   - component: {fileID: 3328438965747477881}
   m_Layer: 0
   m_Name: mountain_canyon_04 (3)
-  m_TagString: Untagged
+  m_TagString: LavaRocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45839,7 +45871,7 @@ GameObject:
   - component: {fileID: 3328438965251716888}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: LavaRocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46021,7 +46053,7 @@ GameObject:
   - component: {fileID: 3328438965690423586}
   m_Layer: 0
   m_Name: GroupOfLavaRocks (1)
-  m_TagString: Untagged
+  m_TagString: LavaRocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46132,7 +46164,7 @@ GameObject:
   - component: {fileID: 3328438964903685415}
   m_Layer: 0
   m_Name: mountain_canyon_02 (1)
-  m_TagString: Untagged
+  m_TagString: LavaRocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46628,7 +46660,7 @@ GameObject:
   - component: {fileID: 3328438966041784383}
   m_Layer: 0
   m_Name: mountain_canyon_01 (1)
-  m_TagString: Untagged
+  m_TagString: LavaRocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46735,7 +46767,7 @@ GameObject:
   - component: {fileID: 3328438965105007616}
   m_Layer: 0
   m_Name: mountain_canyon_02
-  m_TagString: Untagged
+  m_TagString: LavaRocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47112,7 +47144,7 @@ GameObject:
   - component: {fileID: 3328438965187292321}
   m_Layer: 0
   m_Name: mountain_canyon_04 (2)
-  m_TagString: Untagged
+  m_TagString: LavaRocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47163,7 +47195,7 @@ GameObject:
   - component: {fileID: 3328438966485868122}
   m_Layer: 0
   m_Name: GroupOfLavaRocks (2)
-  m_TagString: Untagged
+  m_TagString: LavaRocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47190,7 +47222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3328438966510269634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1743, y: 100.00002, z: 601}
+  m_LocalPosition: {x: 1743, y: 108.6, z: 601}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47212,7 +47244,7 @@ Transform:
   - {fileID: 1576678002}
   - {fileID: 1692967642}
   - {fileID: 391417583}
-  - {fileID: 1898469637}
+  - {fileID: 1108638991}
   - {fileID: 459355755}
   - {fileID: 1035944037}
   - {fileID: 508936392}
@@ -47249,7 +47281,7 @@ GameObject:
   - component: {fileID: 3328438966520811715}
   m_Layer: 0
   m_Name: GroupOfLavaRocks
-  m_TagString: Untagged
+  m_TagString: LavaRocks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47348,7 +47380,7 @@ GameObject:
   - component: {fileID: 3328438965109740759}
   m_Layer: 0
   m_Name: mountain_canyon_02
-  m_TagString: Untagged
+  m_TagString: Volcano
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
