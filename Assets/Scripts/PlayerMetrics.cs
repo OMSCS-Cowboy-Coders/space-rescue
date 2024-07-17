@@ -74,9 +74,15 @@ public class PlayerMetrics : MonoBehaviour
         /*
         This function will increment health only til it hits MAX_HEALTH
         */ 
-        health = health >= MAX_HEALTH ? health : health++;
+        health++;
+        if (health >= MAX_HEALTH) {
+            health = MAX_HEALTH;
+        }
         print("INCREMENTING HEALTH: HEALTH IS " + health);
 
+        if (healthCollectibleUIManager == null) {
+            healthCollectibleUIManager = FindObjectOfType<HealthCollectibleUIManager>();
+        }
         healthCollectibleUIManager.updateHealth(health);
     }
 
