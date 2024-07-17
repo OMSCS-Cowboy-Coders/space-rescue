@@ -36,6 +36,9 @@ public class EnvironmentController : MonoBehaviour
             case "LavaRocks":
                 playerMetrics.decrementHealth(false);
                 break;
+            case "LavaRoom":
+                playerMetrics.decrementHealth(true);
+                break;
             default:
                 break;
         }
