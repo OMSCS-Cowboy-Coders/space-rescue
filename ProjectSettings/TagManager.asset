@@ -15,6 +15,7 @@ TagManager:
   - Crater_Floor
   - Volcano
   - LavaRocks
+  - LavaRoom
   layers:
   - Default
   - TransparentFX
