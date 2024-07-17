@@ -56,6 +56,16 @@ public class PlayerController : MonoBehaviour
 
     public bool onIce = false;
 
+    public GameObject finalDoor;
+
+    public GameObject finalFinalDoor;
+
+    public GameObject batteryStorage;
+
+    private bool doorNotOpened =false;
+
+    public bool reachedFinalBattery = false;
+
     private void findGenerateEnemies() {
         // hardcode GameObject name so that it can handle delayed initialization of the Terrain.
         // this method is called at Start and before usage in updateNumBatteriesRetrieved
@@ -99,10 +109,18 @@ public class PlayerController : MonoBehaviour
 
         newLocation.Set(astronautX, 0f, astronautY);
         newLocation.Normalize();
+        Debug.Log("Num Parts Recieved : " + batteryStorage.transform.childCount);
+        Debug.Log("door not opened: " + doorNotOpened);
 
-        if(numPartsRecieved == 5) {
-            Debug.Log("You won!");
-            WinTextPanel.SetActive(true);
+        if(batteryStorage.transform.childCount == 3 && !doorNotOpened) {
+            Debug.Log("Door to final challenge opens!");
+            // WinTextPanel.SetActive(true);
+            Animator animDoor = finalDoor.GetComponent<Animator>();
+            Animator animFinalFinalDoor = finalFinalDoor.GetComponent<Animator>();
+            Debug.Log("Anim Final door: " + animFinalFinalDoor);
+            animDoor.SetBool("collectedAllBatteries", true);
+            animFinalFinalDoor.SetBool("collectedAllBatteries", true);
+            doorNotOpened = true;
         }
 
         if (Mathf.Abs(astronautX) > 0.1f || Mathf.Abs(astronautY) > 0.1f)
@@ -275,6 +293,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision c) {
+        Debug.Log("entering this collision: " + c.transform.gameObject.tag);
          if(c.transform.gameObject.tag == "Ice") {
             Debug.Log("trying to slide");
             astronautCollider.material.staticFriction = 0;
@@ -286,6 +305,9 @@ public class PlayerController : MonoBehaviour
             astronautRigidBody.isKinematic = true;
         }   else if (c.transform.gameObject.tag == "SpaceshipPart") {
             astronautRigidBody.velocity = new Vector3(0,0,0);
+        } else if (c.transform.gameObject.tag == "final_win_battery") {
+            reachedFinalBattery = true;
+            Debug.Log("setting the win: " + reachedFinalBattery);
         }
     }
 
@@ -305,7 +327,9 @@ public class PlayerController : MonoBehaviour
     }
 
     public void updateNumBatteriesRetrieved() {
+        Debug.Log("Updating battery count!!");
         numPartsRecieved = numPartsRecieved + 1;
+        Debug.Log("num parts in func " + numPartsRecieved);
 
         // the game progressively gets harder when this number is updated
         findGenerateEnemies();
