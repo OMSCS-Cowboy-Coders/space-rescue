@@ -86,8 +86,13 @@ public class PlayerMetrics : MonoBehaviour
         healthCollectibleUIManager.updateHealth(health);
     }
 
-    public void decrementHealth() {
-        health--;
+    public void decrementHealth(bool dieImmediately) {
+        if(dieImmediately) {
+            health = 0;
+            healthCollectibleUIManager.updateHealth(health);
+        } else {
+            health--;
+        }
         print("This is health: " + health);
         if (health <= 0) {
             print("GAME RESTART");

@@ -11,6 +11,8 @@ TagManager:
   - MarsFloor
   - Alien
   - Ice
+  - Platform_Rock
+  - Crater_Floor
   layers:
   - Default
   - TransparentFX
