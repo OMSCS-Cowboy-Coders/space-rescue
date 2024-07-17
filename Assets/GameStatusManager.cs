@@ -108,9 +108,15 @@ public class GameStatusManager : MonoBehaviour
     {
         findPlayerController();
         findPanelMenu();
+        Debug.Log("did we make it here?");
+        Debug.Log("Reached final battery: " + playerController.reachedFinalBattery);
 
-        if (playerController.numPartsRecieved == totalNumParts || Input.GetKeyDown(KeyCode.G)) {
+        if(playerController.reachedFinalBattery || Input.GetKeyDown(KeyCode.G)) {
             completeGame();
         }
+
+        // if (playerController.numPartsRecieved == totalNumParts || Input.GetKeyDown(KeyCode.G)) {
+            
+        // }
     }
 }
