@@ -44,7 +44,7 @@ public class CollectiblesGenerator : MonoBehaviour
                 for(int k = 0; k < collectibleDuplicateCount; k++){
                     float randomX = UnityEngine.Random.Range(curTerrainPos.x + curTerrainMin.x, curTerrainPos.x + curTerrainMax.x);
                     float randomZ = UnityEngine.Random.Range(curTerrainPos.z + curTerrainMin.z, curTerrainPos.z + curTerrainMax.z);
-                    float yPos = curTerrain.SampleHeight(new Vector3(randomX,0,randomZ)) + curTerrain.transform.position.y + 2;
+                    float yPos = curTerrain.SampleHeight(new Vector3(randomX,0,randomZ)) + curTerrain.transform.position.y + 1.5f;
                     Instantiate(collectible, new Vector3(randomX, yPos + collectibleYOffset, randomZ), Quaternion.identity, collectibleRoot.transform);
                 }
             }
