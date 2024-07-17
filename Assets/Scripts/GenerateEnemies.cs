@@ -19,6 +19,7 @@ public class GenerateEnemies : MonoBehaviour
     public GameObject Player;
 
     private float distance = 200;
+    private float spawnDistance = 50f;
     private float yOffSet = 0;
     private int count;
     private float minScale = 0.2f;
@@ -61,7 +62,9 @@ public class GenerateEnemies : MonoBehaviour
             //Get closest terrain to player
             Terrain closestTerrain = getClosestTerrain();
             float yPos = closestTerrain.SampleHeight(new Vector3(0,0,0));
-            Vector3 randomPos = this.Player.transform.position + (UnityEngine.Random.insideUnitSphere * distance);
+            //Choose random direction to spawn away from player
+            float angle = UnityEngine.Random.Range(-Mathf.PI,Mathf.PI);
+            Vector3 randomPos = this.Player.transform.position + new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle)) * distance;
             // Generate Enemy
             GameObject customEnemy = Instantiate(Enemy, new Vector3(randomPos.x, yPos + yOffSet, randomPos.z), Quaternion.identity, EnemyParent.transform);
             // Random enemy materials
@@ -73,6 +76,7 @@ public class GenerateEnemies : MonoBehaviour
             EnemyAI AI_Script = customEnemy.AddComponent<EnemyAI>();
             AI_Script.Player = this.Player;
             AlienMotionController Motion_Script = customEnemy.AddComponent<AlienMotionController>();
+            Motion_Script.Player = this.Player;
             yield return new WaitForSeconds(1f);
             this.count++;
         }
