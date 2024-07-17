@@ -16,6 +16,6 @@ public class PowerupsUIManager : MonoBehaviour
 
     public void updateSprintPowerups(int sprintPowerups)
     {
-        sprintPowerupsText.text = "Sprint Powerups: " + sprintPowerups.ToString();
+        sprintPowerupsText.text = "x " + sprintPowerups.ToString();
     }
 }
