@@ -40847,7 +40847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1965117024
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40880,7 +40880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba64fc4e8c9a4f11aefdbe757028f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 1965117026}
+  heart1: {fileID: 777999433}
+  heart2: {fileID: 1883010023}
+  heart3: {fileID: 967101864}
 --- !u!114 &1965117026
 MonoBehaviour:
   m_ObjectHideFlags: 0
