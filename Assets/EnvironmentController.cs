@@ -17,11 +17,12 @@ public class EnvironmentController : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider c) {
+    void OnCollisionEnter(Collision c) {
         // check if the collider is an alien
-        print("TRIGGERED by " + c.tag);
+        string tag = c.gameObject.tag;
+        print("TRIGGERED by " + tag);
 
-        switch (c.tag) {
+        switch (tag) {
             case "Alien":
                 Debug.Log("DECREMENT HEALTH");
                 playerMetrics.decrementHealth();
