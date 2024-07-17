@@ -30,6 +30,10 @@ public class HealthCollectibleUIManager : MonoBehaviour
             heart3.gameObject.SetActive(false);
             heart2.gameObject.SetActive(false);
             heart1.gameObject.SetActive(true);
+        } else if (health == 0) {
+            heart3.gameObject.SetActive(false);
+            heart2.gameObject.SetActive(false);
+            heart1.gameObject.SetActive(false);
         }
     }
 }
