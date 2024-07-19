@@ -25,9 +25,6 @@ public class SprintBarModulator : MonoBehaviour
     }
     void updateSprintBar(float sprintLeft) {
         float percentage = sprintLeft / 100; // sprintFill is expressed as a percentage.
-        print("percentage: " + percentage);
-        print("initialSprintFillWidth: " + initialSprintFillWidth);
-        print(" THIS IS HOW WIDE WE SHOULD BE " + initialSprintFillWidth * percentage);
         float width = Mathf.Min(initialSprintFillWidth * percentage, initialSprintFillWidth);
         sprintFill.sizeDelta = new Vector2(width, sprintFill.sizeDelta.y);
     }
