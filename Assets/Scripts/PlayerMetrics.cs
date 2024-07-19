@@ -108,9 +108,6 @@ public class PlayerMetrics : MonoBehaviour
         healthCollectibleUIManager.updateHealth(health);
     }
 
-    public float getSprintEnergy() {
-        return sprintEnergy;
-    }
 
     public void collectSprintPowerup() {
         sprintPowerupsLeft++;
