@@ -66,6 +66,17 @@ public class PlayerController : MonoBehaviour
 
     public bool reachedFinalBattery = false;
 
+    private bool playerIsJumping;
+    private bool playerIsOnGround; 
+    private bool playerIsAtPeak;
+    private bool playerIsFalling;
+
+    private float speedWhileJumping;
+
+    private Quaternion rotationDirection;
+
+    private bool isPlayerMoving; 
+
     private void findGenerateEnemies() {
         // hardcode GameObject name so that it can handle delayed initialization of the Terrain.
         // this method is called at Start and before usage in updateNumBatteriesRetrieved
@@ -101,14 +112,15 @@ public class PlayerController : MonoBehaviour
         Vector2 astronautMovement = inputValue.Get<Vector2>();
         astronautX = astronautMovement.x;
         astronautY = astronautMovement.y;
+
     }
 
    
     void FixedUpdate() {
         anim.SetFloat("Y_movement", astronautY);
 
-        newLocation.Set(astronautX, 0f, astronautY);
-        newLocation.Normalize();
+        
+
         Debug.Log("Num Parts Recieved : " + batteryStorage.transform.childCount);
         Debug.Log("door not opened: " + doorNotOpened);
 
@@ -133,39 +145,89 @@ public class PlayerController : MonoBehaviour
     void OnAnimatorMove()
     {
 
-        if(onIce) {
-            moveSpeed = 4f;
-        }
-        AnimatorClipInfo[] animatorClipInfo = anim.GetCurrentAnimatorClipInfo(0);
-        String currentAnimationPlaying = animatorClipInfo[0].clip.name;
+        if(playerIsOnGround) {
+            
+            if(onIce) {
+                moveSpeed = 4f;
+            }
+            AnimatorClipInfo[] animatorClipInfo = anim.GetCurrentAnimatorClipInfo(0);
+            String currentAnimationPlaying = animatorClipInfo[0].clip.name;
+        
+            float movementSpeed; 
     
-        float movementSpeed; 
- 
-       
-        Vector3 newRootPosition;
-        Vector3 testPostion; 
-
-        movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
         
-        var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
-        astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
-        
-        testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
-        newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, moveSpeed);
-        astronautRigidBody.MovePosition(newRootPosition);
+            Vector3 newRootPosition;
+            Vector3 testPostion; 
 
-        anim.SetFloat("SprintAnimSpeed", moveAnimSpeed);
+            movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
+            
+            var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
+            rotationDirection = astronautRigidBody.rotation * rot;
+
+            astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
+            
+            testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
+            newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, moveSpeed);
+            astronautRigidBody.MovePosition(newRootPosition);
+
+            anim.SetFloat("SprintAnimSpeed", moveAnimSpeed);
+        }
     }
 
     void Update() {
+        isAstronautOnTheGround();
         InputDetector();
-        if(astronautRigidBody.velocity.y < 0) { // Astronaut is falling after jump
-            astronautRigidBody.velocity = astronautRigidBody.velocity + (Vector3.up * Physics.gravity.y* (fasterFallGravityForJump) *Time.deltaTime);
-
+        Debug.Log("Astronaut x: " + astronautX);
+        if(astronautY > 0) {
+            Debug.Log("Astronaut x: " + astronautX);
+            anim.SetBool("isMoving", true);
+        } else if (!isPlayerMoving) {
+            anim.SetBool("isMoving", false);
         }
+        if(astronautRigidBody.velocity.y < 0 && playerIsJumping) { // Astronaut is falling after jump
+            playerIsJumping = false;
+            playerIsAtPeak = false;
+            playerIsFalling = true;
+            anim.SetBool("startedJump", false);
+            anim.SetBool("fallingJump", true);
+            astronautRigidBody.velocity = astronautRigidBody.velocity + (Vector3.up * Physics.gravity.y* (fasterFallGravityForJump) *Time.deltaTime);
+        }
+        Debug.Log("Is the player on the ground: " + playerIsOnGround);
+        if (playerIsOnGround) {
+            anim.SetBool("onGround", true);
+            anim.SetBool("fallingJump", false);
+        } 
+
+        if(playerIsJumping) {
+            anim.SetBool("onGround", false);
+            astronautRigidBody.AddForce(astronautRigidBody.transform.forward *astronautY*2, ForceMode.Impulse);
+        }
+
+            // Vector3 velocity = astronautRigidBody.transform.forward * anim.GetFloat("Runspeed")* 3f;
+            // velocity.y = astronautRigidBody.velocity.y;
+            
+            //astronautRigidBody.transform.forward * anim.GetFloat("Runspeed") * 3f; 
+            // float movementSpeed; 
+    
+            // Vector3 newRootPosition;
+            // Vector3 testPostion; 
+            // movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
+            
+            // var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
+            // rotationDirection = astronautRigidBody.rotation * rot;
+            
+            // testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
+            // newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, moveSpeed);
+            // astronautRigidBody.MovePosition(newRootPosition);
+            
+        
     }
 
     void InputDetector() {
+
+        if(Input.GetKeyUp(KeyCode.UpArrow)) {
+            isPlayerMoving = false; 
+        }        
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && !onIce) {
             playerMetrics.startSprint();
@@ -176,7 +238,7 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.R) && !onIce) {
             print("Using Powerup!");
             playerMetrics.useSprintPowerup();
-        } else if (Input.GetKeyDown(KeyCode.Space) && isAstronautOnTheGround() && !onIce) {
+        } else if (Input.GetKeyDown(KeyCode.Space) && playerIsOnGround && !onIce) {
             playerJumps();
         }   else if (Input.GetKeyDown(KeyCode.Y)) {
             print("Bumping up the aliens");
@@ -185,7 +247,9 @@ public class PlayerController : MonoBehaviour
     }
 
     void playerJumps() {
-        Debug.Log("Trying to jump");
+        playerIsJumping = true;
+        anim.SetBool("startedJump", true);
+        Debug.Log("Trying to jump : " + playerIsJumping);
         float jumpHeight = 5f;
         float jumpForceBasedOnHeight = Mathf.Sqrt(jumpHeight * Physics.gravity.y * -2) * astronautRigidBody.mass;
         astronautRigidBody.AddForce(Vector2.up * jumpForceBasedOnHeight, ForceMode.Impulse);
@@ -199,13 +263,16 @@ public class PlayerController : MonoBehaviour
         // , -astronautRigidBody.transform.up, 
         // astronautRigidBody.transform.rotation, maxDistanceOfBox);
         
-        onGround = Physics.BoxCast(astronautCollider.bounds.center, astronautRigidBody.transform.localScale*.5f
+        onGround = Physics.BoxCast(astronautCollider.bounds.center, astronautRigidBody.transform.localScale*.25f
         , -astronautRigidBody.transform.up, out boxHit,
         astronautRigidBody.transform.rotation, maxDistanceOfBox);
         Debug.Log("On the ground: " + onGround);
         if (onGround) {
+            playerIsOnGround = true;
             return true;
         }
+        Debug.Log("player is not on the ground!");
+        playerIsOnGround = false;
         return false;
     }
 
