@@ -7,7 +7,7 @@ public class TerrainGenerator : MonoBehaviour
     // Start is called before the first frame update
 
     //Terrain related variables
-    public int terrainScale = 30;
+    public int terrainScale = 10;
     public int terrainHeight = 30;
     public int terrainWidth = 1000;
     public int terrainLength = 1000;
@@ -28,8 +28,8 @@ public class TerrainGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Terrain terrain = GetComponent<Terrain>();
-        terrain.terrainData = GenerateTerrain(terrain.terrainData);
+        // Terrain terrain = GetComponent<Terrain>();
+        // terrain.terrainData = GenerateTerrain(terrain.terrainData);
     }
 
     TerrainData GenerateTerrain(TerrainData terrainData){
