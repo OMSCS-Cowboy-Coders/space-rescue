@@ -24,6 +24,8 @@ public class PickUpObjects : MonoBehaviour
 
     private bool pickUpItem = false; 
 
+    private bool canBePickedUp = true;
+
   
 
 
@@ -60,7 +62,7 @@ public class PickUpObjects : MonoBehaviour
          if (!itemIsBeingHeldByPlayer &&
          Input.GetKeyDown(KeyCode.E) &&
           !playerIsHoldingItemGlobal &&
-          distanceFromItem <= farthestDistanceFromItem) {
+          distanceFromItem <= farthestDistanceFromItem && canBePickedUp) {
             Debug.Log("In this call to pickup the object: " + gameObject);
             playerIsTryingToPickUpObject = true;
             // playerController.anim.SetBool("PickingUpObject", true);
@@ -122,9 +124,11 @@ public class PickUpObjects : MonoBehaviour
         
         GameObject batteryStorage = GameObject.FindWithTag("BatteryStorage");
         float closeToBatteryStorage = Vector3.Distance(this.transform.position, batteryStorage.transform.position);
-        if (closeToBatteryStorage < 3f) {
+        if (closeToBatteryStorage < 4f) {
             this.transform.SetParent(GameObject.FindWithTag("BatteryStorage").transform);
             playerController.updateNumBatteriesRetrieved();
+            canBePickedUp = false;
+            itemRB.isKinematic = true;
         }
         Debug.Log("Object postion 2: " + this.transform.position);
     }
