@@ -886,11 +886,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: e616853b-9237-46f7-8616-13716a50cc33
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: space-rescue 2024-07-18_14-04-18
+  organizationId: marimdz
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
