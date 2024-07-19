@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Num Parts Recieved : " + batteryStorage.transform.childCount);
         Debug.Log("door not opened: " + doorNotOpened);
 
-        if(batteryStorage.transform.childCount == 3 && !doorNotOpened) {
+        if(batteryStorage.transform.childCount == 4 && !doorNotOpened) {
             Debug.Log("Door to final challenge opens!");
             // WinTextPanel.SetActive(true);
             Animator animDoor = finalDoor.GetComponent<Animator>();
