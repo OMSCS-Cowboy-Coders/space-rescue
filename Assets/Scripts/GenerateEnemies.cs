@@ -18,15 +18,16 @@ public class GenerateEnemies : MonoBehaviour
     private GameObject EnemyParent;
     public GameObject Player;
 
-    private float distance = 200;
+    private float distanceMin = 100;
+    private float distanceMax = 500;
     private float spawnDistance = 50f;
     private float yOffSet = 0;
     private int count;
     private float minScale = 0.2f;
     private float maxScale = 1.0f;
     private const int defaultAddAlienAmount = 25;
-    private int INITIAL_ALIEN_COUNT = 50;
-    private int maxAlienCount;
+    public int initialAlienCount = 10;
+    public int maxAlienCount;
     private Coroutine spawnEnemyCoroutine;
 
     void Start()
@@ -34,15 +35,16 @@ public class GenerateEnemies : MonoBehaviour
         //Get closest terrain to player 
         // Go through children (which should be terrain)
         // and get ranges for X and Z
+        maxAlienCount = initialAlienCount;
         EnemyParent = new GameObject("EnemyParent");
-        maxAlienCount = INITIAL_ALIEN_COUNT;
         spawnEnemyCoroutine = StartCoroutine(SpawnEnemies());
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Despawn if too far from player
+        //Increase the number of aliens every second lmao
+        maxAlienCount = initialAlienCount + (int) Time.realtimeSinceStartup;
     }
 
     public void addMoreAliens(int? additionalAliens = defaultAddAlienAmount) {
@@ -56,17 +58,29 @@ public class GenerateEnemies : MonoBehaviour
     }
 
     IEnumerator SpawnEnemies(){
-        // while (this.count < maxAlienCount) {
+        RaycastHit rayHit;
+        TerrainGenerator terrainScript = GetComponent<TerrainGenerator>();
         while (this.count < maxAlienCount) {
             print("Spawning " + this.count + "/" + maxAlienCount);
+            
             //Get closest terrain to player
-            Terrain closestTerrain = getClosestTerrain();
-            float yPos = closestTerrain.SampleHeight(new Vector3(0,0,0));
+            Terrain closestTerrain = terrainScript.getClosestTerrain(this.Player);
             //Choose random direction to spawn away from player
             float angle = UnityEngine.Random.Range(-Mathf.PI,Mathf.PI);
-            Vector3 randomPos = this.Player.transform.position + new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle)) * distance;
+            Vector3 randomPosMin = this.Player.transform.position + new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle)) * distanceMin;
+            Vector3 randomPosMax = this.Player.transform.position + new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle)) * distanceMax;
+            Vector3 randomPos = Vector3.Lerp(randomPosMin, randomPosMax, UnityEngine.Random.value);
+            //Convert randomPos coords to normalized terrain cords, assuming it is in the terrain
+            Vector3 randomPosNormalized = terrainScript.WorldToTerrain(closestTerrain, randomPos);
+            //Clamp the normalized randomPos within terrain bounds
+            Vector3 randomPosClamped = terrainScript.clampPositionWithinTerrain(closestTerrain, randomPosNormalized);
+            //Convert normalized clamped position to world position
+            Vector3 randomPosWorld = terrainScript.TerrainToWorld(closestTerrain, randomPosClamped);
+            //Raycast downwards, get the spot that is hit
+            Physics.Raycast(randomPosWorld, Vector3.down,  out rayHit);
+            randomPosWorld = rayHit.point;
             // Generate Enemy
-            GameObject customEnemy = Instantiate(Enemy, new Vector3(randomPos.x, yPos + yOffSet, randomPos.z), Quaternion.identity, EnemyParent.transform);
+            GameObject customEnemy = Instantiate(Enemy, randomPosWorld, Quaternion.identity, EnemyParent.transform);
             // Random enemy materials
             this.setRandomMeshColor(customEnemy);
             // Random enemy scale
@@ -82,23 +96,6 @@ public class GenerateEnemies : MonoBehaviour
         }
         print("Done with SpawnEnemy coroutine");
 
-    }
-
-    Terrain getClosestTerrain(){
-        Terrain[] terrains = Terrain.activeTerrains;
-        Terrain terrain = null;
-        Vector3 curPlayerPos = this.Player.transform.position;
-        float closestDist = Mathf.Infinity;
-        for(int i = 0; i < terrains.Length; i++){
-            Terrain curTerain = terrains[i];
-            Vector3 curTerrainPos = curTerain.GetPosition();
-            float curDist = (curTerrainPos - curPlayerPos).sqrMagnitude;
-            if(curDist < closestDist){
-                terrain = curTerain;
-                closestDist = curDist;
-            }
-        }
-        return terrain;
     }
 
     void setRandomMeshColor(GameObject Enemy){
@@ -122,5 +119,4 @@ public class GenerateEnemies : MonoBehaviour
             }
         }
     }
-
 }

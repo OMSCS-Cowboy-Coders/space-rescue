@@ -64,7 +64,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -6594717684441847957}
-    m_Position: {x: 280.03693, y: 192.43515, z: 0}
+    m_Position: {x: 280, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7996450317824635281}
     m_Position: {x: 580, y: 210, z: 0}
@@ -88,6 +88,18 @@ AnimatorController:
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: collectedAllBatteries
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 1
+    m_Controller: {fileID: 9100000}
+  - m_Name: OpenFinalDoor
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: OpenFinalBattery
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -116,6 +128,12 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: collectedAllBatteries
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: OpenFinalDoor
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: OpenFinalBattery
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7996450317824635281}
