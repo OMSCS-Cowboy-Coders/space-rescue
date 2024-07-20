@@ -26,7 +26,8 @@ public class GenerateEnemies : MonoBehaviour
     private float minScale = 0.2f;
     private float maxScale = 1.0f;
     private const int defaultAddAlienAmount = 25;
-    public int maxAlienCount = 50;
+    public int initialAlienCount = 10;
+    public int maxAlienCount;
     private Coroutine spawnEnemyCoroutine;
 
     void Start()
@@ -34,6 +35,7 @@ public class GenerateEnemies : MonoBehaviour
         //Get closest terrain to player 
         // Go through children (which should be terrain)
         // and get ranges for X and Z
+        maxAlienCount = initialAlienCount;
         EnemyParent = new GameObject("EnemyParent");
         spawnEnemyCoroutine = StartCoroutine(SpawnEnemies());
     }
@@ -41,7 +43,8 @@ public class GenerateEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Despawn if too far from player
+        //Increase the number of aliens every second lmao
+        maxAlienCount = initialAlienCount + (int) Time.realtimeSinceStartup;
     }
 
     public void addMoreAliens(int? additionalAliens = defaultAddAlienAmount) {
@@ -60,17 +63,18 @@ public class GenerateEnemies : MonoBehaviour
             print("Spawning " + this.count + "/" + maxAlienCount);
             //Get closest terrain to player
             Terrain closestTerrain = getClosestTerrain();
+            TerrainGenerator terrainScript = closestTerrain.GetComponent<TerrainGenerator>();
             //Choose random direction to spawn away from player
             float angle = UnityEngine.Random.Range(-Mathf.PI,Mathf.PI);
             Vector3 randomPosMin = this.Player.transform.position + new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle)) * distanceMin;
             Vector3 randomPosMax = this.Player.transform.position + new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle)) * distanceMax;
             Vector3 randomPos = Vector3.Lerp(randomPosMin, randomPosMax, UnityEngine.Random.value);
             //Convert randomPos coords to normalized terrain cords, assuming it is in the terrain
-            Vector3 randomPosNormalized = WorldToTerrain(closestTerrain, randomPos);
+            Vector3 randomPosNormalized = terrainScript.WorldToTerrain(closestTerrain, randomPos);
             //Clamp the normalized randomPos within terrain bounds
             Vector3 randomPosClamped = clampPositionWithinTerrain(closestTerrain, randomPosNormalized);
             //Convert normalized clamped position to world position
-            Vector3 randomPosWorld = TerrainToWorld(closestTerrain, randomPosClamped);
+            Vector3 randomPosWorld = terrainScript.TerrainToWorld(closestTerrain, randomPosClamped);
             //Raycast downwards, get the spot that is hit
             Physics.Raycast(randomPosWorld, Vector3.down,  out rayHit);
             randomPosWorld = rayHit.point;
@@ -113,20 +117,6 @@ public class GenerateEnemies : MonoBehaviour
         clampedVector.y = normaliedCords.y;
         clampedVector.z = Mathf.Clamp(normaliedCords.z, zMin, zMax);
         return clampedVector;
-    }
-    Vector3 WorldToTerrain(Terrain terrain, Vector3 worldCords){
-        Vector3 terrainCords = new Vector3();
-        terrainCords.x = (worldCords.x - terrain.transform.position.x) / terrain.terrainData.size.x;
-        terrainCords.y = (worldCords.y - terrain.transform.position.y) / terrain.terrainData.size.y;
-        terrainCords.z = (worldCords.z - terrain.transform.position.z) / terrain.terrainData.size.z;
-        return terrainCords;
-    }
-    Vector3 TerrainToWorld (Terrain terrain, Vector3 normaliedCords){
-        Vector3 worldCords = new Vector3();
-        worldCords.x = (normaliedCords.x * terrain.terrainData.size.x) + terrain.transform.position.x;
-        worldCords.y = (normaliedCords.y * terrain.terrainData.size.y) + terrain.transform.position.y;
-        worldCords.z = (normaliedCords.z * terrain.terrainData.size.z) + terrain.transform.position.z;
-        return worldCords;
     }
     Terrain getClosestTerrain(){
         Terrain[] terrains = Terrain.activeTerrains;

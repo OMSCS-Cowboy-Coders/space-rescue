@@ -95,4 +95,19 @@ public class TerrainGenerator : MonoBehaviour
         boundary.AddComponent<BoxCollider>();
         return boundary;
     }
+
+    public Vector3 WorldToTerrain(Terrain terrain, Vector3 worldCords){
+        Vector3 terrainCords = new Vector3();
+        terrainCords.x = (worldCords.x - terrain.transform.position.x) / terrain.terrainData.size.x;
+        terrainCords.y = (worldCords.y - terrain.transform.position.y) / terrain.terrainData.size.y;
+        terrainCords.z = (worldCords.z - terrain.transform.position.z) / terrain.terrainData.size.z;
+        return terrainCords;
+    }
+    public Vector3 TerrainToWorld (Terrain terrain, Vector3 normaliedCords){
+        Vector3 worldCords = new Vector3();
+        worldCords.x = (normaliedCords.x * terrain.terrainData.size.x) + terrain.transform.position.x;
+        worldCords.y = (normaliedCords.y * terrain.terrainData.size.y) + terrain.transform.position.y;
+        worldCords.z = (normaliedCords.z * terrain.terrainData.size.z) + terrain.transform.position.z;
+        return worldCords;
+    }
 }
