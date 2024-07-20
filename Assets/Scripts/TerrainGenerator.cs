@@ -146,7 +146,29 @@ public class TerrainGenerator : MonoBehaviour
             clampStructure(structureObj, bounds);
         }
     }
-
+    
+    public Vector3 clampPositionWithinTerrain(Terrain terrain, Vector3 normaliedCords){
+        Vector3 clampedVector = new Vector3();
+        TerrainGenerator terrainScript = terrain.GetComponent<TerrainGenerator>();
+        //Grab bounds
+        float clampWidthOffset = 100; //Spacing just in case its a tad too close to the boundary
+        float clampLengthOffset = 100;
+        float terrainWidth = terrainScript.terrainWidth;
+        float terrainLength = terrainScript.terrainLength;
+        float mountainWidthOffset = terrainScript.mountainWidthOffset;
+        float mountainLengthOffset = terrainScript.mountainLengthOffset;
+        //Bounds
+        float xMin = (mountainWidthOffset + clampWidthOffset) / terrain.terrainData.size.x;
+        float xMax = (terrainWidth - mountainWidthOffset - clampWidthOffset ) / terrain.terrainData.size.x;
+        float zMin = (mountainLengthOffset + clampLengthOffset) / terrain.terrainData.size.z;
+        float zMax = (terrainLength - mountainLengthOffset - clampLengthOffset) / terrain.terrainData.size.z;
+        //Clamp the passed normalizedCords
+        
+        clampedVector.x = Mathf.Clamp(normaliedCords.x, xMin, xMax);
+        clampedVector.y = normaliedCords.y;
+        clampedVector.z = Mathf.Clamp(normaliedCords.z, zMin, zMax);
+        return clampedVector;
+    }
     void clampStructure(GameObject structure, Bounds bounds){
         //Get active terrain for structure
         RaycastHit rayHit;
