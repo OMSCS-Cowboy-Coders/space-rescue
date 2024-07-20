@@ -56,7 +56,8 @@ public class GenerateTerrainAssets : MonoBehaviour
             //Get random amount to generate
             GameObject terrainPrefab = prefabs[i];
             float randomScale = Random.Range(scaleMin, scaleMax);
-            for(int j = 0; j < amountToGenerate; j ++){
+            int amount = 0;
+            while(amount < amountToGenerate){
                 Vector3 randomPos = new Vector3();
                 Vector3 terrainMin = terrain.terrainData.bounds.min;
                 Vector3 terrainMax = terrain.terrainData.bounds.max;
@@ -64,11 +65,14 @@ public class GenerateTerrainAssets : MonoBehaviour
                 randomPos.z = UnityEngine.Random.Range(terrainPos.z + terrainMin.z, terrainPos.z + terrainMax.z);
                 randomPos.y = terrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z )) + terrain.transform.position.y + 1.5f;
                 //Raycast downwards, get the spot that is hit
-                Physics.Raycast(randomPos, Vector3.down,  out rayHit);
-                randomPos = rayHit.point;
-                // Generate Enemy
-                GameObject terrainAsset = Instantiate(terrainPrefab, randomPos, Quaternion.identity, TerrainAssetsParent.transform);
-                terrainAsset.transform.localScale = new Vector3(randomScale,randomScale,randomScale);
+                if(Physics.Raycast(randomPos, Vector3.down,  out rayHit) && !rayHit.transform.root.CompareTag("Structure")){
+                    //Only generate if it the ray doesn't intersect with a structure
+                    randomPos = rayHit.point;
+                    // Generate Terrain
+                    GameObject terrainAsset = Instantiate(terrainPrefab, randomPos, Quaternion.identity, TerrainAssetsParent.transform);
+                    terrainAsset.transform.localScale = new Vector3(randomScale,randomScale,randomScale);
+                    amount++;
+                }
             }
         }
     }
