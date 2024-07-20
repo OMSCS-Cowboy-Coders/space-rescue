@@ -59,11 +59,12 @@ public class GenerateEnemies : MonoBehaviour
 
     IEnumerator SpawnEnemies(){
         RaycastHit rayHit;
+        TerrainGenerator terrainScript = GetComponent<TerrainGenerator>();
         while (this.count < maxAlienCount) {
             print("Spawning " + this.count + "/" + maxAlienCount);
+            
             //Get closest terrain to player
-            Terrain closestTerrain = getClosestTerrain();
-            TerrainGenerator terrainScript = closestTerrain.GetComponent<TerrainGenerator>();
+            Terrain closestTerrain = terrainScript.getClosestTerrain(this.Player);
             //Choose random direction to spawn away from player
             float angle = UnityEngine.Random.Range(-Mathf.PI,Mathf.PI);
             Vector3 randomPosMin = this.Player.transform.position + new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle)) * distanceMin;
@@ -118,22 +119,6 @@ public class GenerateEnemies : MonoBehaviour
         clampedVector.z = Mathf.Clamp(normaliedCords.z, zMin, zMax);
         return clampedVector;
     }
-    Terrain getClosestTerrain(){
-        Terrain[] terrains = Terrain.activeTerrains;
-        Terrain terrain = null;
-        Vector3 curPlayerPos = this.Player.transform.position;
-        float closestDist = Mathf.Infinity;
-        for(int i = 0; i < terrains.Length; i++){
-            Terrain curTerain = terrains[i];
-            Vector3 curTerrainPos = curTerain.GetPosition();
-            float curDist = (curTerrainPos - curPlayerPos).sqrMagnitude;
-            if(curDist < closestDist){
-                terrain = curTerain;
-                closestDist = curDist;
-            }
-        }
-        return terrain;
-    }
 
     void setRandomMeshColor(GameObject Enemy){
         //Generate random body, hair, and eyes.
@@ -156,5 +141,4 @@ public class GenerateEnemies : MonoBehaviour
             }
         }
     }
-
 }

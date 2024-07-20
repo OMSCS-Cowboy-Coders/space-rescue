@@ -11486,6 +11486,9 @@ GameObject:
   - component: {fileID: 459274109}
   - component: {fileID: 459274111}
   - component: {fileID: 459274110}
+  - component: {fileID: 459274112}
+  - component: {fileID: 459274114}
+  - component: {fileID: 459274113}
   m_Layer: 0
   m_Name: Terrain_(1000.00, 0.00, 0.00)
   m_TagString: Untagged
@@ -11553,6 +11556,71 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
+--- !u!114 &459274112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459274108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f69bef2135694b45b214cb508cee815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainScale: 10
+  terrainHeight: 30
+  terrainWidth: 1000
+  terrainLength: 1000
+  mountainWidthOffset: 100
+  mountainLengthOffset: 100
+  mountainScale: 100
+  STRUCTURE_TAG: Structure
+--- !u!114 &459274113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459274108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1e58d3e5a6fb04389566a111c1ab34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Collectibles:
+  - {fileID: 8864293745473383026, guid: 6d6f535e533410b4ea8b02df0eb0814a, type: 3}
+  - {fileID: 3130912010003817034, guid: 170bb0c634539784e87dacc962a1dfc4, type: 3}
+  collectibleDuplicateCount: 100
+  collectibleYOffset: 0
+--- !u!114 &459274114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459274108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7d9d222969ab344aa9dd35e3c31795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 6080038879597348110, guid: e98ff68baa3e8914c9f5e5f10f459651, type: 3}
+  EnemyHairstyles:
+  - {fileID: 2100000, guid: acf13a759f2e5bd418c474cf364c83f8, type: 2}
+  - {fileID: 2100000, guid: 84b65fd7f676bb1479f1dac7289eefd4, type: 2}
+  - {fileID: 2100000, guid: 699eaf803819ec74a974118bdbd96cb4, type: 2}
+  EnemyEyes:
+  - {fileID: 2100000, guid: 37bcee19e3fe7f74e93df8b19a6d3f4e, type: 2}
+  - {fileID: 2100000, guid: 87b853e8bd2966346bf97ecbb3ceee90, type: 2}
+  - {fileID: 2100000, guid: 6abb977c86ae12040a468552c39cc25a, type: 2}
+  EnemyBodies:
+  - {fileID: 2100000, guid: ddae6a8d7d2382649a841b2ecb931a4f, type: 2}
+  - {fileID: 2100000, guid: 940f2585307c98e41a1b2788fbf979ff, type: 2}
+  - {fileID: 2100000, guid: 1f738798facc3f94a99deb3ec5666f89, type: 2}
+  Player: {fileID: 1047161056}
+  initialAlienCount: 10
+  maxAlienCount: 0
 --- !u!4 &459355755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6619085411211859543, guid: 85ef4e4019a0d46d9889c6174df987e3,
@@ -14069,7 +14137,7 @@ GameObject:
   - component: {fileID: 550789766}
   m_Layer: 0
   m_Name: CraterObstacle
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14082,7 +14150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550789765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1562, y: 146, z: 479}
+  m_LocalPosition: {x: 1562, y: 103.6, z: 479}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34904,7 +34972,7 @@ GameObject:
   - component: {fileID: 1313131698}
   m_Layer: 0
   m_Name: SpaceStation
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44325,7 +44393,7 @@ GameObject:
   - component: {fileID: 1646320699}
   m_Layer: 0
   m_Name: Mountain_env_parts
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44445,9 +44513,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1648281684}
+  - component: {fileID: 1648281685}
   m_Layer: 0
   m_Name: IceObstacle
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44481,6 +44550,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1648281685
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648281683}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &1651671528
 GameObject:
   m_ObjectHideFlags: 0
@@ -54726,8 +54809,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2034153050}
   - component: {fileID: 2034153051}
-  - component: {fileID: 2034153052}
-  - component: {fileID: 2034153053}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: MarsFloor
@@ -54766,49 +54847,6 @@ TerrainCollider:
   m_Enabled: 1
   m_TerrainData: {fileID: 0}
   m_EnableTreeColliders: 0
---- !u!114 &2034153052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034153049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d7d9d222969ab344aa9dd35e3c31795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Enemy: {fileID: 6080038879597348110, guid: e98ff68baa3e8914c9f5e5f10f459651, type: 3}
-  EnemyHairstyles:
-  - {fileID: 2100000, guid: acf13a759f2e5bd418c474cf364c83f8, type: 2}
-  - {fileID: 2100000, guid: 84b65fd7f676bb1479f1dac7289eefd4, type: 2}
-  - {fileID: 2100000, guid: 699eaf803819ec74a974118bdbd96cb4, type: 2}
-  EnemyEyes:
-  - {fileID: 2100000, guid: 37bcee19e3fe7f74e93df8b19a6d3f4e, type: 2}
-  - {fileID: 2100000, guid: 87b853e8bd2966346bf97ecbb3ceee90, type: 2}
-  - {fileID: 2100000, guid: 6abb977c86ae12040a468552c39cc25a, type: 2}
-  EnemyBodies:
-  - {fileID: 2100000, guid: ddae6a8d7d2382649a841b2ecb931a4f, type: 2}
-  - {fileID: 2100000, guid: 940f2585307c98e41a1b2788fbf979ff, type: 2}
-  - {fileID: 2100000, guid: 1f738798facc3f94a99deb3ec5666f89, type: 2}
-  Player: {fileID: 1047161056}
---- !u!114 &2034153053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034153049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1e58d3e5a6fb04389566a111c1ab34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Collectibles:
-  - {fileID: 8864293745473383026, guid: 6d6f535e533410b4ea8b02df0eb0814a, type: 3}
-  - {fileID: 3130912010003817034, guid: 170bb0c634539784e87dacc962a1dfc4, type: 3}
-  collectibleDuplicateCount: 100
-  collectibleYOffset: 0
 --- !u!1001 &2038902053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59901,7 +59939,7 @@ GameObject:
   - component: {fileID: 3328438966510269633}
   m_Layer: 0
   m_Name: VolcanoObstacle
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
