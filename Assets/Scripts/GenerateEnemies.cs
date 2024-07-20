@@ -77,22 +77,23 @@ public class GenerateEnemies : MonoBehaviour
             //Convert normalized clamped position to world position
             Vector3 randomPosWorld = terrainScript.TerrainToWorld(closestTerrain, randomPosClamped);
             //Raycast downwards, get the spot that is hit
-            Physics.Raycast(randomPosWorld, Vector3.down,  out rayHit);
-            randomPosWorld = rayHit.point;
-            // Generate Enemy
-            GameObject customEnemy = Instantiate(Enemy, randomPosWorld, Quaternion.identity, EnemyParent.transform);
-            // Random enemy materials
-            this.setRandomMeshColor(customEnemy);
-            // Random enemy scale
-            float scale = UnityEngine.Random.Range(minScale,maxScale);
-            customEnemy.transform.localScale = new Vector3(scale,scale,scale);
-            // Attach scripts to enemy
-            EnemyAI AI_Script = customEnemy.AddComponent<EnemyAI>();
-            AI_Script.Player = this.Player;
-            AlienMotionController Motion_Script = customEnemy.AddComponent<AlienMotionController>();
-            Motion_Script.Player = this.Player;
-            yield return new WaitForSeconds(1f);
-            this.count++;
+            if(Physics.Raycast(randomPosWorld, Vector3.down,  out rayHit) && rayHit.transform.root.CompareTag("Structure")){
+                randomPosWorld = rayHit.point;
+                // Generate Enemy
+                GameObject customEnemy = Instantiate(Enemy, randomPosWorld, Quaternion.identity, EnemyParent.transform);
+                // Random enemy materials
+                this.setRandomMeshColor(customEnemy);
+                // Random enemy scale
+                float scale = UnityEngine.Random.Range(minScale,maxScale);
+                customEnemy.transform.localScale = new Vector3(scale,scale,scale);
+                // Attach scripts to enemy
+                EnemyAI AI_Script = customEnemy.AddComponent<EnemyAI>();
+                AI_Script.Player = this.Player;
+                AlienMotionController Motion_Script = customEnemy.AddComponent<AlienMotionController>();
+                Motion_Script.Player = this.Player;
+                yield return new WaitForSeconds(1f);
+                this.count++;
+            }
         }
         print("Done with SpawnEnemy coroutine");
 

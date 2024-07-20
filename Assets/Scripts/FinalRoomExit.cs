@@ -14,6 +14,7 @@ public class FinalRoomExit : MonoBehaviour
         {
             Debug.Log("Player entered the room.");
             doorAnimator.SetBool("OpenFinalDoor", true);
+            doorAnimator.SetBool("OpenFinalBattery", true);
         }
     }
 }
