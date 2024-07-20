@@ -65,7 +65,9 @@ public class PlayerController : MonoBehaviour
 
     private bool doorNotOpened =false;
 
-    public bool reachedFinalBattery = false;
+    private bool reachedFinalBattery = false;
+
+    public GameStatusManager gameStatusManager;
 
     private void findGenerateEnemies() {
         // hardcode GameObject name so that it can handle delayed initialization of the Terrain.
@@ -95,6 +97,7 @@ public class PlayerController : MonoBehaviour
         footstepsController = GetComponent<FootstepsController>();
         
         generateEnemies = null;
+        gameStatusManager = FindObjectOfType<GameStatusManager>();
         findGenerateEnemies();
     }
 
@@ -320,9 +323,10 @@ public class PlayerController : MonoBehaviour
             astronautRigidBody.velocity = new Vector3(0,0,0);
         } else if (c.transform.gameObject.tag == "final_win_battery") {
             reachedFinalBattery = true;
-            Debug.Log("setting the win: " + reachedFinalBattery);
+            gameStatusManager.showCompleteMenu();
         }
     }
+
 
     private void OnCollisionExit(Collision c)
     {

@@ -104,14 +104,24 @@ public class GameStatusManager : MonoBehaviour
         panelMenu.showCompletion(stars, duration);
     }
 
+    public void showCompleteMenu() {
+        Debug.Log("in show complete menu");
+        findPlayerController();
+        findPanelMenu();
+        completeGame();
+         if(Input.GetKeyDown(KeyCode.G)) {
+                    completeGame();
+        }
+    }
+
     void Update()
     {
         findPlayerController();
         findPanelMenu();
         Debug.Log("did we make it here?");
-        Debug.Log("Reached final battery: " + playerController.reachedFinalBattery);
+        // Debug.Log("Reached final battery: " + playerController.didPlayerReachFinalBattery());
 
-        if(playerController.reachedFinalBattery || Input.GetKeyDown(KeyCode.G)) {
+        if(Input.GetKeyDown(KeyCode.G)) {
             completeGame();
         }
 
