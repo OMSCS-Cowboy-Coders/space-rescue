@@ -66,6 +66,7 @@ public class CollectiblesGenerator : MonoBehaviour
                 randomPos.y = curTerrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z)) + curTerrain.transform.position.y + 1.5f;
                 if(Physics.Raycast(randomPos, Vector3.down,  out rayHit) && !rayHit.transform.root.CompareTag("Structure") && !rayHit.collider.CompareTag("TerrainAsset")){
                     randomPos = rayHit.point;
+                    randomPos.y = 1.5f;
                     Instantiate(collectible, randomPos, Quaternion.identity, collectibleRoot.transform);
                     collectiblesCount[i]++;
                     yield return new WaitForSeconds(0.1f);
