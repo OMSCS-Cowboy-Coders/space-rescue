@@ -102,9 +102,10 @@ public class PlayerController : MonoBehaviour
         Vector2 astronautMovement = inputValue.Get<Vector2>();
         astronautX = astronautMovement.x;
         astronautY = astronautMovement.y;
-        if(astronautY == -1) {
-            astronautY = 0;
-        }
+        // Jan: Commenting this out for now to get backwards movement to work.
+        // if(astronautY == -1) {
+        //     astronautY = 0;
+        // }
     }
 
    
@@ -155,8 +156,9 @@ public class PlayerController : MonoBehaviour
         
             Vector3 newRootPosition;
             Vector3 testPostion; 
-
-            movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
+            
+            // movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
+            movementSpeed = anim.GetFloat("Runspeed");
             
             var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
             astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
