@@ -109,4 +109,5 @@ Resources:
 
 15. Sci Fi Battery Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-battery-pack-free-19738
 
+16. https://assetstore.unity.com/packages/2d/gui/icons/cute-menu-gui-kit-141535
 Animations are from https://www.mixamo.com/#/
