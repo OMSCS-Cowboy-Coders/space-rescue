@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
+
 
 public class Press : StateMachineBehaviour
 {
@@ -10,11 +13,18 @@ public class Press : StateMachineBehaviour
     //    
     //}
 
+    private const float RunSpeedValue = -1f;
+
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    // override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    //     Debug.Log("Testtt");
+    //     float Y_movement = animator.GetFloat("Y_movement");
+    //     if (Y_movement == -1f) {
+    //         Debug.Log("TESTT");
+    //         animator.SetFloat("Runspeed", RunSpeedValue);
+    //     }
+    // }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

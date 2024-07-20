@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
 
    
     void FixedUpdate() {
+        print("Y movement is " + astronautY);
         anim.SetFloat("Y_movement", astronautY);
 
         newLocation.Set(astronautX, 0f, astronautY);
@@ -162,7 +163,8 @@ public class PlayerController : MonoBehaviour
             Vector3 testPostion; 
 
             movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
-            
+            // TODO
+            print("movement speed is " + movementSpeed);
             var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
             astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
             
