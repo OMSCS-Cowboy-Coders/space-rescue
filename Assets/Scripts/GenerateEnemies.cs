@@ -30,6 +30,10 @@ public class GenerateEnemies : MonoBehaviour
     public int maxAlienCount;
     private Coroutine spawnEnemyCoroutine;
 
+    public int enemyMultiplier = 1;
+
+    public int enemyFrequency = 1;
+
     void Start()
     {
         //Get closest terrain to player 
@@ -44,17 +48,13 @@ public class GenerateEnemies : MonoBehaviour
     void Update()
     {
         //Increase the number of aliens every second lmao
-        maxAlienCount = initialAlienCount + (int) Time.realtimeSinceStartup;
+        maxAlienCount = initialAlienCount + (enemyMultiplier * (int) Time.realtimeSinceStartup);
     }
 
-    public void addMoreAliens(int? additionalAliens = defaultAddAlienAmount) {
-        print("Updating aliens from " + maxAlienCount + " to " + (maxAlienCount + additionalAliens));
-        maxAlienCount += (int)additionalAliens;
-        if (spawnEnemyCoroutine != null) {
-            print("Restarting ongoing coroutine");
-            StopCoroutine(spawnEnemyCoroutine);
-        }
-        spawnEnemyCoroutine = StartCoroutine(SpawnEnemies());
+    public void addMoreAliens() {
+        // print("Updating aliens from " + maxAlienCount + " to " + (maxAlienCount + additionalAliens));
+        enemyMultiplier++;
+        enemyFrequency++;
     }
 
     IEnumerator SpawnEnemies(){
@@ -92,7 +92,7 @@ public class GenerateEnemies : MonoBehaviour
                 AlienMotionController Motion_Script = customEnemy.AddComponent<AlienMotionController>();
                 Motion_Script.Player = this.Player;
                 this.count++;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1f / enemyFrequency);
             }
         }
         print("Done with SpawnEnemy coroutine");
