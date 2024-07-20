@@ -6,22 +6,22 @@ public class GenerateTerrainAssets : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    float treeScaleMin = 1f;
-    float treeScaleMax = 5f;
-    float treeAmountMin = 500f;
-    float treeAmountMax = 1000f;
+    float treeScaleMin = 5f;
+    float treeScaleMax = 10f;
+    float treeAmountMin = 250f;
+    float treeAmountMax = 500f;
     public GameObject[] treePrefabs;
 
     float rockScaleMin = 0.1f;
-    float rockScaleMax = 1f;
-    float rockAmountMin = 250;
-    float rockAmountMax = 500f;
+    float rockScaleMax = 0.5f;
+    float rockAmountMin = 500f;
+    float rockAmountMax = 1000f;
     public GameObject[] rockPrefabs;
 
-    float plantScaleMin = 1f;
-    float plantScaleMax = 10f;
-    float plantAmountMin = 300f;
-    float plantAmountMax = 600f;
+    float plantScaleMin = 0.1f;
+    float plantScaleMax = 5f;
+    float plantAmountMin = 500f;
+    float plantAmountMax = 1000f;
     public GameObject[] plantPrefabs;
     
     private GameObject TerrainAssetsParent;
