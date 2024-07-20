@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8829377748290153347}
   m_Layer: 0
   m_Name: SP_Stone01
-  m_TagString: Untagged
+  m_TagString: TerrainAsset
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
