@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -101,6 +102,9 @@ public class PlayerController : MonoBehaviour
         Vector2 astronautMovement = inputValue.Get<Vector2>();
         astronautX = astronautMovement.x;
         astronautY = astronautMovement.y;
+        if(astronautY == -1) {
+            astronautY = 0;
+        }
     }
 
    
@@ -127,34 +131,42 @@ public class PlayerController : MonoBehaviour
         {
             footstepsController.PlayFootstepSound();
         }
+
+        if(onIce) {
+        // Debug.Log("asdf astronaut X: " + astronautX);
+        // Debug.Log("asdf astronaut y: " + astronautY);
+
+        // Debug.Log("asdf astronaut forward: " + astronautRigidBody.transform.forward);
+
+        Vector3 movementDirection = astronautRigidBody.transform.forward * astronautY + astronautRigidBody.transform.right * astronautX;
+        // Debug.Log("asdf movement vector: " + movementDirection);
+        astronautRigidBody.AddForce(movementDirection.normalized * 10f, ForceMode.Impulse);
+        }
     }
 
     public float turnRate = 100f;
     void OnAnimatorMove()
     {
+        if(!onIce) {
+            AnimatorClipInfo[] animatorClipInfo = anim.GetCurrentAnimatorClipInfo(0);
+            String currentAnimationPlaying = animatorClipInfo[0].clip.name;
+        
+            float movementSpeed; 
+        
+            Vector3 newRootPosition;
+            Vector3 testPostion; 
 
-        if(onIce) {
-            moveSpeed = 4f;
+            movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
+            
+            var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
+            astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
+            
+            testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
+            newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, moveSpeed);
+            astronautRigidBody.MovePosition(newRootPosition);
+
+            anim.SetFloat("SprintAnimSpeed", moveAnimSpeed);
         }
-        AnimatorClipInfo[] animatorClipInfo = anim.GetCurrentAnimatorClipInfo(0);
-        String currentAnimationPlaying = animatorClipInfo[0].clip.name;
-    
-        float movementSpeed; 
- 
-       
-        Vector3 newRootPosition;
-        Vector3 testPostion; 
-
-        movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
-        
-        var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
-        astronautRigidBody.MoveRotation(astronautRigidBody.rotation * rot);
-        
-        testPostion = astronautRigidBody.position + movementSpeed*Time.deltaTime*transform.forward;
-        newRootPosition = Vector3.LerpUnclamped(astronautRigidBody.transform.position, testPostion, moveSpeed);
-        astronautRigidBody.MovePosition(newRootPosition);
-
-        anim.SetFloat("SprintAnimSpeed", moveAnimSpeed);
     }
 
     void Update() {
@@ -296,10 +308,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log("entering this collision: " + c.transform.gameObject.tag);
          if(c.transform.gameObject.tag == "Ice") {
             Debug.Log("trying to slide");
-            astronautCollider.material.staticFriction = 0;
-            astronautCollider.material.dynamicFriction = 0;
-            
-            astronautRigidBody.velocity = new Vector3(-1.5f * astronautRigidBody.transform.forward.x*12, 0, -1.5f * astronautRigidBody.transform.forward.z*12);
+            // astronautCollider.material.staticFriction = 0;
+            // astronautCollider.material.dynamicFriction = 0;
+           
+            Debug.Log("Slid");
+            // astronautRigidBody.velocity = new Vector3(-1.5f * astronautRigidBody.transform.forward.x*12, 0, -1.5f * astronautRigidBody.transform.forward.z*12);
             onIce = true; 
         } else if (c.transform.gameObject.tag == "Lift") {
             astronautRigidBody.isKinematic = true;
