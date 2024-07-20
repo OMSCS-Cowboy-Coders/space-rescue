@@ -809,7 +809,7 @@ RectTransform:
   m_GameObject: {fileID: 1023401453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 758867023}
@@ -817,8 +817,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42.371628, y: 0.000030517578}
-  m_SizeDelta: {x: 644.4128, y: 50}
+  m_AnchoredPosition: {x: -8, y: 13}
+  m_SizeDelta: {x: 644.4128, y: 311.5006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023401455
 MonoBehaviour:
@@ -840,7 +840,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: blah blah blah
+  m_text: "You need to navigate around Mars to find different battery pieces to power
+    back the space station so that you can get the doors to open and get the final
+    battery piece!\n\nThe three obstacles are the ice obstacle, volcano obstacle,
+    and rock obstacle!\n\_\nDon't let the aliens get to you or else you will lose
+    your health!\n\nPick up power-ups to help with health and speed!\n\_\nPress E
+    to pick up the objects\n\nPress Q to drop objects\n\nPress shift+up arrow key
+    to sprint \n\nPress shift+R+up arrow key to use power-up sprint "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -849,8 +855,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279524059
+  m_fontColor: {r: 0.8584906, g: 0.3521787, b: 0.07694017, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -867,14 +873,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
-  m_fontSizeBase: 65
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 17
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -903,7 +909,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -73.69342, w: -0.000015258789}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
