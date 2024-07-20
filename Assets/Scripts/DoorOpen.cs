@@ -10,7 +10,9 @@ public class DoorOpen : MonoBehaviour
 
     public int numTotal;
 
-    public GameObject doorCollider; 
+    public GameObject doorCollider;
+
+    public GameObject floorCollider;
 
     void Start() {
         doorAnim = GetComponent<Animator>();
@@ -26,7 +28,8 @@ public class DoorOpen : MonoBehaviour
                 doorAnim.SetBool("collectedAllBatteries", true);
                 Debug.Log("Player reached final door.");
             }
-                Debug.Log("Player collides with door.");
+
+            Debug.Log("Player collides with door.");
             BoxCollider collider = doorCollider.GetComponent<BoxCollider>();
             if (collider != null)
             {
