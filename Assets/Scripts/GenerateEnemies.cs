@@ -77,7 +77,7 @@ public class GenerateEnemies : MonoBehaviour
             //Convert normalized clamped position to world position
             Vector3 randomPosWorld = terrainScript.TerrainToWorld(closestTerrain, randomPosClamped);
             //Raycast downwards, get the spot that is hit
-            if(Physics.Raycast(randomPosWorld, Vector3.down,  out rayHit) && rayHit.transform.root.CompareTag("Structure")){
+            if(Physics.Raycast(randomPosWorld, Vector3.down,  out rayHit) && !rayHit.transform.root.CompareTag("Structure")){
                 randomPosWorld = rayHit.point;
                 // Generate Enemy
                 GameObject customEnemy = Instantiate(Enemy, randomPosWorld, Quaternion.identity, EnemyParent.transform);
