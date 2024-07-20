@@ -39,6 +39,16 @@ public class PlayerMetrics : MonoBehaviour
 
     public RestartGame restartGame;
 
+    public PanelMenu panelMenu;
+    private void findPanelMenu() {
+        GameObject canvas = GameObject.Find("Canvas");
+        if (canvas != null && panelMenu == null)
+        {
+            panelMenu = canvas.GetComponent<PanelMenu>();
+        }
+    }
+
+
     void Start()
     {
         health = MAX_HEALTH;
@@ -53,7 +63,7 @@ public class PlayerMetrics : MonoBehaviour
         healthCollectibleUIManager = FindObjectOfType<HealthCollectibleUIManager>();
         powerupsUIManager = FindObjectOfType<PowerupsUIManager>();
         // healthCollectibleUIManager.UpdateHealthCollectibleText(health);
-        Debug.Log("Sprint speed at start: " + sprintSpeed);
+        findPanelMenu();
     }
 
     // Update is called once per frame
@@ -78,7 +88,6 @@ public class PlayerMetrics : MonoBehaviour
         if (health >= MAX_HEALTH) {
             health = MAX_HEALTH;
         }
-        print("INCREMENTING HEALTH: HEALTH IS " + health);
 
         if (healthCollectibleUIManager == null) {
             healthCollectibleUIManager = FindObjectOfType<HealthCollectibleUIManager>();
@@ -95,10 +104,10 @@ public class PlayerMetrics : MonoBehaviour
         }
         print("This is health: " + health);
         if (health <= 0) {
-            print("GAME RESTART");
-            // restart the game
-            RestartGame.Restart();
-
+            findPanelMenu();
+            panelMenu.showLoseScreen();
+            // RestartGame.Restart();
+            
             // end the game 
             // UnityEditor.EditorApplication.isPlaying = false;
             // Application.Quit();
