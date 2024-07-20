@@ -19575,6 +19575,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mountain_canyon_05 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 157280, guid: 30ded8fdd3abc9b40929e3fac0e665c6, type: 3}
+      propertyPath: m_TagString
+      value: LavaRocks
+      objectReference: {fileID: 0}
     - target: {fileID: 418706, guid: 30ded8fdd3abc9b40929e3fac0e665c6, type: 3}
       propertyPath: m_RootOrder
       value: 34
