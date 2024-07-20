@@ -109,24 +109,13 @@ public class GameStatusManager : MonoBehaviour
         findPlayerController();
         findPanelMenu();
         completeGame();
-         if(Input.GetKeyDown(KeyCode.G)) {
-                    completeGame();
-        }
     }
 
     void Update()
     {
         findPlayerController();
         findPanelMenu();
-        Debug.Log("did we make it here?");
         // Debug.Log("Reached final battery: " + playerController.didPlayerReachFinalBattery());
 
-        if(Input.GetKeyDown(KeyCode.G)) {
-            completeGame();
-        }
-
-        // if (playerController.numPartsRecieved == totalNumParts || Input.GetKeyDown(KeyCode.G)) {
-            
-        // }
     }
 }
