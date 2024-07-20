@@ -20,7 +20,13 @@ public class DoorOpen : MonoBehaviour
         if(batteryStorage.transform.childCount == numTotal) {
             doorAnim.SetBool("collectedBattery", true);
 
-            Debug.Log("Player collides with door.");
+            Debug.Log("Gameobject tag." + gameObject.tag);
+            if (gameObject.tag == "final_door" && batteryStorage.transform.childCount == numTotal)
+            {
+                doorAnim.SetBool("collectedAllBatteries", true);
+                Debug.Log("Player reached final door.");
+            }
+                Debug.Log("Player collides with door.");
             BoxCollider collider = doorCollider.GetComponent<BoxCollider>();
             if (collider != null)
             {
