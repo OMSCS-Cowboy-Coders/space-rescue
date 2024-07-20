@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         
             Vector3 newRootPosition;
             Vector3 testPostion; 
-            
+
             movementSpeed = anim.GetFloat("Walkspeed") > 0 ? anim.GetFloat("Walkspeed") : anim.GetFloat("Runspeed");
             
             var rot = Quaternion.AngleAxis(turnRate * astronautX * Time.deltaTime, Vector3.up);
