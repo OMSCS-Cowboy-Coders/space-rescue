@@ -63,7 +63,7 @@ public class TerrainGenerator : MonoBehaviour
         terrainData.heightmapResolution = terrainWidth + 1;
         terrainData.size = new Vector3(terrainWidth, terrainHeight, terrainLength);
         float[,] terrainHeights = new float[terrainWidth,terrainLength];
-        GenerateGroundTerrainData(terrainHeights);
+        // GenerateGroundTerrainData(terrainHeights);
         GenerateBoundaryTerrainData(terrainHeights);
         terrainData.SetHeights(0,0, terrainHeights);      
         return terrainData;
