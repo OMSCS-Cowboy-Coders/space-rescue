@@ -102,9 +102,13 @@ public class PlayerController : MonoBehaviour
         Vector2 astronautMovement = inputValue.Get<Vector2>();
         astronautX = astronautMovement.x;
         astronautY = astronautMovement.y;
+        if (onIce) {
+            astronautY = 0;
+
+        }
         // Jan: Commenting this out for now to get backwards movement to work.
         // if(astronautY == -1) {
-        //     astronautY = 0;
+        // astronautY = 0;
         // }
     }
 
