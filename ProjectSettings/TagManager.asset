@@ -18,6 +18,7 @@ TagManager:
   - final_door
   - final_win_battery
   - LavaRoom
+  - Structure
   layers:
   - Default
   - TransparentFX

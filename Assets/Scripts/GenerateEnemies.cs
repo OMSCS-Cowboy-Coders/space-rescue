@@ -59,11 +59,12 @@ public class GenerateEnemies : MonoBehaviour
 
     IEnumerator SpawnEnemies(){
         RaycastHit rayHit;
+        TerrainGenerator terrainScript = GetComponent<TerrainGenerator>();
         while (this.count < maxAlienCount) {
             print("Spawning " + this.count + "/" + maxAlienCount);
+            
             //Get closest terrain to player
-            Terrain closestTerrain = getClosestTerrain();
-            TerrainGenerator terrainScript = closestTerrain.GetComponent<TerrainGenerator>();
+            Terrain closestTerrain = terrainScript.getClosestTerrain(this.Player);
             //Choose random direction to spawn away from player
             float angle = UnityEngine.Random.Range(-Mathf.PI,Mathf.PI);
             Vector3 randomPosMin = this.Player.transform.position + new Vector3(Mathf.Cos(angle),0,Mathf.Sin(angle)) * distanceMin;
@@ -72,7 +73,7 @@ public class GenerateEnemies : MonoBehaviour
             //Convert randomPos coords to normalized terrain cords, assuming it is in the terrain
             Vector3 randomPosNormalized = terrainScript.WorldToTerrain(closestTerrain, randomPos);
             //Clamp the normalized randomPos within terrain bounds
-            Vector3 randomPosClamped = clampPositionWithinTerrain(closestTerrain, randomPosNormalized);
+            Vector3 randomPosClamped = terrainScript.clampPositionWithinTerrain(closestTerrain, randomPosNormalized);
             //Convert normalized clamped position to world position
             Vector3 randomPosWorld = terrainScript.TerrainToWorld(closestTerrain, randomPosClamped);
             //Raycast downwards, get the spot that is hit
@@ -96,44 +97,6 @@ public class GenerateEnemies : MonoBehaviour
         print("Done with SpawnEnemy coroutine");
 
     }
-    Vector3 clampPositionWithinTerrain(Terrain terrain, Vector3 normaliedCords){
-        Vector3 clampedVector = new Vector3();
-        TerrainGenerator terrainScript = terrain.GetComponent<TerrainGenerator>();
-        //Grab bounds
-        float clampWidthOffset = 100; //Spacing just in case its a tad too close to the boundary
-        float clampLengthOffset = 100;
-        float terrainWidth = terrainScript.terrainWidth;
-        float terrainLength = terrainScript.terrainLength;
-        float mountainWidthOffset = terrainScript.mountainWidthOffset;
-        float mountainLengthOffset = terrainScript.mountainLengthOffset;
-        //Bounds
-        float xMin = (mountainWidthOffset + clampWidthOffset) / terrain.terrainData.size.x;
-        float xMax = (terrainWidth - mountainWidthOffset - clampWidthOffset ) / terrain.terrainData.size.x;
-        float zMin = (mountainLengthOffset + clampLengthOffset) / terrain.terrainData.size.z;
-        float zMax = (terrainLength - mountainLengthOffset - clampLengthOffset) / terrain.terrainData.size.z;
-        //Clamp the passed normalizedCords
-        
-        clampedVector.x = Mathf.Clamp(normaliedCords.x, xMin, xMax);
-        clampedVector.y = normaliedCords.y;
-        clampedVector.z = Mathf.Clamp(normaliedCords.z, zMin, zMax);
-        return clampedVector;
-    }
-    Terrain getClosestTerrain(){
-        Terrain[] terrains = Terrain.activeTerrains;
-        Terrain terrain = null;
-        Vector3 curPlayerPos = this.Player.transform.position;
-        float closestDist = Mathf.Infinity;
-        for(int i = 0; i < terrains.Length; i++){
-            Terrain curTerain = terrains[i];
-            Vector3 curTerrainPos = curTerain.GetPosition();
-            float curDist = (curTerrainPos - curPlayerPos).sqrMagnitude;
-            if(curDist < closestDist){
-                terrain = curTerain;
-                closestDist = curDist;
-            }
-        }
-        return terrain;
-    }
 
     void setRandomMeshColor(GameObject Enemy){
         //Generate random body, hair, and eyes.
@@ -156,5 +119,4 @@ public class GenerateEnemies : MonoBehaviour
             }
         }
     }
-
 }
