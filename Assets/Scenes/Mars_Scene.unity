@@ -12160,6 +12160,7 @@ GameObject:
   - component: {fileID: 459274112}
   - component: {fileID: 459274114}
   - component: {fileID: 459274113}
+  - component: {fileID: 459274115}
   m_Layer: 0
   m_Name: Terrain_(1000.00, 0.00, 0.00)
   m_TagString: Untagged
@@ -12292,6 +12293,23 @@ MonoBehaviour:
   Player: {fileID: 1047161056}
   initialAlienCount: 10
   maxAlienCount: 0
+--- !u!114 &459274115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459274108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47631b6b01ddb74da7bd988fa0528d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainPrefabs:
+  - {fileID: 3705902742926665268, guid: bdd03242fb896d847a54d8f0ca1cd3f4, type: 3}
+  - {fileID: 6449950934546173899, guid: 32f4d7943f80e914a8d427c0a1f9ad82, type: 3}
+  - {fileID: 4962361982661891496, guid: 5493fb8cb3b55934cbc0e84a36ade204, type: 3}
+  - {fileID: 1179628749502162939, guid: 895562a6e86dd1445a1d6799b4b3b63b, type: 3}
 --- !u!4 &459355755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6619085411211859543, guid: 85ef4e4019a0d46d9889c6174df987e3,
