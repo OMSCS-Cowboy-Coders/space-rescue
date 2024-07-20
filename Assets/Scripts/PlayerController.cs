@@ -328,13 +328,8 @@ public class PlayerController : MonoBehaviour
     {
          if(c.transform.gameObject.tag == "Ice") {
             Debug.Log("trying to not slide");
-            astronautCollider.material.staticFriction = 0.6f;
-            astronautCollider.material.dynamicFriction = 0.6f;
-            astronautRigidBody.velocity = new Vector3(1, 0, 1);
-            astronautRigidBody.drag = 0f;
-            moveSpeed = 10.5f;
-            onIce = false;
-             
+            astronautRigidBody.velocity = Vector3.zero;
+            onIce = false;             
         } 
 
     }
