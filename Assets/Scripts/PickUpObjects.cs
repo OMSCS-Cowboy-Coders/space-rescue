@@ -126,9 +126,9 @@ public class PickUpObjects : MonoBehaviour
         float closeToBatteryStorage = Vector3.Distance(this.transform.position, batteryStorage.transform.position);
         if (closeToBatteryStorage < 4f) {
             this.transform.SetParent(GameObject.FindWithTag("BatteryStorage").transform);
-            playerController.updateNumBatteriesRetrieved();
             canBePickedUp = false;
             itemRB.isKinematic = true;
+            playerController.updateNumBatteriesRetrieved();
         }
         Debug.Log("Object postion 2: " + this.transform.position);
     }
