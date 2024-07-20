@@ -12164,6 +12164,7 @@ GameObject:
   - component: {fileID: 459274111}
   - component: {fileID: 459274110}
   - component: {fileID: 459274112}
+  - component: {fileID: 459274116}
   - component: {fileID: 459274114}
   - component: {fileID: 459274113}
   - component: {fileID: 459274115}
@@ -12311,11 +12312,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47631b6b01ddb74da7bd988fa0528d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainPrefabs:
+  treePrefabs:
   - {fileID: 3705902742926665268, guid: bdd03242fb896d847a54d8f0ca1cd3f4, type: 3}
   - {fileID: 6449950934546173899, guid: 32f4d7943f80e914a8d427c0a1f9ad82, type: 3}
   - {fileID: 4962361982661891496, guid: 5493fb8cb3b55934cbc0e84a36ade204, type: 3}
-  - {fileID: 1179628749502162939, guid: 895562a6e86dd1445a1d6799b4b3b63b, type: 3}
+  rockPrefabs:
+  - {fileID: 1645588282232841795, guid: 8de0934d7e8f4164cbdb1e532b0de9ce, type: 3}
+  - {fileID: 7618323415990614263, guid: f2a3da41bd3226446a8fa3609fd1bc7c, type: 3}
+  - {fileID: 2051906301658465231, guid: 236aa73295f28964ba75387cac86c738, type: 3}
+  - {fileID: 4948678612454982362, guid: b52f9b5db6466244b9af2155de02ec70, type: 3}
+  - {fileID: 8673628989730690705, guid: d69d596c849a1b246bb248c29570ab55, type: 3}
+  - {fileID: 8205434538042630395, guid: 7a97233c036f69d4facda36a023e2270, type: 3}
+  - {fileID: 8514374376476389842, guid: d4dc0d5dec7105040a2937615007da63, type: 3}
+  - {fileID: 1818332099616921954, guid: 30a26bac0ab527048a8bfb3201f4cf00, type: 3}
+  - {fileID: 7020052718345426801, guid: 6af832c643d19b8438b42624947e9679, type: 3}
+  - {fileID: 7200549551351320354, guid: 33816fa0d3a1ecd40a99f6c5d2dbb1af, type: 3}
+  - {fileID: 2509641301037506727, guid: 56d98edff6021374d9df43f96a85b2cd, type: 3}
+  - {fileID: 8667056234906795570, guid: 43392749b23bb2d4e9938aeebf3e88ba, type: 3}
+  - {fileID: 8363602064440985804, guid: 72cf456fdf2f2be4d8d1cf890c6b13c8, type: 3}
+  - {fileID: 3824922820600001363, guid: 6526e47fbdce5a64a8b5b5a0160c21aa, type: 3}
+  - {fileID: 6310782072956790338, guid: 25ad7ed414288104ba7905d3e41c2d09, type: 3}
+  - {fileID: 5764444934274389105, guid: 10342e49589ae914fa2dd9f29b870abc, type: 3}
+  - {fileID: 1874377600527924502, guid: 7fb76fb5f2ab7354c9a6ac11ce3579d9, type: 3}
+  - {fileID: 1362249570293533925, guid: 7771781066a62fb41862b33488e94407, type: 3}
+  plantPrefabs:
+  - {fileID: 5737012342953713324, guid: 8fb2f2e8a3639de4396f5cc54f6e78b1, type: 3}
+  - {fileID: 3856089417014894623, guid: b9ca0d0d7d2f486458df18916c6cdf84, type: 3}
+  - {fileID: 1324561717801400952, guid: a53b208e8e5bd8c4990ae344f730ac22, type: 3}
+  - {fileID: 8622129566835282752, guid: 4191fcdaec07c194dac2de56ddb2a25d, type: 3}
+  - {fileID: 5384400550676650447, guid: e56f9e1f6465c414c9da6a179d32820b, type: 3}
+  - {fileID: 4161150743895791228, guid: 47ad2d5fbc2e7d14582b88b587c73206, type: 3}
+  - {fileID: 8473364535566263831, guid: d3d189f4a943b934c8be75133b9e5a44, type: 3}
+  - {fileID: 4114956202301091466, guid: cf0d11438b9d8fc4685a94d1c88f4477, type: 3}
+--- !u!64 &459274116
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459274108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!4 &459355755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6619085411211859543, guid: 85ef4e4019a0d46d9889c6174df987e3,
@@ -21051,12 +21093,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7207235933922490946, guid: 984477cf6904a46f397ec13ddcca2224,
     type: 3}
   m_PrefabInstance: {fileID: 1614403589}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &789605109 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 418706, guid: 30ded8fdd3abc9b40929e3fac0e665c6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1559498529}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &790505256
 PrefabInstance:
@@ -61782,7 +61818,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 789605109}
+  - {fileID: 306257020}
   - {fileID: 3328438966238992023}
   - {fileID: 3328438965797986619}
   - {fileID: 3328438965813316682}
