@@ -28,7 +28,7 @@ public class GenerateTerrainAssets : MonoBehaviour
 
     public NavMeshSurface navMeshSurface;
 
-    public int terrainYOffset = 1000;
+    public int terrainYOffset = 10000;
 
     void Start()
     {
@@ -61,14 +61,14 @@ public class GenerateTerrainAssets : MonoBehaviour
         return bounds;
     }
     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
-        string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
+        string[] collisionTags = {"Structure", "TerrainAsset", "Player", "Border"};
         Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
         for(int i = 0; i < collisionTags.Length; i++){
             string collisionTag = collisionTags[i];
             //Check if collided structure's bounds is within proposed position
             //Get top level root
-            if(rayhit.transform.root.CompareTag(collisionTag)){
+            if(rayhit.transform.root.CompareTag(collisionTag) || rayhit.collider.CompareTag(collisionTag)){
                 //Expand structure collider temporarily and check if it's within bounds
                 return true;
             }
@@ -95,7 +95,7 @@ public class GenerateTerrainAssets : MonoBehaviour
                 Vector3 randomPos = new Vector3();
                 randomPos.x = UnityEngine.Random.Range(terrainPos.x + terrainMin.x, terrainPos.x + terrainMax.x);
                 randomPos.z = UnityEngine.Random.Range(terrainPos.z + terrainMin.z, terrainPos.z + terrainMax.z);
-                randomPos.y += terrain.transform.position.y;
+                randomPos.y += terrain.SampleHeight(new Vector3(randomPos.x, 0, randomPos.z)) + terrain.transform.position.y;
                 //Raycast 
                 if(Physics.Linecast(new Vector3(randomPos.x,randomPos.y + terrainYOffset, randomPos.z), randomPos,  out rayHit) && !isProblematicLocation(rayHit, randomPos, terrainPrefab)){
                     //Only generate if it the ray doesn't intersect with a structure

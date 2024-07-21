@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5022,7 +5022,7 @@ GameObject:
   - component: {fileID: 162458403}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5035,7 +5035,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162458401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1500, y: 144, z: 932}
+  m_LocalPosition: {x: 1500, y: 21, z: 910.6}
   m_LocalScale: {x: 860, y: 100, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8270,7 +8270,7 @@ GameObject:
   - component: {fileID: 307042398}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8283,7 +8283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307042396}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1912, y: 122, z: 510}
+  m_LocalPosition: {x: 1912, y: 22, z: 510}
   m_LocalScale: {x: 850, y: 100, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13757,7 +13757,7 @@ MonoBehaviour:
   collectiblesCount: 
   collectibleInitialCount: 10
   collectibleDuplicateCount: 100
-  collectibleYOffset: 0
+  collectibleYOffset: 2
 --- !u!114 &459274114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39850,7 +39850,7 @@ GameObject:
   - component: {fileID: 1302010519}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39863,7 +39863,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302010517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1500, y: 133, z: 113}
+  m_LocalPosition: {x: 1500, y: 48, z: 113}
   m_LocalScale: {x: 860, y: 100, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60851,7 +60851,7 @@ GameObject:
   - component: {fileID: 1965713123}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60864,7 +60864,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965713121}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1119, y: 145, z: 510}
+  m_LocalPosition: {x: 1119, y: 45, z: 510}
   m_LocalScale: {x: 850, y: 100, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []

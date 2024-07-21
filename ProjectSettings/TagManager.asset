@@ -19,6 +19,8 @@ TagManager:
   - final_win_battery
   - LavaRoom
   - Structure
+  - TerrainAsset
+  - Border
   layers:
   - Default
   - TransparentFX
