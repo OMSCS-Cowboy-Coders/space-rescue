@@ -1,8 +1,9 @@
 Main Scene: Mars_Scene 
 Project Github: https://github.com/OMSCS-Cowboy-Coders/space-rescue
 
-i. Start scene: Mars_Scene 
-- The start scene presents the main character, the astronaut, on the planet Mars. 
+i. Start scene: StartMenu 
+- The start menu presents the main character, the astronaut, on the planet Mars. 
+- Other scenes include the Mars_Scene, Tutorial Scene, and the Game Credits Scene.
 
 ii. How to play:
 - The game begins with the player on the terrain. 
