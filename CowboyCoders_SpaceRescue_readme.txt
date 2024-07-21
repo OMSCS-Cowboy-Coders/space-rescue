@@ -90,7 +90,7 @@ Indulekha Ghandikota
 - Added a prefab for compilation of multiple rocks put together
 - Helped with integrating the battery pad to the space station door animation (i.e. as batteries are dropped, doors are unlocked and batteries cannot be picked up again once dropped on the battery pad) 
 
-Jan Tanja
+Jan Ephraim Nino Tanja
 - PlayerMetrics singleton to monitor core numbers essential to the player. 
 - Added collectibles to the scene
 - Wrote HUD logic to monitor power ups and health
