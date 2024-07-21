@@ -150,7 +150,7 @@ RectTransform:
   m_GameObject: {fileID: 461876708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.389375, y: 1, z: 1}
+  m_LocalScale: {x: 1.4004083, y: 1.0079412, z: 1.0079412}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1937051108}
@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40, y: 266}
+  m_AnchoredPosition: {x: -26, y: 254}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &461876710
@@ -538,7 +538,7 @@ RectTransform:
   m_GameObject: {fileID: 1167860255}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8958101, y: 1.3694644, z: 1}
+  m_LocalScale: {x: 0.97642076, y: 0.8896843, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1937051108}
@@ -546,7 +546,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -234, y: 181}
+  m_AnchoredPosition: {x: -234, y: 192}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1167860257
@@ -569,20 +569,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1. Terrain Sample Asset Pack: https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808\n\n2.
-    Outdoor Ground Textures: https://assetstore.unity.com/packages/2d/textures-materials/floors/outdoor-ground-textures-12555
+  m_text: "1. Terrain Sample Asset Pack: https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808
+    \n\n2. Outdoor Ground Textures: https://assetstore.unity.com/packages/2d/textures-materials/floors/outdoor-ground-textures-12555  
     \n\n3. Package Manager -> Terrain Tools -> Install \n\n4. Package Manager ->
-    Cinemachine -> Install\n\n5. Sci-Fi Styled Modular Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-styled-modular-pack-82913\n  
-    \n6. Food props (Health Collectibles): https://assetstore.unity.com/packages/3d/food-props-163295\n\n7.
-    Hud Assest: https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048\n\n8.
-    Sci-Fi Asset: https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048\n\n9.
-    Background Music: https://assetstore.unity.com/packages/audio/music/the-invasion-atmospheric-title-screen-sci-fi-95819\n\n10.
-    Footstep Noise: https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-189879\n\n11.
-    Banana man: https://assetstore.unity.com/packages/3d/characters/humanoids/banana-man-196830\n\n12.
-    Stylized Astronaut (no characters, just materials): https://assetstore.unity.com/packages/3d/characters/humanoids/sci-fi/stylized-astronaut-114298\n\n13.
-    Low Poly Space Alien: https://assetstore.unity.com/packages/3d/environments/sci-fi/free-demo-of-low-poly-space-alien-worlds-3d-asset-pack-258683\n\n14.
-    Stylized cute alien character: https://assetstore.unity.com/packages/3d/characters/creatures/stylized-cute-alien-character-247126\n\n15.
-    Sci Fi Battery Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-battery-pack-free-19738"
+    Cinemachine -> Install\n\n5. Sci-Fi Styled Modular Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-styled-modular-pack-82913
+    \n   \n6. Food props (Health Collectibles): https://assetstore.unity.com/packages/3d/food-props-163295\n\n7.
+    Hud Asset: https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048\n\n8.
+    Background Music: https://assetstore.unity.com/packages/audio/music/the-invasion-atmospheric-title-screen-sci-fi-95819\n\n9.
+    Footstep Noise: https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-189879\n\n10.
+    Stylized Astronaut (no characters, just materials): https://assetstore.unity.com/packages/3d/characters/humanoids/sci-fi/stylized-astronaut-114298\n\n11.
+    Low Poly Space Alien: https://assetstore.unity.com/packages/3d/environments/sci-fi/free-demo-of-low-poly-space-alien-worlds-3d-asset-pack-258683
+    \n\n12. Stylized cute alien character: https://assetstore.unity.com/packages/3d/characters/creatures/stylized-cute-alien-character-247126\n\n13.
+    Sci Fi Battery Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-battery-pack-free-19738\n\n14.
+    Sci-Fi Asset for HUD: https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048\n\n15.
+    Heart https://www.vecteezy.com/vector-art/5644880-red-heart-in-pixel-art-style-8-bit-icon-valentine-s-day-symbol\n\n16.
+    Running Icon https://www.svgrepo.com/svg/189274/running-run\n\n17. Lightning
+    Bolt https://iconduck.com/icons/168309/lightning-bolt\n\n18. Medic Icon https://www.deviantart.com/slithbane/art/Red-Medic-class-icon-263466764\n\n19.
+    Rocks for various obstacles:: https://assetstore.unity.com/packages/3d/environments/landscapes/mountains-canyons-cliffs-53984\n\n20.
+    Textures for various obstacles;\nLava and Ice: https://assetstore.unity.com/packages/2d/textures-materials/free-stylized-textures-rpg-environment-204187
+    \nRegular Volcanic Rock: https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943\n\n21.
+    T-pose for player is from Mixamo \n\n22. Zombie Animation: https://assetstore.unity.com/packages/3d/animations/zombie-animation-pack-free-150219 "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -609,15 +615,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11
-  m_fontSizeBase: 11
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -645,7 +651,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -566.47656, w: -289.78543}
+  m_margin: {x: 0, y: 186.05539, z: -438.71686, w: -289.78543}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1028,7 +1034,7 @@ RectTransform:
   m_GameObject: {fileID: 2047745744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.67924, y: 1.05, z: 1}
+  m_LocalScale: {x: 0.78112596, y: 1.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 631629979}
@@ -1037,7 +1043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -326, y: 264}
+  m_AnchoredPosition: {x: -406, y: 240}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2047745746
