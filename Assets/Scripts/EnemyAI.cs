@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
     NavMeshAgent agent;
     private NavMeshHit hit;
     private bool blocked = false;
-    private EnemyState state;
+    public EnemyState state;
     private int wanderDist = 100;
     private float wanderRate = 5f;
     private float nextWanderTime = 0;
@@ -75,10 +75,11 @@ public class EnemyAI : MonoBehaviour
                 float lookAheadTime = Mathf.Clamp(remainingDistance / agent.speed, 0,6);
                 Vector3 futureTarget = Player.transform.position + lookAheadTime * charController.velocity;
                 blocked = NavMesh.Raycast(agent.transform.position, futureTarget, out hit, NavMesh.AllAreas);
+
                 Debug.DrawLine(agent.transform.position, futureTarget, blocked ? Color.red : Color.green);
                 
                 if (blocked){
-                    dest = transform.TransformPoint(futureTarget);
+                    dest = futureTarget;
                     //View is blocked. Go to original waypoint position
                     // Debug.DrawRay(hit.position, Vector3.up, Color.red);
                 }
