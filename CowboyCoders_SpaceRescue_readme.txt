@@ -11,12 +11,63 @@ ii. How to play and what parts of the level to observe technology requirements
 - To move around, you can use the arrow keys (up, right, left). 
 - To jump, press spacebar.
 - To pick up a spaceship part, press E. To put it down, press Q. You can only pick up one battery at a time. 
-- There are hamburgers scattered around the map to increase your health once you get hit
+- There are hamburgers scattered around the map to increase your health once you get hit. After 10 seconds, your health can also regenerate automatically. 
 - There are capsule shaped sprint powerups to help you go faster for 3 seconds.
 - You can sprint using the shift key, and also press R to use your powerup.
 - There are aliens to avoid and touching lava or falling into craters makes you lose health.
 
 iii. What to observe in various parts of the game:
+
+3D Feel Game
+- Start Menu with options to play the game, see instructions, see credits, and quit the game
+- Pause Menu to restart or quit the game when escape is pressed and resumes the game when escape is pressed again 
+- There is a Win Screen once you reach the end of the game
+- Replayability: The game is based on time. The faster you play, the more stars you earn.
+- Lose screen: When the player dies, this screen shows up allowing them to restart the game
+- Player respawns at the beginning of the game if they die at any level - level here is defined as increasing each time they have collected/placed a battery piece
+
+Precursors to Fun Gameplay
+- The goal is to retrieve four battery spots to power up the space station to open the doors to the space station to retrieve the last battery spot to return back home from Mars. This is communicated in the tutorial scene of the game.
+- The player can earn stars based on how quickly they complete the game. 
+- Player has to and can engage with multiple ledges throughout the game world to both gather parts and also use these places as a temporary sanctuary against aliens.
+- Player is able to get both health and sprint powerups to help them regain health after encountering lava or aliens and also be able to get speed to bypass aliens
+- Player must make choices when navigating the game world in terms of how to escape the aliens, and get to the batteries. 
+- As each battery part is placed, the number of aliens increases. 
+
+3D Character/Real Time Control
+- Player has fluid hybrid root motion and can walk forward and is also able to turn. There is an idle and running animation using a blend tree attached to the player. 
+- Player is able to jump and there is a function to validate the player is on the ground to make sure they can only jump when on the ground 
+- Player is able to sprint using the shift key and with powerup usage using R.
+- Player also has the ability to pick up and put down items (using E and Q respectively). Items are placed down without being thrown around. 
+- There is a camera controller using Cinemachine to follow the player during Game Play
+- Player has a footstep audio
+
+3D world
+- The environment is procedurally generated whereas the terrain is fixed.
+- There are several elements synthesized for building the environment that are also procedurally generated including plants, rocks, and trees 
+- There are several large environment pieces added to provide the player with various challenges including a volcano, crater, an ice crater and a space station.
+- In the space station, each set of doors will open once the player has placed a battery in the battery pad and they have stepped close to the door (i.e. door opens with respect to the proximity of the player)
+- Some other aspects of the environment include:
+- Compound colliders on some of the rocks and the crater floor throughout the game to minimize clipping and to better handle interactivity with the player
+- There is ice on one of the obstacles which has the player being unable to jump and they can only skate off the ice. 
+- The space station has a final obstacle where the player has to interact with switches on different platforms to stop lifts
+- Pressure plates that have an animation attached so that they reveal the battery part once the player steps on it
+- Player jump distance is constrained and consistent. They are also able to take fall damage
+
+AI 
+- Multiple AI states have been created for the aliens 
+- AI states include idling, patrolling, and following/stalking.
+- Once an alien attacks the player, the player loses health. The health system does allow a grace damage period and health regeneration.
+- Procedurally generated environment elements act as NavMesh Obstacles and the terrainâ€™s navmesh is built on runtime such that the navmesh agent knows where to move.
+- Alien will attack upon entering the range of the player and will walk around otherwise. 
+
+Polish
+- Start Menu with options to play the game, see instructions, see credits, and quit the game
+- Pause Menu to resume, restart or quit the game when escape is pressed. You can press escape again to resume the game, or click resume game.git 
+- There is a health bar and sprint bar to inform the player how much health they have and their sprint usage
+- Background music throughout the game
+- Cohesive style between the start menu and the HUD
+
 
 iv. Known problem areas/bugs
 - Clipping: If you try reasonably hard, then the player can clip through objects when running. 
@@ -95,8 +146,8 @@ i. Assets:
 - Rocks for various obstacles:
 https://assetstore.unity.com/packages/3d/environments/landscapes/mountains-canyons-cliffs-53984
 - Textures for various obstacles;
-– Lava and Ice: https://assetstore.unity.com/packages/2d/textures-materials/free-stylized-textures-rpg-environment-204187 
-– Regular Volcanic Rock: https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943 
+-  Lava and Ice: https://assetstore.unity.com/packages/2d/textures-materials/free-stylized-textures-rpg-environment-204187 
+-  Regular Volcanic Rock: https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943 
 
 ii. C# script files: 
 - PlayerController.cs, PickUpObjects.cs, PressurePlateControl.cs 
