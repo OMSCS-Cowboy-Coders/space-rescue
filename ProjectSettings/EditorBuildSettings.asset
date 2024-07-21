@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Mars_Scene.unity
-    guid: e687772a77a0c454490361410630b9a2
-  - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: cf2e4fa3c27d4ff499e4db3a3051b919
+  - enabled: 1
+    path: Assets/Scenes/Mars_Scene.unity
+    guid: e687772a77a0c454490361410630b9a2
   - enabled: 1
     path: Assets/Scenes/Instructions.unity
     guid: f58e9de736a4948969976b333c92381b
