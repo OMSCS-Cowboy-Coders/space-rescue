@@ -22503,7 +22503,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 759915049}
         m_TargetAssemblyTypeName: RestartGame, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31796,6 +31796,8 @@ MonoBehaviour:
   finalDoor: {fileID: 1500969715}
   finalFinalDoor: {fileID: 802240819}
   batteryStorage: {fileID: 1867876528}
+  isFalling: 0
+  fallDuration: 0
   gameStatusManager: {fileID: 0}
   turnRate: 100
 --- !u!136 &1047161062
@@ -34224,7 +34226,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1118874033}
         m_TargetAssemblyTypeName: RestartGame, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -56531,7 +56533,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1808811273}
         m_TargetAssemblyTypeName: RestartGame, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
