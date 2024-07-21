@@ -30,9 +30,17 @@ public class PanelMenu : MonoBehaviour
     
     // ideally this logic shouldn't be maintained
     private bool gameOver;
+    public Button resumeButton;
 
     void Awake()
     {
+        if (resumeButton != null) {
+            resumeButton.onClick.AddListener(ResumeGame);
+        }
+        else {
+
+            print("YAHHH");
+        }
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
@@ -54,7 +62,13 @@ public class PanelMenu : MonoBehaviour
             ToggleMenu();
         }
     }
-    private void ToggleMenu()
+
+    public void ResumeGame() {
+        showScreen(CanvasStates.Pause);
+        ToggleMenu();
+
+    }
+    public void ToggleMenu()
     {
         bool isActive = canvasGroup.interactable;
         canvasGroup.interactable = !isActive;
