@@ -8,20 +8,20 @@ public class GenerateTerrainAssets : MonoBehaviour
     
     float treeScaleMin = 2.5f;
     float treeScaleMax = 5f;
-    float treeAmountMin = 250f;
-    float treeAmountMax = 500f;
+    float treeAmountMin = 125f;
+    float treeAmountMax = 250f;
     public GameObject[] treePrefabs;
 
     float rockScaleMin = 0.1f;
     float rockScaleMax = 1f;
-    float rockAmountMin = 250;
-    float rockAmountMax = 500f;
+    float rockAmountMin = 200f;
+    float rockAmountMax = 400f;
     public GameObject[] rockPrefabs;
 
     float plantScaleMin = 1f;
     float plantScaleMax = 10f;
-    float plantAmountMin = 300f;
-    float plantAmountMax = 600f;
+    float plantAmountMin = 200f;
+    float plantAmountMax = 400f;
     public GameObject[] plantPrefabs;
     
     private GameObject TerrainAssetsParent;
@@ -59,8 +59,7 @@ public class GenerateTerrainAssets : MonoBehaviour
     }
     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
         string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
-        MeshFilter preFabMeshFilter = preFab.GetComponent<MeshFilter>();
-        Mesh preFabMesh = preFabMeshFilter.mesh;
+        Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
         for(int i = 0; i < collisionTags.Length; i++){
             string collisionTag = collisionTags[i];
@@ -68,7 +67,7 @@ public class GenerateTerrainAssets : MonoBehaviour
             //Get top level root
             if(rayhit.collider.CompareTag(collisionTag) ){
                 //Expand structure collider temporarily and check if it's within bounds
-                if(rayhit.collider.bounds.Intersects(preFabMesh.bounds)){
+                if(rayhit.collider.bounds.Intersects(preFabCollider.bounds)){
                     return true;
                 }
             }

@@ -50,8 +50,7 @@ public class CollectiblesGenerator : MonoBehaviour
 
     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
         string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
-        MeshFilter preFabMeshFilter = preFab.GetComponent<MeshFilter>();
-        Mesh preFabMesh = preFabMeshFilter.mesh;
+        Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
         for(int i = 0; i < collisionTags.Length; i++){
             string collisionTag = collisionTags[i];
@@ -59,7 +58,7 @@ public class CollectiblesGenerator : MonoBehaviour
             //Get top level root
             if(rayhit.collider.CompareTag(collisionTag) ){
                 //Expand structure collider temporarily and check if it's within bounds
-                if(rayhit.collider.bounds.Intersects(preFabMesh.bounds)){
+                if(rayhit.collider.bounds.Intersects(preFabCollider.bounds)){
                     return true;
                 }
             }
