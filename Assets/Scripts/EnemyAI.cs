@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 
 public enum EnemyState {
-    Idle = 300,
-    Patrolling = 200,
+    Idle = 1000,
+    Patrolling = 500,
     Following = 100,
 }
 
@@ -17,15 +17,15 @@ public class EnemyAI : MonoBehaviour
     private NavMeshHit hit;
     private bool blocked = false;
     public EnemyState state;
-    private int wanderDist = 100;
+    private int wanderDist = 30;
     private float wanderRate = 5f;
-    private float nextWanderTime = 0;
-    private CharacterController charController;
+    private float nextWanderTime = 0.0f;
+    private Rigidbody charRigidBody;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        charController = Player.GetComponent<CharacterController>();
+        charRigidBody = Player.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
     private float determineRemainingDistance() {
-        charController = Player.GetComponent<CharacterController>();
+        charRigidBody = Player.GetComponent<Rigidbody>();
         return Vector3.Distance(agent.transform.position, Player.transform.position);
     }
 
@@ -61,6 +61,8 @@ public class EnemyAI : MonoBehaviour
                 break;
             case EnemyState.Patrolling:
                 NavMeshHit  navHit;
+                blocked = NavMesh.Raycast(agent.transform.position, agent.destination, out hit, NavMesh.AllAreas);
+                Debug.DrawLine(agent.transform.position, agent.destination, blocked ? Color.red : Color.green);
                 if(Time.time > nextWanderTime){
                     //Get a new destination
                     nextWanderTime = Time.time + wanderRate;
@@ -76,7 +78,7 @@ public class EnemyAI : MonoBehaviour
             case EnemyState.Following:
                 float remainingDistance = determineRemainingDistance();
                 float lookAheadTime = Mathf.Clamp(remainingDistance / agent.speed, 0,6);
-                Vector3 futureTarget = Player.transform.position + lookAheadTime * charController.velocity;
+                Vector3 futureTarget = Player.transform.position + lookAheadTime * charRigidBody.velocity;
                 blocked = NavMesh.Raycast(agent.transform.position, futureTarget, out hit, NavMesh.AllAreas);
                 Debug.DrawLine(agent.transform.position, futureTarget, blocked ? Color.red : Color.green);
                 
