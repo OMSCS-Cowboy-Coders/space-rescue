@@ -40,6 +40,10 @@ public class PlayerMetrics : MonoBehaviour
     public RestartGame restartGame;
 
     public PanelMenu panelMenu;
+
+    private float lastHitTime;
+    private float lastRegenTime;
+    private float currentTime;
     private void findPanelMenu() {
         GameObject canvas = GameObject.Find("Canvas");
         if (canvas != null && panelMenu == null)
@@ -64,12 +68,16 @@ public class PlayerMetrics : MonoBehaviour
         powerupsUIManager = FindObjectOfType<PowerupsUIManager>();
         // healthCollectibleUIManager.UpdateHealthCollectibleText(health);
         findPanelMenu();
+        lastRegenTime = Time.realtimeSinceStartup;
     }
 
     // Update is called once per frame
     void Update()
     {
-    
+        
+        currentTime = Time.realtimeSinceStartup;
+        regenHealth();
+        
     }
 
     public float getMoveSpeed() {
@@ -80,6 +88,14 @@ public class PlayerMetrics : MonoBehaviour
         return regularAnimSpeed;
     }
 
+    private void regenHealth(){
+        //Regen every 10 seconds
+        if(currentTime - lastRegenTime > 10f){
+            print("Regenerating Health! @: " + currentTime);
+            incrementHealth();
+            lastRegenTime = Time.realtimeSinceStartup;
+        }
+    }
     public void incrementHealth() {
         /*
         This function will increment health only til it hits MAX_HEALTH
@@ -96,25 +112,34 @@ public class PlayerMetrics : MonoBehaviour
     }
 
     public void decrementHealth(bool dieImmediately) {
-        if(dieImmediately) {
-            health = 0;
-            healthCollectibleUIManager.updateHealth(health);
-        } else {
-            health--;
+        print("Last hit time:  " + currentTime);
+        if(currentTime - lastHitTime > 5f){
+            //If 5 seconds haven't clearly went by, decrement the player's health
+            print("Hasn't been more than 5 seconds bro: " + (currentTime - lastHitTime));
+            lastHitTime =  currentTime;
+            return;
         }
-        print("This is health: " + health);
-        if (health <= 0) {
-            findPanelMenu();
-            panelMenu.showLoseScreen();
-            // RestartGame.Restart();
+        else{
+            if(dieImmediately) {
+                health = 0;
+                healthCollectibleUIManager.updateHealth(health);
+            } else {
+                health--;
+            }
+            print("This is health: " + health);
+            if (health <= 0) {
+                findPanelMenu();
+                panelMenu.showLoseScreen();
+                // RestartGame.Restart();
+                
+                // end the game 
+                // UnityEditor.EditorApplication.isPlaying = false;
+                // Application.Quit();
             
-            // end the game 
-            // UnityEditor.EditorApplication.isPlaying = false;
-            // Application.Quit();
-        
+            }
+            healthCollectibleUIManager.updateHealth(health);
+            lastHitTime =  currentTime;
         }
-
-        healthCollectibleUIManager.updateHealth(health);
     }
 
     public float getSprintEnergy() {
