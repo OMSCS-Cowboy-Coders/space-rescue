@@ -803,19 +803,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Premise\nYou are stranded on Mars and the final part you need for your
+  m_text: "Premise:\nYou are stranded on Mars and the final part you need for your
     spaceship is locked inside the space station. The station though has lost power.
     You will need to first find batteries to power up the station so you can get
     to the final part. \n\nFour batteries must be collected. They are scattered throughout
     the planet's surface. Each battery must be placed on the battery pad to open
-    a door in the space station. Open all the doors to get to end! \n\nBasic controls:
-    \nTo move around, you can use the arrow keys (up, right, left). Also you can
-    press SPACE to jump, and LEFT SHIFT to sprint. If you are on any kind of ice
-    - you will not be able to jump.\nBatteries can be picked up using \u201CE\u201D
-    and put down using \u201CQ\u201D. Only one battery can be held at a time. \n\nOther
+    a door in the space station. Open all the doors to get to end! \n\nBasic controls:\nTo
+    move around, you can use the arrow keys (up, right, left). Also you can press
+    SPACE to jump, and LEFT SHIFT to sprint. If you are on any kind of ice - you
+    will not be able to jump.\nBatteries can be picked up using \u201CE\u201D and
+    put down using \u201CQ\u201D. Only one battery can be held at a time. \n\nOther
     Information:\nBe careful of aliens, touching lava or falling into craters - otherwise
     you can die! There are hamburgers to regain health, and gold sprint powerup capsules
-    to allow you to sprint faster (Left + Shift + R). \n\nGood Luck! \n\n"
+    to allow you to sprint faster (Left + Shift + R). \n\nGood Luck!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
