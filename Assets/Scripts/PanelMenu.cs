@@ -28,6 +28,8 @@ public class PanelMenu : MonoBehaviour
 
     public TextMeshProUGUI winScreenText;
     
+    // ideally this logic shouldn't be maintained
+    private bool gameOver;
 
     void Awake()
     {
@@ -42,11 +44,11 @@ public class PanelMenu : MonoBehaviour
         pausePanel = canvas.transform.Find("Panel");
         winScreenPanel = canvas.transform.Find("WinScreen");
         loseScreenPanel = canvas.transform.Find("LoseScreen");
-
+        gameOver = false;
     }
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape) && !gameOver)
         {
             showScreen(CanvasStates.Pause);
             ToggleMenu();
@@ -63,6 +65,7 @@ public class PanelMenu : MonoBehaviour
 
     public void showCompletion(int numStars, float duration)
     {
+        gameOver = true;
         showScreen(CanvasStates.WinScreen);
         Image winImage = winScreenPanel.GetComponentInChildren<Image>();
         winImage.color = new Color(1f, 1f, 1f);
@@ -82,6 +85,7 @@ public class PanelMenu : MonoBehaviour
     }
 
     public void showLoseScreen() {
+        gameOver = true;
         showScreen(CanvasStates.LoseScreen);
         ToggleMenu();
     }
