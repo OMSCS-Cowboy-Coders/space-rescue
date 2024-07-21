@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using UnityEditor.AI;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 
