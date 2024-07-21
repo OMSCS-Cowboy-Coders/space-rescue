@@ -937,12 +937,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "You need to navigate around Mars to find different battery pieces to power
-    back the space station so that you can get the doors to open and get the final
-    battery piece!\n\nThe three obstacles are the ice obstacle, volcano obstacle,
-    and crater obstacle!\n\_\nDon't let the aliens get to you or else you will lose
-    your health!\n\nPick up power-ups to help with health and speed!\n\_\nPress E
-    to pick up the objects\n\nPress Q to drop objects\n\nPress shift+up arrow key
-    to sprint \n\nPress shift+R+up arrow key to use power-up sprint "
+    up the space station. You can only hold one battery at a time. This will allow
+    you to open the doors and retrieve the final battery piece!\n\nThe three obstacles
+    are the ice obstacle, volcano obstacle, and crater obstacle!\n\_\nDon't let the
+    aliens get to you or else you will lose your health!\n\nPick up power-ups to
+    help with health and speed!\n\_\nPress E to pick up the objects\n\nPress Q to
+    drop objects\n\nPress shift+up arrow key to sprint \n\nPress shift+R+up arrow
+    key to use power-up sprint "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
