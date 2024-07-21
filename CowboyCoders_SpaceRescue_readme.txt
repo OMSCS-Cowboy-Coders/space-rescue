@@ -101,6 +101,7 @@ Jan Ephraim Nino Tanja
 - Progression of difficulty (spawning more enemies over time)
 - Alien damage functionality via colliders
 - state machine for alien AI
+- Added pause menu functionality
 
 Christian Anthony Tran 
 - Added enemy alien AI logic for pathing.
@@ -128,7 +129,6 @@ Mimi Pomephimkham
 - Added floor colliders to improve UI between player and doors when player places a battery on the battery storage spot 
 
 Mariana Mendez 
-- Added Pause Menu to allow player to pause the game, restart or quit
 - Added HUD assets
 - Created Start Menu Scene
 - Created Instructions Scene
