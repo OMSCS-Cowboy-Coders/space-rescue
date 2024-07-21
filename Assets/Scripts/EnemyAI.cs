@@ -41,8 +41,11 @@ public class EnemyAI : MonoBehaviour
         float remainingDistance = determineRemainingDistance();
         if (remainingDistance < (int) EnemyState.Following) {
             return EnemyState.Following;
-        } else {
+        } else if(remainingDistance < (int) EnemyState.Patrolling){
             return EnemyState.Patrolling;
+        }
+        else{
+            return EnemyState.Idle;
         }
     }
     private float determineRemainingDistance() {
