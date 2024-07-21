@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour
     private NavMeshHit hit;
     private bool blocked = false;
     private EnemyState state;
-    private int wanderDist = 10;
+    private int wanderDist = 100;
     private CharacterController charController;
     // Start is called before the first frame update
     void Start()
