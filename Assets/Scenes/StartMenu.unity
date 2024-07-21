@@ -1572,9 +1572,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1395954801}
-        m_TargetAssemblyTypeName: QuitGame, Assembly-CSharp
-        m_MethodName: QuitMars
+      - m_Target: {fileID: 758867024}
+        m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
+        m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1631,7 +1631,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1395954796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf47027e837c94260a2426bab095f7a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 91c04485dfa220742aec31f82d186fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1521834287

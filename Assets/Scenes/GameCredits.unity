@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 58665979}
   - component: {fileID: 58665978}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TeamNames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 367, y: 185}
+  m_AnchoredPosition: {x: 343, y: 167}
   m_SizeDelta: {x: 220.606, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &58665978
@@ -181,7 +181,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Christian Anthony Tran
+  m_text: 'Cowboy Coders:
+
+
+    Christian Anthony Tran
 
 
 
@@ -189,8 +192,8 @@ MonoBehaviour:
 
 
 
-    Jan Ephraim
-    Nino Tanja
+    Jan
+    Ephraim Nino Tanja
 
 
 
@@ -261,7 +264,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 118.65198, y: -43.70096, z: -24.943604, w: 0}
+  m_margin: {x: 118.65198, y: -43.70096, z: -49.681885, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -287,7 +290,7 @@ GameObject:
   - component: {fileID: 461876711}
   - component: {fileID: 461876710}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -675,7 +678,7 @@ GameObject:
   - component: {fileID: 1167860258}
   - component: {fileID: 1167860257}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CreditText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -698,8 +701,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -170, y: 368}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -292.15692, y: 373}
+  m_SizeDelta: {x: 245.6862, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1167860257
 MonoBehaviour:
