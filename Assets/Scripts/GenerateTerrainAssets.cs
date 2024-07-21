@@ -57,17 +57,18 @@ public class GenerateTerrainAssets : MonoBehaviour
         }
         return bounds;
     }
-    bool isProblematicLocation(RaycastHit rayhit, Vector3 position){
+    bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
         string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
-
+        MeshFilter preFabMeshFilter = preFab.GetComponent<MeshFilter>();
+        Mesh preFabMesh = preFabMeshFilter.mesh;
         //Check collider tag collision
         for(int i = 0; i < collisionTags.Length; i++){
             string collisionTag = collisionTags[i];
             //Check if collided structure's bounds is within proposed position
             //Get top level root
-            if(rayhit.transform.root.CompareTag(collisionTag) || rayhit.collider.CompareTag(collisionTag)){
-                //Expand collider temporarily and check if it's within bounds
-                if(rayhit.collider.bounds.Contains(position)){
+            if(rayhit.collider.CompareTag(collisionTag) ){
+                //Expand structure collider temporarily and check if it's within bounds
+                if(rayhit.collider.bounds.Intersects(preFabMesh.bounds)){
                     return true;
                 }
             }
@@ -96,7 +97,7 @@ public class GenerateTerrainAssets : MonoBehaviour
                 randomPos.z = UnityEngine.Random.Range(terrainPos.z + terrainMin.z, terrainPos.z + terrainMax.z);
                 randomPos.y = terrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z )) + terrain.transform.position.y + 1.0f;
                 //Raycast 
-                if(Physics.Raycast(randomPos, Vector3.down,  out rayHit)&& !isProblematicLocation(rayHit, randomPos)){
+                if(Physics.Raycast(randomPos, Vector3.down,  out rayHit)&& !isProblematicLocation(rayHit, randomPos, terrainPrefab)){
                     //Only generate if it the ray doesn't intersect with a structure
                     randomPos = rayHit.point;
                     // Generate Terrain
