@@ -7,6 +7,7 @@ i. Start scene: Mars_Scene
 ii. How to play and what parts of the level to observe technology requirements
 - The game begins with the player on the terrain. 
 - There are four battery spots in total around the map that contain a battery part for the spaceship that you can collect.
+- The doors open when the player steps in front of it and they have deposited a battery
 - To move around, you can use the arrow keys (up, right, left). 
 - To jump, press spacebar.
 - To pick up a spaceship part, press E. To put it down, press Q. You can only pick up one battery at a time. 
@@ -15,16 +16,18 @@ ii. How to play and what parts of the level to observe technology requirements
 - You can sprint using the shift key, and also press R to use your powerup.
 - There are aliens to avoid and touching lava or falling into craters makes you lose health.
 
-iii. Known problem areas/bugs
+iii. What to observe in various parts of the game:
+
+iv. Known problem areas/bugs
 - Clipping: If you try reasonably hard, then the player can clip through objects when running. 
 It should not however be a major detriment to the overall gameplay.
 - There is sometimes a delay in the lose screen when falling into the lava at the volcano obstacle. 
 
-iv. Second Scene: StartMenu 
+v. Second Scene: StartMenu 
 - The start_scene presents the player the start menu that includes starting the game, instructions on how to play the game, 
 quitting the game, and the credits.
 
-v. Manifest of which files authored by each teammate
+vi. Manifest of which files authored by each teammate
 Detail who on the team did what:
 Indulekha Ghandikota
 - Added movement to the player including: walking forward and to the side (with animation), jumping (including a grounded check), and being able to slide on ice. 
@@ -50,8 +53,8 @@ Jan Tanja
 - Helped draft Instructions copy for Instructions scene
 
 Christian Anthony Tran 
-- Added enemy alien’s AI logic for pathing.
-- Added enemy alien’s animator and blend tree.
+- Added enemy alien AI logic for pathing.
+- Added enemy alien animator and blend tree.
 - Added enemy state machine such as patrolling and chasing.
 - Added zombie-like animation for enemy aliens
 - Added functionality to procedurally generate enemy aliens and randomize their assets, position, scaling, and attaching relevant components before being added as a gameobject in runtime.
@@ -118,7 +121,7 @@ i. Assets:
 ii. C# script files: 
 - EnemyAI.cs, AlienMotionController.cs, CollectiblesGenerator.cs, GenerateEnemies.cs, GenerateTerrainAssets.cs, TerrainGenerator.cs
 
-Ii: Imported Registry Packages:
+iii: Imported Registry Packages:
 - NavMesh Building Components: https://docs.unity3d.com/Packages/com.unity.ai.navigation@1.0/manual/index.html
 
 Mimi Pomephimkham
@@ -180,6 +183,7 @@ Resources:
 20. Textures for various obstacles;
 Lava and Ice: https://assetstore.unity.com/packages/2d/textures-materials/free-stylized-textures-rpg-environment-204187 
 Regular Volcanic Rock: https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943 
+
 21. T-pose for player is from Mixamo 
 
 22. Zombie Animation: https://assetstore.unity.com/packages/3d/animations/zombie-animation-pack-free-150219 
