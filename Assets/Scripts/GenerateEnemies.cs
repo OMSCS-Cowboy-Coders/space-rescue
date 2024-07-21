@@ -57,7 +57,7 @@ public class GenerateEnemies : MonoBehaviour
         enemyFrequency++;
     }
 
-    bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
+     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
         string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
         Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
@@ -65,11 +65,9 @@ public class GenerateEnemies : MonoBehaviour
             string collisionTag = collisionTags[i];
             //Check if collided structure's bounds is within proposed position
             //Get top level root
-            if(rayhit.collider.CompareTag(collisionTag) ){
+            if(rayhit.transform.root.CompareTag(collisionTag)){
                 //Expand structure collider temporarily and check if it's within bounds
-                if(rayhit.collider.bounds.Intersects(preFabCollider.bounds)){
-                    return true;
-                }
+                return true;
             }
         }
         return false;
@@ -94,7 +92,7 @@ public class GenerateEnemies : MonoBehaviour
             //Convert normalized clamped position to world position
             Vector3 randomPosWorld = terrainScript.TerrainToWorld(closestTerrain, randomPosClamped);
             //Raycast downwards, get the spot that is hit
-            if(Physics.Raycast(randomPosWorld, Vector3.down,  out rayHit) && !isProblematicLocation(rayHit, randomPosWorld, Enemy)){
+            if(Physics.Linecast(new Vector3(randomPosWorld.x,randomPosWorld.y + 1000, randomPosWorld.z), randomPos,  out rayHit) && !isProblematicLocation(rayHit, randomPosWorld, Enemy)){
                 randomPosWorld = rayHit.point;
                 // Generate Enemy
                 GameObject customEnemy = Instantiate(Enemy, randomPosWorld, Quaternion.identity, EnemyParent.transform);

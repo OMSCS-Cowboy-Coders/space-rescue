@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class GenerateTerrainAssets : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -23,8 +24,9 @@ public class GenerateTerrainAssets : MonoBehaviour
     float plantAmountMin = 200f;
     float plantAmountMax = 400f;
     public GameObject[] plantPrefabs;
-    
     private GameObject TerrainAssetsParent;
+
+    public NavMeshSurface navMeshSurface;
 
 
     void Start()
@@ -39,8 +41,8 @@ public class GenerateTerrainAssets : MonoBehaviour
         //Generate rock prefabs
         float plantAmount = Random.Range(rockAmountMin, rockAmountMax);
         //Culminate all colliders initially for structures
-       
         GenerateAssets(plantPrefabs, plantAmount, plantScaleMin, plantScaleMax);
+        navMeshSurface.BuildNavMesh();
     }
 
     // Update is called once per frame
@@ -65,11 +67,9 @@ public class GenerateTerrainAssets : MonoBehaviour
             string collisionTag = collisionTags[i];
             //Check if collided structure's bounds is within proposed position
             //Get top level root
-            if(rayhit.collider.CompareTag(collisionTag) ){
+            if(rayhit.transform.root.CompareTag(collisionTag)){
                 //Expand structure collider temporarily and check if it's within bounds
-                if(rayhit.collider.bounds.Intersects(preFabCollider.bounds)){
-                    return true;
-                }
+                return true;
             }
         }
         return false;
@@ -94,9 +94,9 @@ public class GenerateTerrainAssets : MonoBehaviour
                 Vector3 randomPos = new Vector3();
                 randomPos.x = UnityEngine.Random.Range(terrainPos.x + terrainMin.x, terrainPos.x + terrainMax.x);
                 randomPos.z = UnityEngine.Random.Range(terrainPos.z + terrainMin.z, terrainPos.z + terrainMax.z);
-                randomPos.y = terrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z )) + terrain.transform.position.y + 1.0f;
+                randomPos.y += terrain.transform.position.y;
                 //Raycast 
-                if(Physics.Raycast(randomPos, Vector3.down,  out rayHit)&& !isProblematicLocation(rayHit, randomPos, terrainPrefab)){
+                if(Physics.Linecast(new Vector3(randomPos.x,randomPos.y + 1000, randomPos.z), randomPos,  out rayHit) && !isProblematicLocation(rayHit, randomPos, terrainPrefab)){
                     //Only generate if it the ray doesn't intersect with a structure
                     randomPos = rayHit.point;
                     // Generate Terrain
