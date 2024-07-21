@@ -67,6 +67,11 @@ public class PlayerController : MonoBehaviour
 
     private bool reachedFinalBattery = false;
 
+    public bool isFalling;
+
+    public float fallDuration;
+
+
     public GameStatusManager gameStatusManager;
 
     private void findGenerateEnemies() {
@@ -173,11 +178,22 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() {
+        bool wasGrounded = isAstronautOnTheGround();
         InputDetector();
         if(astronautRigidBody.velocity.y < 0) { // Astronaut is falling after jump
             astronautRigidBody.velocity = astronautRigidBody.velocity + (Vector3.up * Physics.gravity.y* (fasterFallGravityForJump) *Time.deltaTime);
-
+            fallDuration += Time.deltaTime;
+            isFalling = true;
         }
+        else if(isFalling){
+            if(fallDuration > 1 && isAstronautOnTheGround()){
+                playerMetrics.decrementHealth(false);
+            }
+
+            isFalling = false;
+            fallDuration = 0;
+        }
+        
     }
 
     void InputDetector() {
