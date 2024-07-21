@@ -28,6 +28,7 @@ public class GenerateTerrainAssets : MonoBehaviour
 
     public NavMeshSurface navMeshSurface;
 
+    public int terrainYOffset = 1000;
 
     void Start()
     {
@@ -96,7 +97,7 @@ public class GenerateTerrainAssets : MonoBehaviour
                 randomPos.z = UnityEngine.Random.Range(terrainPos.z + terrainMin.z, terrainPos.z + terrainMax.z);
                 randomPos.y += terrain.transform.position.y;
                 //Raycast 
-                if(Physics.Linecast(new Vector3(randomPos.x,randomPos.y + 1000, randomPos.z), randomPos,  out rayHit) && !isProblematicLocation(rayHit, randomPos, terrainPrefab)){
+                if(Physics.Linecast(new Vector3(randomPos.x,randomPos.y + terrainYOffset, randomPos.z), randomPos,  out rayHit) && !isProblematicLocation(rayHit, randomPos, terrainPrefab)){
                     //Only generate if it the ray doesn't intersect with a structure
                     randomPos = rayHit.point;
                     // Generate Terrain
