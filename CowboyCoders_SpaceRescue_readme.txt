@@ -4,20 +4,19 @@ Project Github: https://github.com/OMSCS-Cowboy-Coders/space-rescue
 i. Start scene: Mars_Scene 
 - The start scene presents the main character, the astronaut, on the planet Mars. 
 
-ii. How to play and what parts of the level to observe technology requirements
+ii. How to play:
 - The game begins with the player on the terrain. 
 - There are four battery spots in total around the map that contain a battery part for the spaceship that you can collect.
-- The doors open when the player steps in front of it and they have deposited a battery
 - To move around, you can use the arrow keys (up, right, left). 
 - To jump, press spacebar.
-- To pick up a spaceship part, press E. To put it down, press Q. You can only pick up one battery at a time. 
+- To pick up a spaceship part, press E. To put it down, press Q. You can only pick up one battery at a time.
+- To pause game, press ESC that brings up a resume, restart, or quit game menu. To resume game, press the ESC button again.
 - There are hamburgers scattered around the map to increase your health once you get hit. After 10 seconds, your health can also regenerate automatically. 
 - There are capsule shaped sprint powerups to help you go faster for 3 seconds.
 - You can sprint using the shift key, and also press R to use your powerup.
-- There are aliens to avoid and touching lava or falling into craters makes you lose health.
+- There are aliens to avoid and touching lava or falling into craters makes you lose health. There is also fall damage. 
 
 iii. What to observe in various parts of the game:
-
 3D Feel Game
 - Start Menu with options to play the game, see instructions, see credits, and quit the game
 - Pause Menu to restart or quit the game when escape is pressed and resumes the game when escape is pressed again 
@@ -68,7 +67,6 @@ Polish
 - Background music throughout the game
 - Cohesive style between the start menu and the HUD
 
-
 iv. Known problem areas/bugs
 - Clipping: If you try reasonably hard, then the player can clip through objects when running. 
 It should not however be a major detriment to the overall gameplay.
@@ -85,7 +83,7 @@ Indulekha Ghandikota
 - Added picking up and putting down objects to the scene and integrated that with storing the objects in the final battery storage
 - Added camera for the player using Cinemachine
 - Created three obstacles (volcano, crater, ice crater) for the player to play through to get the parts
-   - Includes making sure player dies or loses health depending on various conditions
+   - Includes making sure player dies or loses health depending on various conditions like falling of the volcano or stepping on lava
    - Added a PhysicsMaterial to the ice so that the player slides on the ice for the ice crater
 - Created several compound colliders for various structures as part of the obstacles
 - Added prefab for getting the spaceship part
@@ -101,7 +99,7 @@ Jan Tanja
 - Subgoals (number of stars) measured by the amount of time taken to complete the game
 - Progression of difficulty (spawning more enemies over time)
 - Alien damage functionality via colliders
-- Helped draft Instructions copy for Instructions scene
+- state machine for alien AI
 
 Christian Anthony Tran 
 - Added enemy alien AI logic for pathing.
@@ -116,6 +114,7 @@ Christian Anthony Tran
 - Added procedurally generated terrain data
 - Added functionality to procedurally build NavMesh at runtime start.
 - Added health regeneration and damage grace period
+- Added fall damage for player
 
 Mimi Pomephimkham 
 - Added footstep controller to player 
@@ -128,15 +127,11 @@ Mimi Pomephimkham
 - Added floor colliders to improve UI between player and doors when player places a battery on the battery storage spot 
 
 Mariana Mendez 
-- Added restart button when player clicks escape
-- Added quit button when player clicks escape
-- Added pause menu
+- Added Pause Menu to allow player to pause the game, restart or quit
 - Added HUD assets
 - Created Start Menu Scene
 - Created Instructions Scene
 - Created Credit Scene
-- Added audio to Start Menu
-- Created quit menu button in Start Menu
 
 For each team member, list each asset implemented: 
 Indulekha Ghandikota
@@ -146,8 +141,8 @@ i. Assets:
 - Rocks for various obstacles:
 https://assetstore.unity.com/packages/3d/environments/landscapes/mountains-canyons-cliffs-53984
 - Textures for various obstacles;
--  Lava and Ice: https://assetstore.unity.com/packages/2d/textures-materials/free-stylized-textures-rpg-environment-204187 
--  Regular Volcanic Rock: https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943 
+–Lava and Ice: https://assetstore.unity.com/packages/2d/textures-materials/free-stylized-textures-rpg-environment-204187 
+–Regular Volcanic Rock: https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943 
 
 ii. C# script files: 
 - PlayerController.cs, PickUpObjects.cs, PressurePlateControl.cs 
@@ -187,9 +182,8 @@ Mariana Mendez
 i. Assets: 
 - Hud Assest Pack:
 https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048
-
 ii. C# script files: 
-- StartMenu.cs, PauseGame.cs, QuitGame.cs, RestartGame.cs
+- StartMenu.cs, RestartGame.cs
 
 ----------------------------
 Resources:
