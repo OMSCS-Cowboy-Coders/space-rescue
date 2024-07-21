@@ -224,6 +224,24 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Debug.Log("drawing gizmos: " + onGround);
+        
+        if(onGround) {
+            //Draw a Ray forward from GameObject toward the hit
+            Gizmos.DrawRay(astronautRigidBody.transform.position, -astronautRigidBody.transform.up * boxHit.distance);
+            //Draw a cube that extends to where the hit exists
+            Gizmos.DrawWireCube(astronautRigidBody.transform.position + -astronautRigidBody.transform.up * boxHit.distance, astronautRigidBody.transform.localScale);
+        } else {
+            
+            //Draw a Ray forward from GameObject toward the maximum distance
+            Gizmos.DrawRay(astronautRigidBody.transform.position, -astronautRigidBody.transform.up * jumpHeight);
+            //Draw a cube at the maximum distance
+            Gizmos.DrawWireCube(transform.position + -astronautRigidBody.transform.up * jumpHeight, astronautRigidBody.transform.localScale);
+        }
+    }
+
      void OnAnimatorIK(int layerIndex) {
         float itemWeight = 1.0f;
         if(anim) {
