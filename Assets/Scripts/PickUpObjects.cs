@@ -138,7 +138,9 @@ public class PickUpObjects : MonoBehaviour
     }
     void OnCollisionExit(Collision c) {
         itemRB.velocity = Vector3.zero;
-        c.rigidbody.velocity = Vector3.zero;
+        if(c.gameObject.GetComponent<Rigidbody>() != null) {
+            c.rigidbody.velocity = Vector3.zero;
+        }
     }
 
 
