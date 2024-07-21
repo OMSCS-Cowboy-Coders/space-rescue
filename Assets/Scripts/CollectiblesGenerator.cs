@@ -16,7 +16,8 @@ public class CollectiblesGenerator : MonoBehaviour
     public int collectibleInitialCount = 10;
     public int collectibleDuplicateCount = 0;
 
-    public float collectibleYOffset = 1.5f;
+    public int collectibleYOffset = 2;
+
 
     private int numUniqueCollectibles;
     private GameObject[] collectiblesRoots;
@@ -49,7 +50,7 @@ public class CollectiblesGenerator : MonoBehaviour
     }
 
     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
-        string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
+        string[] collisionTags = {"Structure", "TerrainAsset", "Player", "Border"};
         Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
         for(int i = 0; i < collisionTags.Length; i++){
@@ -79,7 +80,7 @@ public class CollectiblesGenerator : MonoBehaviour
                 Vector3 randomPos = new Vector3();
                 randomPos.x = UnityEngine.Random.Range(curTerrainPos.x + curTerrainMin.x, curTerrainPos.x + curTerrainMax.x);
                 randomPos.z = UnityEngine.Random.Range(curTerrainPos.z + curTerrainMin.z, curTerrainPos.z + curTerrainMax.z);
-                randomPos.y = curTerrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z)) + curTerrain.transform.position.y + collectibleYOffset;
+                randomPos.y = curTerrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z)) + curTerrain.transform.position.y;
                 if(Physics.Raycast(randomPos, Vector3.down,  out rayHit) && !isProblematicLocation(rayHit, randomPos, collectible)){
                     randomPos = rayHit.point;
                     randomPos.y += collectibleYOffset;
