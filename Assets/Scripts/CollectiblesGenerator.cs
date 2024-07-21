@@ -16,7 +16,7 @@ public class CollectiblesGenerator : MonoBehaviour
     public int collectibleInitialCount = 10;
     public int collectibleDuplicateCount = 0;
 
-    public int collectibleYOffset = 5;
+    public float collectibleYOffset = 1.5f;
 
     private int numUniqueCollectibles;
     private GameObject[] collectiblesRoots;
@@ -50,8 +50,7 @@ public class CollectiblesGenerator : MonoBehaviour
 
     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
         string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
-        MeshFilter preFabMeshFilter = preFab.GetComponent<MeshFilter>();
-        Mesh preFabMesh = preFabMeshFilter.mesh;
+        Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
         for(int i = 0; i < collisionTags.Length; i++){
             string collisionTag = collisionTags[i];
@@ -59,7 +58,7 @@ public class CollectiblesGenerator : MonoBehaviour
             //Get top level root
             if(rayhit.collider.CompareTag(collisionTag) ){
                 //Expand structure collider temporarily and check if it's within bounds
-                if(rayhit.collider.bounds.Intersects(preFabMesh.bounds)){
+                if(rayhit.collider.bounds.Intersects(preFabCollider.bounds)){
                     return true;
                 }
             }
@@ -80,10 +79,10 @@ public class CollectiblesGenerator : MonoBehaviour
                 Vector3 randomPos = new Vector3();
                 randomPos.x = UnityEngine.Random.Range(curTerrainPos.x + curTerrainMin.x, curTerrainPos.x + curTerrainMax.x);
                 randomPos.z = UnityEngine.Random.Range(curTerrainPos.z + curTerrainMin.z, curTerrainPos.z + curTerrainMax.z);
-                randomPos.y = curTerrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z)) + curTerrain.transform.position.y + 1.5f;
+                randomPos.y = curTerrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z)) + curTerrain.transform.position.y + collectibleYOffset;
                 if(Physics.Raycast(randomPos, Vector3.down,  out rayHit) && !isProblematicLocation(rayHit, randomPos, collectible)){
                     randomPos = rayHit.point;
-                    randomPos.y = 1.5f;
+                    randomPos.y += collectibleYOffset;
                     Instantiate(collectible, randomPos, Quaternion.identity, collectibleRoot.transform);
                     collectiblesCount[i]++;
                     yield return new WaitForSeconds(0.1f);

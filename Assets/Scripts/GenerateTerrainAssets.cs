@@ -1,31 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class GenerateTerrainAssets : MonoBehaviour
 {
     // Start is called before the first frame update
     
     float treeScaleMin = 2.5f;
     float treeScaleMax = 5f;
-    float treeAmountMin = 250f;
-    float treeAmountMax = 500f;
+    float treeAmountMin = 125f;
+    float treeAmountMax = 250f;
     public GameObject[] treePrefabs;
 
     float rockScaleMin = 0.1f;
     float rockScaleMax = 1f;
-    float rockAmountMin = 250;
-    float rockAmountMax = 500f;
+    float rockAmountMin = 200f;
+    float rockAmountMax = 400f;
     public GameObject[] rockPrefabs;
 
     float plantScaleMin = 1f;
     float plantScaleMax = 10f;
-    float plantAmountMin = 300f;
-    float plantAmountMax = 600f;
+    float plantAmountMin = 200f;
+    float plantAmountMax = 400f;
     public GameObject[] plantPrefabs;
-    
     private GameObject TerrainAssetsParent;
 
+    public NavMeshSurface navMeshSurface;
+
+    public int terrainYOffset = 1000;
 
     void Start()
     {
@@ -39,8 +42,8 @@ public class GenerateTerrainAssets : MonoBehaviour
         //Generate rock prefabs
         float plantAmount = Random.Range(rockAmountMin, rockAmountMax);
         //Culminate all colliders initially for structures
-       
         GenerateAssets(plantPrefabs, plantAmount, plantScaleMin, plantScaleMax);
+        navMeshSurface.BuildNavMesh();
     }
 
     // Update is called once per frame
@@ -59,18 +62,15 @@ public class GenerateTerrainAssets : MonoBehaviour
     }
     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
         string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
-        MeshFilter preFabMeshFilter = preFab.GetComponent<MeshFilter>();
-        Mesh preFabMesh = preFabMeshFilter.mesh;
+        Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
         for(int i = 0; i < collisionTags.Length; i++){
             string collisionTag = collisionTags[i];
             //Check if collided structure's bounds is within proposed position
             //Get top level root
-            if(rayhit.collider.CompareTag(collisionTag) ){
+            if(rayhit.transform.root.CompareTag(collisionTag)){
                 //Expand structure collider temporarily and check if it's within bounds
-                if(rayhit.collider.bounds.Intersects(preFabMesh.bounds)){
-                    return true;
-                }
+                return true;
             }
         }
         return false;
@@ -95,9 +95,9 @@ public class GenerateTerrainAssets : MonoBehaviour
                 Vector3 randomPos = new Vector3();
                 randomPos.x = UnityEngine.Random.Range(terrainPos.x + terrainMin.x, terrainPos.x + terrainMax.x);
                 randomPos.z = UnityEngine.Random.Range(terrainPos.z + terrainMin.z, terrainPos.z + terrainMax.z);
-                randomPos.y = terrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z )) + terrain.transform.position.y + 1.0f;
+                randomPos.y += terrain.transform.position.y;
                 //Raycast 
-                if(Physics.Raycast(randomPos, Vector3.down,  out rayHit)&& !isProblematicLocation(rayHit, randomPos, terrainPrefab)){
+                if(Physics.Linecast(new Vector3(randomPos.x,randomPos.y + terrainYOffset, randomPos.z), randomPos,  out rayHit) && !isProblematicLocation(rayHit, randomPos, terrainPrefab)){
                     //Only generate if it the ray doesn't intersect with a structure
                     randomPos = rayHit.point;
                     // Generate Terrain
