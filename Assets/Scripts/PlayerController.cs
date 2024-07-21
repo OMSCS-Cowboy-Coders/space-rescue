@@ -186,7 +186,11 @@ public class PlayerController : MonoBehaviour
             isFalling = true;
         }
         else if(isFalling){
-            if(fallDuration > 1 && isAstronautOnTheGround()){
+            RaycastHit boxHit;
+            Physics.BoxCast(astronautCollider.bounds.center, astronautRigidBody.transform.localScale*.5f
+        , -astronautRigidBody.transform.up, out boxHit,
+        astronautRigidBody.transform.rotation, 1);
+            if(fallDuration > 1 && isAstronautOnTheGround() && (boxHit.collider.CompareTag("MarsFloor") || boxHit.transform.root.CompareTag("MarsFloor"))){
                 playerMetrics.decrementHealth(false);
             }
 
