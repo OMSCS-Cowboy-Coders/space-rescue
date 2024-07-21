@@ -146,8 +146,8 @@ i. Assets:
 - Rocks for various obstacles:
 https://assetstore.unity.com/packages/3d/environments/landscapes/mountains-canyons-cliffs-53984
 - Textures for various obstacles;
-� Lava and Ice: https://assetstore.unity.com/packages/2d/textures-materials/free-stylized-textures-rpg-environment-204187 
-� Regular Volcanic Rock: https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943 
+-  Lava and Ice: https://assetstore.unity.com/packages/2d/textures-materials/free-stylized-textures-rpg-environment-204187 
+-  Regular Volcanic Rock: https://assetstore.unity.com/packages/2d/textures-materials/stylized-lava-materials-180943 
 
 ii. C# script files: 
 - PlayerController.cs, PickUpObjects.cs, PressurePlateControl.cs 
