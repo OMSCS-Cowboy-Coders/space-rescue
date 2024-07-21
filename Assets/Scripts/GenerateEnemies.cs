@@ -58,7 +58,7 @@ public class GenerateEnemies : MonoBehaviour
     }
 
     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
-        string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
+        string[] collisionTags = {"Structure", "TerrainAsset", "Player", "Border"};
         Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
         for(int i = 0; i < collisionTags.Length; i++){

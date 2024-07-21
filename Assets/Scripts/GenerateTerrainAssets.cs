@@ -28,7 +28,7 @@ public class GenerateTerrainAssets : MonoBehaviour
 
     public NavMeshSurface navMeshSurface;
 
-    public int terrainYOffset = 1000;
+    public int terrainYOffset = 500;
 
     void Start()
     {
@@ -61,7 +61,7 @@ public class GenerateTerrainAssets : MonoBehaviour
         return bounds;
     }
     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
-        string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
+        string[] collisionTags = {"Structure", "TerrainAsset", "Player", "Border"};
         Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
         for(int i = 0; i < collisionTags.Length; i++){
