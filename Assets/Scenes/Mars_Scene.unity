@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16789,7 +16789,7 @@ GameObject:
   - component: {fileID: 557171072}
   m_Layer: 0
   m_Name: SpaceshipPartMechanism
-  m_TagString: Untagged
+  m_TagString: Structure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35245,6 +35245,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1540311871}
+  - {fileID: 1684066693}
   - {fileID: 1295697598}
   - {fileID: 525977054}
   m_Father: {fileID: 1334354870}
@@ -52762,6 +52763,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4e1550bba79435439dede21a2dd26db, type: 3}
+--- !u!4 &1684066693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1446624450738798193, guid: b4e1550bba79435439dede21a2dd26db,
+    type: 3}
+  m_PrefabInstance: {fileID: 1684066692}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1686086216
 GameObject:
   m_ObjectHideFlags: 0
