@@ -49,6 +49,23 @@ public class CollectiblesGenerator : MonoBehaviour
         collectibleDuplicateCount = collectibleInitialCount + (int) Time.realtimeSinceStartup;
     }
 
+    bool isProblematicLocation(RaycastHit rayhit, Vector3 position){
+        string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
+
+        //Check collider tag collision
+        for(int i = 0; i < collisionTags.Length; i++){
+            string collisionTag = collisionTags[i];
+            //Check if collided structure's bounds is within proposed position
+            //Get top level root
+            if(rayhit.transform.root.CompareTag(collisionTag) || rayhit.collider.CompareTag(collisionTag)){
+                //Expand collider temporarily and check if it's within bounds
+                if(rayhit.collider.bounds.Contains(position)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     IEnumerator spawnCollectables(){
         //Go through collectibles and make sure they are a certain amount
         RaycastHit rayHit;
@@ -64,7 +81,7 @@ public class CollectiblesGenerator : MonoBehaviour
                 randomPos.x = UnityEngine.Random.Range(curTerrainPos.x + curTerrainMin.x, curTerrainPos.x + curTerrainMax.x);
                 randomPos.z = UnityEngine.Random.Range(curTerrainPos.z + curTerrainMin.z, curTerrainPos.z + curTerrainMax.z);
                 randomPos.y = curTerrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z)) + curTerrain.transform.position.y + 1.5f;
-                if(Physics.Raycast(randomPos, Vector3.down,  out rayHit) && !rayHit.transform.root.CompareTag("Structure") && !rayHit.collider.CompareTag("TerrainAsset")){
+                if(Physics.Raycast(randomPos, Vector3.down,  out rayHit) && !isProblematicLocation(rayHit, randomPos)){
                     randomPos = rayHit.point;
                     randomPos.y = 1.5f;
                     Instantiate(collectible, randomPos, Quaternion.identity, collectibleRoot.transform);

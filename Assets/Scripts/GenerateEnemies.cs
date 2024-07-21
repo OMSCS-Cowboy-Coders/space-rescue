@@ -57,6 +57,23 @@ public class GenerateEnemies : MonoBehaviour
         enemyFrequency++;
     }
 
+    bool isProblematicLocation(RaycastHit rayhit, Vector3 position){
+        string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
+
+        //Check collider tag collision
+        for(int i = 0; i < collisionTags.Length; i++){
+            string collisionTag = collisionTags[i];
+            //Check if collided structure's bounds is within proposed position
+            //Get top level root
+            if(rayhit.transform.root.CompareTag(collisionTag) || rayhit.collider.CompareTag(collisionTag)){
+                //Expand collider temporarily and check if it's within bounds
+                if(rayhit.collider.bounds.Contains(position)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     IEnumerator SpawnEnemies(){
         RaycastHit rayHit;
         TerrainGenerator terrainScript = GetComponent<TerrainGenerator>();
@@ -77,7 +94,7 @@ public class GenerateEnemies : MonoBehaviour
             //Convert normalized clamped position to world position
             Vector3 randomPosWorld = terrainScript.TerrainToWorld(closestTerrain, randomPosClamped);
             //Raycast downwards, get the spot that is hit
-            if(Physics.Raycast(randomPosWorld, Vector3.down,  out rayHit)){
+            if(Physics.Raycast(randomPosWorld, Vector3.down,  out rayHit) && !isProblematicLocation(rayHit, randomPosWorld)){
                 randomPosWorld = rayHit.point;
                 // Generate Enemy
                 GameObject customEnemy = Instantiate(Enemy, randomPosWorld, Quaternion.identity, EnemyParent.transform);
