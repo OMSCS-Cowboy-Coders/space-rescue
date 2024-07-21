@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6151270515313372648}
   - component: {fileID: 8266714151108647202}
   - component: {fileID: 431746159665847555}
+  - component: {fileID: 785253577430862565}
   m_Layer: 0
   m_Name: SP_Rock02
   m_TagString: TerrainAsset
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7647042297789810997, guid: 28aab7cd4ce441f42a44e2fb72d976ab, type: 3}
+--- !u!208 &785253577430862565
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7618323415990614263}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.319, y: 0.54300004, z: 0.404}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.11400001, y: 0.54300004, z: -0.064}
+  m_TimeToStationary: 0.5

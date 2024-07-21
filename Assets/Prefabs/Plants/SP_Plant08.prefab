@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5292709361883198216}
   - component: {fileID: 7968992369007544258}
   - component: {fileID: -6821184358673216891}
+  - component: {fileID: -664529018508488304}
   m_Layer: 0
   m_Name: SP_Plant08
   m_TagString: TerrainAsset
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2915820140956423877, guid: ad8d03264f293334b99332141028e155, type: 3}
+--- !u!208 &-664529018508488304
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473364535566263831}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.21100001, y: 0.19000001, z: 0.215}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.017, y: 0.19000001, z: -0.006}
+  m_TimeToStationary: 0.5
