@@ -113,10 +113,9 @@ public class PlayerMetrics : MonoBehaviour
 
     public void decrementHealth(bool dieImmediately) {
         print("Last hit time:  " + currentTime);
-        if(currentTime - lastHitTime > 5f){
+        if(currentTime - lastHitTime < 5f){
             //If 5 seconds haven't clearly went by, decrement the player's health
             print("Hasn't been more than 5 seconds bro: " + (currentTime - lastHitTime));
-            lastHitTime =  currentTime;
             return;
         }
         else{
