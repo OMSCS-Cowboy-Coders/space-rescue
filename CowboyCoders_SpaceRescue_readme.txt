@@ -1,24 +1,29 @@
 Main Scene: Mars_Scene 
 
 i. Start scene: Mars_Scene 
-- The start scene presents a player on the planet Mars. 
+-The start scene presents the main character, the astronaut, on the planet Mars. 
 
 ii. How to play and what parts of the level to observe technology requirements
 - The game begins with the player on the terrain. 
-- There are 5 pressure pads scattered around the map that can contain a ship part that you can gather to build the spaceship.
-- In order to pick up a spaceship part, press E. To put it down, press Q. 
-- There are bananas scattered around the map to increase your health once you get hit
+- There are four battery spots in total around the map that contain a battery part for the spaceship that you can collect.
+- To move around, you can use the arrow keys (up, right, left). 
+- To jump, press spacebar.
+- To pick up a spaceship part, press E. To put it down, press Q. You can only pick up one battery at a time. 
+- There are hamburgers scattered around the map to increase your health once you get hit
 - There are capsule shaped sprint powerups to help you go faster for 3 seconds.
 - You can sprint using the shift key, and also press R to use your powerup.
+- There are aliens to avoid and touching lava or falling into craters makes you lose health.
 
 iii. Known problem areas/bugs
-- When the game starts, the player starts off 3 feet above the terrain. 
-- Banana doesn't get detected properly (although it did at one point)
-- Picking up the spaceship parts is not perfect. The part tends to float around
-- We are still working on the Homebase
-- Some of the animations are not very smooth
+- Clipping: If you try reasonably hard, then the player can clip through objects when running. 
+It should not however be a major detriment to the overall gameplay.
+- There is sometimes a delay in the lose screen when falling into the lava at the volcano obstacle. 
 
-iv. Manifest of which files authored by each teammate
+iv. Second Scene: StartMenu 
+-The start_scene presents the player the start menu that includes starting the game, instructions on how to play the game, 
+quitting the game, and the credits.
+
+v. Manifest of which files authored by each teammate
 Detail who on the team did what:
 Indulekha Ghandikota
 - Added animation/movement to the player 
@@ -109,5 +114,14 @@ Resources:
 
 15. Sci Fi Battery Pack: https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-battery-pack-free-19738
 
-16. https://assetstore.unity.com/packages/2d/gui/icons/cute-menu-gui-kit-141535
+16. GUI kit https://assetstore.unity.com/packages/2d/gui/icons/cute-menu-gui-kit-141535
+
+17. Heart https://www.vecteezy.com/vector-art/5644880-red-heart-in-pixel-art-style-8-bit-icon-valentine-s-day-symbol
+
+18. Running Icon https://www.svgrepo.com/svg/189274/running-run
+
+19. Lightning Bolt https://iconduck.com/icons/168309/lightning-bolt
+
+20. Medic Icon https://www.deviantart.com/slithbane/art/Red-Medic-class-icon-263466764
+
 Animations are from https://www.mixamo.com/#/
