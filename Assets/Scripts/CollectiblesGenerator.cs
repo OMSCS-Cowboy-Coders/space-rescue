@@ -48,7 +48,7 @@ public class CollectiblesGenerator : MonoBehaviour
         collectibleDuplicateCount = collectibleInitialCount + (int) Time.realtimeSinceStartup;
     }
 
-    bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
+     bool isProblematicLocation(RaycastHit rayhit, Vector3 position, GameObject preFab){
         string[] collisionTags = {"Structure", "TerrainAsset", "Player"};
         Collider preFabCollider = preFab.GetComponent<Collider>();
         //Check collider tag collision
@@ -56,11 +56,9 @@ public class CollectiblesGenerator : MonoBehaviour
             string collisionTag = collisionTags[i];
             //Check if collided structure's bounds is within proposed position
             //Get top level root
-            if(rayhit.collider.CompareTag(collisionTag) ){
+            if(rayhit.transform.root.CompareTag(collisionTag)){
                 //Expand structure collider temporarily and check if it's within bounds
-                if(rayhit.collider.bounds.Intersects(preFabCollider.bounds)){
-                    return true;
-                }
+                return true;
             }
         }
         return false;
@@ -79,8 +77,8 @@ public class CollectiblesGenerator : MonoBehaviour
                 Vector3 randomPos = new Vector3();
                 randomPos.x = UnityEngine.Random.Range(curTerrainPos.x + curTerrainMin.x, curTerrainPos.x + curTerrainMax.x);
                 randomPos.z = UnityEngine.Random.Range(curTerrainPos.z + curTerrainMin.z, curTerrainPos.z + curTerrainMax.z);
-                randomPos.y = curTerrain.SampleHeight(new Vector3(randomPos.x,0,randomPos.z)) + curTerrain.transform.position.y + 1.5f;
-                if(Physics.Raycast(randomPos, Vector3.down,  out rayHit) && !isProblematicLocation(rayHit, randomPos, collectible)){
+                randomPos.y += curTerrainPos.y;
+                if(Physics.Linecast(new Vector3(randomPos.x,randomPos.y + 1000, randomPos.z), randomPos,  out rayHit) && !isProblematicLocation(rayHit, randomPos, collectible)){
                     randomPos = rayHit.point;
                     randomPos.y = 1.5f;
                     Instantiate(collectible, randomPos, Quaternion.identity, collectibleRoot.transform);
