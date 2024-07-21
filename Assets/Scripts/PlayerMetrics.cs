@@ -41,8 +41,10 @@ public class PlayerMetrics : MonoBehaviour
 
     public PanelMenu panelMenu;
 
-    private float lastHitTime;
-    private float lastRegenTime;
+    private float nextRegenTime = 0f;
+    private float regenRate = 10f;
+    private float nextHitTime = 0f;
+    private float hitRate = 5f;
     private float currentTime;
     private void findPanelMenu() {
         GameObject canvas = GameObject.Find("Canvas");
@@ -68,14 +70,11 @@ public class PlayerMetrics : MonoBehaviour
         powerupsUIManager = FindObjectOfType<PowerupsUIManager>();
         // healthCollectibleUIManager.UpdateHealthCollectibleText(health);
         findPanelMenu();
-        lastRegenTime = Time.realtimeSinceStartup;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        currentTime = Time.realtimeSinceStartup;
         regenHealth();
         
     }
@@ -90,10 +89,11 @@ public class PlayerMetrics : MonoBehaviour
 
     private void regenHealth(){
         //Regen every 10 seconds
-        if(currentTime - lastRegenTime > 10f){
-            print("Regenerating Health! @: " + currentTime);
+        
+        if(Time.time > nextRegenTime){
+            print("Regenerating Health!");
             incrementHealth();
-            lastRegenTime = Time.realtimeSinceStartup;
+            nextRegenTime = Time.time + regenRate;
         }
     }
     public void incrementHealth() {
@@ -113,9 +113,9 @@ public class PlayerMetrics : MonoBehaviour
 
     public void decrementHealth(bool dieImmediately) {
         print("Last hit time:  " + currentTime);
-        if(currentTime - lastHitTime < 5f){
+        if(Time.time < nextHitTime){
             //If 5 seconds haven't clearly went by, decrement the player's health
-            print("Hasn't been more than 5 seconds bro: " + (currentTime - lastHitTime));
+            print("Hasn't been more than 5 seconds bro");
             return;
         }
         else{
@@ -137,7 +137,7 @@ public class PlayerMetrics : MonoBehaviour
             
             }
             healthCollectibleUIManager.updateHealth(health);
-            lastHitTime =  currentTime;
+            nextHitTime = Time.time + hitRate;
         }
     }
 
