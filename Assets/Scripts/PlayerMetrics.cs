@@ -42,9 +42,9 @@ public class PlayerMetrics : MonoBehaviour
     public PanelMenu panelMenu;
 
     private float nextRegenTime = 0f;
-    private float regenRate = 10f;
+    private float regenRate = 5f;
     private float nextHitTime = 0f;
-    private float hitRate = 5f;
+    private float hitRate = 2.5f;
     private float currentTime;
     private void findPanelMenu() {
         GameObject canvas = GameObject.Find("Canvas");
