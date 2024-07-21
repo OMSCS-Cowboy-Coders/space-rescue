@@ -57251,9 +57251,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1828264671}
-        m_TargetAssemblyTypeName: QuitGame, Assembly-CSharp
-        m_MethodName: QuitMars
+      - m_Target: {fileID: 1264010710}
+        m_TargetAssemblyTypeName: StartMenu, Assembly-CSharp
+        m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
