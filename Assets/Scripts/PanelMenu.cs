@@ -7,7 +7,8 @@ using TMPro;
 
 public enum CanvasStates {
     Pause,
-    WinScreen
+    WinScreen,
+    LoseScreen
 }
 
 [RequireComponent(typeof(CanvasGroup))]
@@ -17,6 +18,7 @@ public class PanelMenu : MonoBehaviour
     private CanvasGroup canvasGroup;
     private Transform pausePanel;
     private Transform winScreenPanel;
+    private Transform loseScreenPanel;
 
     private CanvasGroup selectedScreen;
 
@@ -39,6 +41,7 @@ public class PanelMenu : MonoBehaviour
         
         pausePanel = canvas.transform.Find("Panel");
         winScreenPanel = canvas.transform.Find("WinScreen");
+        loseScreenPanel = canvas.transform.Find("LoseScreen");
 
     }
     void Update()
@@ -78,16 +81,28 @@ public class PanelMenu : MonoBehaviour
         ToggleMenu();
     }
 
+    public void showLoseScreen() {
+        showScreen(CanvasStates.LoseScreen);
+        ToggleMenu();
+    }
+
     private void showScreen(CanvasStates state) {
         switch (state) {
             case CanvasStates.Pause:
                 // pausePanel.gameObject.SetActive(true);
                 pausePanel.gameObject.SetActive(true);
                 winScreenPanel.gameObject.SetActive(false);
+                loseScreenPanel.gameObject.SetActive(false);
                 break;
             case CanvasStates.WinScreen:
                 pausePanel.gameObject.SetActive(false);
                 winScreenPanel.gameObject.SetActive(true);
+                loseScreenPanel.gameObject.SetActive(false);
+                break;
+            case CanvasStates.LoseScreen:
+                pausePanel.gameObject.SetActive(false);
+                winScreenPanel.gameObject.SetActive(false);
+                loseScreenPanel.gameObject.SetActive(true);
                 break;
             default:
                 break;
