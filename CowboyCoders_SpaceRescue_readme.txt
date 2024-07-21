@@ -133,6 +133,7 @@ Mariana Mendez
 i. Assets: 
 - Hud Assest Pack:
 https://assetstore.unity.com/packages/2d/gui/sci-fi-ui-hud-background-281048
+
 ii. C# script files: 
 - StartMenu.cs, PauseGame.cs, QuitGame.cs, RestartGame.cs
 
