@@ -425,10 +425,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1020, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -772,7 +772,7 @@ RectTransform:
   m_GameObject: {fileID: 1023401453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.26, y: 1.28342, z: 1}
+  m_LocalScale: {x: 0.8335688, y: 1.2816151, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 758867023}
@@ -780,7 +780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: -7}
+  m_AnchoredPosition: {x: -8, y: -34}
   m_SizeDelta: {x: 644.4128, y: 311.5006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1023401455
@@ -803,14 +803,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "You need to navigate around Mars to find different battery pieces to power
-    up the space station. You can only hold one battery at a time. This will allow
-    you to open the doors and retrieve the final battery piece!\n\nThe three obstacles
-    are the ice obstacle, volcano obstacle, and crater obstacle!\n\_\nDon't let the
-    aliens get to you or else you will lose your health!\n\nPick up power-ups to
-    help with health and speed!\n\_\nPress E to pick up the objects\n\nPress Q to
-    drop objects\n\nPress shift+up arrow key to sprint \n\nPress shift+R+up arrow
-    key to use power-up sprint "
+  m_text: "Premise:\nYou are stranded on Mars and the final part you need for your
+    spaceship is locked inside the space station. The station though has lost power.
+    You will need to first find batteries to power up the station so you can get
+    to the final part. \n\nFour batteries must be collected. They are scattered throughout
+    the planet's surface. Each battery must be placed on the battery pad to open
+    a door in the space station. Open all the doors to get to end! \n\nBasic controls:\nTo
+    move around, you can use the arrow keys (up, right, left). Also you can press
+    SPACE to jump, and LEFT SHIFT to sprint. If you are on any kind of ice - you
+    will not be able to jump.\nBatteries can be picked up using \u201CE\u201D and
+    put down using \u201CQ\u201D. Only one battery can be held at a time. \n\nOther
+    Information:\nBe careful of aliens, touching lava or falling into craters - otherwise
+    you can die! There are hamburgers to regain health, and gold sprint powerup capsules
+    to allow you to sprint faster (Left + Shift + R). \n\nGood Luck!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -843,8 +848,8 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 17
-  m_HorizontalAlignment: 1
+  m_fontStyle: 16
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -873,7 +878,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -73.69342, w: -0.000015258789}
+  m_margin: {x: 0, y: 0, z: -73.69348, w: -0.000015258789}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -925,7 +930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -440, y: 218}
+  m_AnchoredPosition: {x: -337, y: 220}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1233031671
@@ -966,7 +971,7 @@ MonoBehaviour:
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
+    m_ColorMultiplier: 1.42
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
