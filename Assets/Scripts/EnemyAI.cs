@@ -18,6 +18,8 @@ public class EnemyAI : MonoBehaviour
     private bool blocked = false;
     private EnemyState state;
     private int wanderDist = 100;
+    private float wanderRate = 5f;
+    private float nextWanderTime = 0;
     private CharacterController charController;
     // Start is called before the first frame update
     void Start()
@@ -56,13 +58,17 @@ public class EnemyAI : MonoBehaviour
                 break;
             case EnemyState.Patrolling:
                 NavMeshHit  navHit;
-                if(!(agent.remainingDistance <= agent.stoppingDistance)){
-                    //Hasn't reached destination from previous patrol
+                if(Time.time > nextWanderTime){
+                    //Get a new destination
+                    nextWanderTime = Time.time + wanderRate;
+                    Vector3 randDirection = Random.insideUnitSphere * wanderDist;
+                    NavMesh.SamplePosition(agent.transform.position + randDirection, out navHit, wanderDist, -1);
+                    dest = navHit.position;
+                }
+                else{
+                    // Use last destination
                     return agent.destination;
                 }
-                Vector3 randDirection = Random.insideUnitSphere * wanderDist;
-                NavMesh.SamplePosition(agent.transform.position + randDirection, out navHit, wanderDist, -1);
-                dest = navHit.position;
                 break;
             case EnemyState.Following:
                 float remainingDistance = determineRemainingDistance();

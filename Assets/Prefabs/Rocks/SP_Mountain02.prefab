@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5257232359891525075}
   - component: {fileID: 8003327219358574873}
   - component: {fileID: -1358852777895568685}
+  - component: {fileID: -1637373966705264822}
   m_Layer: 0
   m_Name: SP_Mountain02
   m_TagString: TerrainAsset
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8346689930144010462, guid: 504190109f008394a9d26b8b0cdf056a, type: 3}
+--- !u!208 &-1637373966705264822
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363602064440985804}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.4050002, y: 1.9100001, z: 1.9490001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.9100001, z: 0}
+  m_TimeToStationary: 0.5

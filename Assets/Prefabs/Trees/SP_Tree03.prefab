@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8663187181965689015}
   - component: {fileID: 6907718765095990397}
   - component: {fileID: 2485396158017337940}
+  - component: {fileID: -3732431931472924238}
   m_Layer: 0
   m_Name: SP_Tree03
   m_TagString: TerrainAsset
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6771101535060161660, guid: 135fa340b65c75f4baf2068625e534ec, type: 3}
+--- !u!208 &-3732431931472924238
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4962361982661891496}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.52500004, y: 1.616, z: 0.624}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.035, y: 1.616, z: -0.035}
+  m_TimeToStationary: 0.5

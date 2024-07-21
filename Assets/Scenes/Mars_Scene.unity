@@ -16408,6 +16408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 550789766}
+  - component: {fileID: 550789767}
   m_Layer: 0
   m_Name: CraterObstacle
   m_TagString: Structure
@@ -16449,6 +16450,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &550789767
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550789765}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &551459249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16769,6 +16786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 557171071}
+  - component: {fileID: 557171072}
   m_Layer: 0
   m_Name: SpaceshipPartMechanism
   m_TagString: Untagged
@@ -16795,6 +16813,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &557171072
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557171070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &563847806
 GameObject:
   m_ObjectHideFlags: 0
@@ -40396,6 +40430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1313131698}
+  - component: {fileID: 1313131699}
   m_Layer: 0
   m_Name: SpaceStation
   m_TagString: Structure
@@ -40424,6 +40459,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1313131699
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313131697}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1313463810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51251,6 +51302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1646320699}
+  - component: {fileID: 1646320700}
   m_Layer: 0
   m_Name: Mountain_env_parts
   m_TagString: Structure
@@ -51278,6 +51330,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &1646320700
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646320698}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1646947608
 GameObject:
   m_ObjectHideFlags: 0
@@ -51434,6 +51502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1648281684}
   - component: {fileID: 1648281685}
+  - component: {fileID: 1648281686}
   m_Layer: 0
   m_Name: IceObstacle
   m_TagString: Structure
@@ -51484,6 +51553,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &1648281686
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648281683}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1651195838
 GameObject:
   m_ObjectHideFlags: 0
@@ -68306,6 +68391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328438966510269633}
+  - component: {fileID: 3328438966510269635}
   m_Layer: 0
   m_Name: VolcanoObstacle
   m_TagString: Structure
@@ -68313,6 +68399,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!208 &3328438966510269635
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328438966510269634}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3328438966520811580
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8294336498053333358}
   - component: {fileID: 6124772693332342180}
   - component: {fileID: -4266352720507759109}
+  - component: {fileID: -4598504059572352230}
   m_Layer: 0
   m_Name: SP_Stone02
   m_TagString: TerrainAsset
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2395018353482723409, guid: b4ee48a4d848465459bc0239a4364bbc, type: 3}
+--- !u!208 &-4598504059572352230
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5764444934274389105}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.115, y: 0.007, z: 0.143}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.007, z: 0}
+  m_TimeToStationary: 0.5
